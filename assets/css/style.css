@@ -205,6 +205,24 @@ article {
   border-radius: inherit;
   z-index: -1;
 }
+.buttonforresume {
+  display: inline-block;
+  padding: 12px 20px;
+  margin-left: 5.2rem;
+  background-color: var(--orange-yellow-crayola); /* Green background */
+  color: rgb(21, 18, 18);
+  text-align: center;
+  text-decoration: none; /* Remove underline */
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.buttonforresume:hover {
+  background-color: #343a37; /* Darker green on hover */
+  transform: scale(1.1); /* Slightly enlarge the button on hover */
+}
 
 .icon-box ion-icon { --ionicon-stroke-width: 35px; }
 
