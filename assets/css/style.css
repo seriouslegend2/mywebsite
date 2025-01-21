@@ -36,7 +36,7 @@
 ), hsl(144, 100%, 3%);
 --bg-gradient-yellow-1: linear-gradient(
   to bottom right, 
-  hsl(50, 100%, 75%) 0%, 
+  hsl(139, 100%, 75%) 0%, 
   hsla(50, 90%, 70%, 0) 50%
 );
 --bg-gradient-yellow-2: linear-gradient(
@@ -58,13 +58,49 @@
 /* Solid Colors */
 --jet: hsl(0, 0%, 28%);
 --onyx: hsl(240, 10%, 20%);
---eerie-black-1: hsl(240, 15%, 18%);
---eerie-black-2: hsl(240, 10%, 15%);
---smoky-black: hsl(240, 5%, 10%);
+--eerie-black-1: linear-gradient(
+  to bottom, 
+  hsl(240, 15%, 30%) 0%, 
+  hsl(240, 15%, 18%) 50%, 
+  hsl(240, 15%, 12%) 100%
+);
+
+--eerie-black-2: linear-gradient(
+  to bottom, 
+  hsl(0, 0%, 10%) 0%, 
+  hsl(0, 0%, 0%) 50%, 
+  hsl(0, 0%, 5%) 100%
+);
+
+--smoky-black: linear-gradient(
+  to bottom, 
+  hsl(0, 50%, 10%) 0%, 
+  hsl(0, 50%, 3%) 50%, 
+  hsl(0, 50%, 6%) 100%
+);
+
+/* Adding highlights */
+--eerie-black-1-glossy: radial-gradient(
+  circle at top, 
+  hsla(240, 15%, 50%, 0.2) 0%, 
+  hsl(240, 15%, 18%) 70%
+);
+
+--eerie-black-2-glossy: radial-gradient(
+  circle at top left, 
+  hsla(0, 0%, 30%, 0.2) 0%, 
+  hsl(0, 0%, 0%) 80%
+);
+
+--smoky-black-glossy: radial-gradient(
+  circle at top right, 
+  hsla(0, 50%, 20%, 0.15) 0%, 
+  hsl(0, 50%, 3%) 90%
+);
 --white-1: hsl(0, 0%, 100%);
 --white-2: hsl(0, 0%, 96%);
---orange-yellow-crayola: hsl(40, 100%, 70%);
---vegas-gold: hsl(50, 90%, 68%);
+--orange-yellow-crayola: hsl(125, 86%, 29%);
+--vegas-gold: hsl(0, 0%, 1%);
 --light-gray: hsl(0, 0%, 78%);
 --light-gray-70: hsla(0, 0%, 78%, 0.7);
 --bittersweet-shimmer: hsl(0, 50%, 55%);
