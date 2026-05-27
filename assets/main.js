@@ -6,15 +6,34 @@
 // --------- 1. Lenis smooth scroll (loaded from CDN) -----------
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
+// scroll-progress bar (works with or without Lenis)
+const progressEl = document.querySelector('.scroll-progress')
+const updateProgress = (scrollTop, scrollHeight) => {
+  if (!progressEl) return
+  const max = scrollHeight - window.innerHeight
+  const pct = max > 0 ? Math.min(100, Math.max(0, (scrollTop / max) * 100)) : 0
+  progressEl.style.width = pct + '%'
+}
+
 if (!prefersReduced) {
   // Lenis 1.x ESM build from jsDelivr
   import('https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.mjs')
     .then(({ default: Lenis }) => {
       const lenis = new Lenis({
-        duration: 1.05,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        duration: 1.1,
+        easing: (t) => 1 - Math.pow(1 - t, 3),
         smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 1.4,
       })
+
+      // hook scroll progress to Lenis ticks
+      lenis.on('scroll', ({ scroll, limit }) => {
+        if (!progressEl) return
+        const pct = limit > 0 ? Math.min(100, Math.max(0, (scroll / limit) * 100)) : 0
+        progressEl.style.width = pct + '%'
+      })
+
       const raf = (time) => {
         lenis.raf(time)
         requestAnimationFrame(raf)
@@ -34,8 +53,16 @@ if (!prefersReduced) {
       })
     })
     .catch(() => {
-      // graceful fallback: native smooth scroll already set in CSS
+      // graceful fallback: native scroll + progress bar
+      window.addEventListener('scroll', () => {
+        updateProgress(window.scrollY, document.documentElement.scrollHeight)
+      }, { passive: true })
     })
+} else {
+  // reduced-motion: still show progress bar via native scroll
+  window.addEventListener('scroll', () => {
+    updateProgress(window.scrollY, document.documentElement.scrollHeight)
+  }, { passive: true })
 }
 
 // --------- 2. Reveal-on-scroll via IntersectionObserver -------

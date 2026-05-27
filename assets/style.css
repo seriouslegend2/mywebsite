@@ -79,6 +79,30 @@ html.lenis, html.lenis body { height: auto; }
 ::-webkit-scrollbar-corner {
   background: var(--paper-2);
 }
+
+/* ---- Top scroll progress bar ---- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: var(--tomato);
+  z-index: 100;
+  transition: width 60ms linear;
+  box-shadow: 0 0 0 1px var(--ink);
+}
+.scroll-progress::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: -3px;
+  width: 9px;
+  height: 9px;
+  background: var(--tomato);
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+}
 body {
   background: var(--paper);
   color: var(--ink);
