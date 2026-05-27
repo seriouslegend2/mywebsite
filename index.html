@@ -216,6 +216,66 @@
           </article>
         </div>
       </section>
+      <!-- ====================== PROJECTS ============================== -->
+      <section class="section" id="built">
+        <div class="section__head">
+          <div>
+            <div class="section__num">03 / things i've built lately</div>
+            <h2 class="section__title">Side quests with <em>real benchmarks</em>.</h2>
+          </div>
+          <span class="section__kicker">code · papers · screenshots</span>
+        </div>
+
+        <div class="projects">
+          <article class="pcard pcard--wide reveal" data-tilt>
+            <div class="pcard__media">
+              <span class="pcard__num">01 · drug discovery</span>
+              <img src="assets/images/rldrl.png" alt="Morld — molecule generation visualisation" loading="lazy" />
+            </div>
+            <div class="pcard__body">
+              <h3 class="pcard__title"><em>Morld</em> — de-novo molecules with RL.</h3>
+              <p class="pcard__desc">LSTM language model over <b>1M+ SMILES</b>, then REINFORCE on top to chase QED. Came out at <b>96% chemical validity, 100% novelty, 100% uniqueness, 0.85 QED</b>. Yes I checked the literature, yes those numbers are real.</p>
+              <div class="pcard__tags"><span>PyTorch</span><span>LSTM</span><span>REINFORCE</span><span>RDKit</span><span>SMILES</span></div>
+              <a class="pcard__cta" target="_blank" rel="noopener" href="https://github.com/seriouslegend2/Denovo-Chemical-Molecule-Generation-with-LSTM-RL">
+                github.com/seriouslegend2/Denovo…RL
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="pcard reveal" data-tilt>
+            <div class="pcard__media">
+              <span class="pcard__num">02 · social good</span>
+              <img src="assets/images/hungerheart.png" alt="Hunger Hearts platform UI" loading="lazy" />
+            </div>
+            <div class="pcard__body">
+              <h3 class="pcard__title"><em>Hunger Hearts</em> — food, geo-indexed.</h3>
+              <p class="pcard__desc">MERN + Next.js food-redistribution platform. MongoDB <b>2dsphere</b> geospatial matching, four roles (donor / NGO / delivery / admin), Docker + GH Actions, <b>19 Jest tests</b> including a $inc race-condition test I'm weirdly proud of.</p>
+              <div class="pcard__tags"><span>Next.js</span><span>MongoDB</span><span>2dsphere</span><span>Docker</span><span>Jest</span></div>
+              <a class="pcard__cta" target="_blank" rel="noopener" href="https://github.com/seriouslegend2/hungerhearts">
+                github.com/seriouslegend2/hungerhearts
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="pcard reveal" data-tilt>
+            <div class="pcard__media">
+              <span class="pcard__num">03 · DRL · fog</span>
+              <img src="assets/images/firefly-fog.jpg" alt="Fog computing scheduler simulation" loading="lazy" />
+            </div>
+            <div class="pcard__body">
+              <h3 class="pcard__title">LSTM-ART <em>fog scheduler</em>.</h3>
+              <p class="pcard__desc">LSTM + Fuzzy-ART driving a discrete-event simulator under Poisson node churn. Benchmarked against six baselines — random, round-robin, greedy, genetic, potential-game, plain DDQN — on 10-seed paired trials. Spoiler: it wins.</p>
+              <div class="pcard__tags"><span>DRL</span><span>LSTM</span><span>Fuzzy-ART</span><span>Sim</span><span>Wilcoxon</span></div>
+              <a class="pcard__cta" target="_blank" rel="noopener" href="https://github.com/seriouslegend2/drllstm-testing1">
+                github.com/seriouslegend2/drllstm-testing1
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
       <p class="wrap" style="padding-block: 4rem;">More sections incoming.</p>
     </main>
     <script type="module" src="assets/main.js"></script>
