@@ -904,4 +904,73 @@ button { font: inherit; cursor: pointer; }
     transition-duration: 0.001ms !important;
   }
   .reveal { opacity: 1; transform: none; }
+  .hero__title .underline-svg { stroke-dashoffset: 0; }
+}
+
+/* ============================ MOBILE PASS ============================ */
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+  .nav__inner { padding: 12px 18px; }
+  .nav__brand { font-size: 18px; }
+  .nav__cta { padding: 8px 12px; font-size: 12px; }
+
+  .hero { padding: 40px 18px 32px; }
+  .hero__top { font-size: 11px; margin-bottom: 28px; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .hero__top .pill { font-size: 11px; padding: 6px 11px; }
+  .hero__title { font-size: clamp(56px, 17vw, 96px); }
+  .hero__subtitle { font-size: 16px; margin-top: 18px; }
+  .hero__ctas { gap: 8px; margin-top: 24px; }
+  .btn { padding: 11px 16px; font-size: 13px; }
+  .hero__avatar { transform: rotate(1deg); box-shadow: 5px 5px 0 var(--ink); max-width: 260px; margin: 12px auto 0; }
+  .hero__stamp { font-size: 10px; padding: 6px 10px; }
+  .hero__meta { gap: 10px 18px; margin-top: 36px; font-size: 11px; }
+  .doodle--star { width: 20px; }
+
+  .section { padding: 64px 18px 28px; }
+  .section__head { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .section__kicker { font-size: 11px; }
+  .section__title { font-size: clamp(32px, 8.6vw, 50px); }
+
+  .bento-k { gap: 10px; }
+  .bcard { padding: 18px; }
+  .bcard__name { font-size: 26px; }
+  .bcard__desc { font-size: 14px; }
+  .bcard__big { font-size: 110px; bottom: -16px; }
+
+  .research { gap: 24px; }
+  .research__quote { font-size: 22px; padding-left: 18px; }
+  .research__stats { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .research__stat { padding: 14px; }
+  .research__stat .n { font-size: 32px; }
+  .paper-card { padding: 22px; }
+  .paper-card__stamp { font-size: 9px; padding: 4px 8px; }
+
+  .projects { gap: 14px; }
+  .pcard__body { padding: 18px; }
+  .pcard__title { font-size: 24px; }
+  .pcard__desc { font-size: 14px; }
+
+  .marquee__track { font-size: 22px; gap: 28px; }
+  .stack { gap: 12px; }
+  .stack__group { padding: 18px; }
+  .chip { font-size: 12px; padding: 6px 10px; }
+
+  .timeline { padding-left: 22px; }
+  .tline__item::before { left: -30px; width: 13px; height: 13px; }
+  .tline__title { font-size: 22px; }
+  .tline__sub { font-size: 14px; }
+
+  .cta { margin: 60px 14px 0; border-radius: 22px; padding: 38px 26px; }
+  .cta__title { font-size: clamp(48px, 14vw, 88px); }
+  .cta__sub { font-size: 14.5px; }
+  .cta__link { font-size: 13px; padding: 12px 0; }
+  .cta__link .label { font-size: 10px; }
+
+  .foot { margin-top: 40px; padding: 18px; font-size: 11px; }
+}
+
+@media (max-width: 380px) {
+  .hero__title { font-size: 48px; }
+  .section__title { font-size: 30px; }
+  .nav__brand { font-size: 16px; }
 }
