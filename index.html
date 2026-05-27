@@ -119,46 +119,53 @@
             <div class="section__num">01 / what i'm shipping right now</div>
             <h2 class="section__title">Live at <em>Kookar</em>, in production, with real money on the line.</h2>
           </div>
-          <span class="section__kicker">five agents · ~70% ops drop</span>
+          <span class="section__kicker">multi-agent · multi-tenant · ~70% ops drop</span>
         </div>
 
         <div class="bento-k">
           <article class="bcard b-3 reveal">
             <div class="bcard__tag"><span class="live-dot"></span>voice · onboarding</div>
-            <h3 class="bcard__name"><em>Nisha</em></h3>
-            <p class="bcard__desc">Customer voice onboarding agent. Vapi + Deepgram + ElevenLabs / Sarvam Bulbul v3. Hindi, English, Hinglish — switches mid-sentence and doesn't lose the thread. <b>100+ live onboardings</b>.</p>
-            <div class="bcard__meta"><span>Vapi</span><span>Deepgram</span><span>Sarvam</span><span>ElevenLabs</span></div>
+            <h3 class="bcard__name"><em>Nisha</em> &amp; Landing Page Agent</h3>
+            <p class="bcard__desc">Customer voice onboarding agent + the landing-page agent behind it. Vapi + Deepgram + ElevenLabs / Sarvam Bulbul v3. Hindi, English, Hinglish — switches mid-sentence and doesn't lose the thread. Shipped phone-mode onboarding, reschedule + cancel flows, share-onboarder-video, outbound dial + Slack alerts, OM-routed callbacks via Exotel.</p>
+            <div class="bcard__meta"><span>Vapi</span><span>Deepgram</span><span>Sarvam</span><span>Exotel</span></div>
             <div class="bcard__big" aria-hidden="true">N</div>
           </article>
 
           <article class="bcard b-3 bcard--tomato reveal">
-            <div class="bcard__tag"><span class="live-dot" style="background:#fff;"></span>voice · outbound</div>
+            <div class="bcard__tag"><span class="live-dot" style="background:#fff;"></span>voice · outbound · multi-cook</div>
             <h3 class="bcard__name"><em>Khushi</em></h3>
-            <p class="bcard__desc">Hindi voice agent that calls cooks every single day for inventory + grocery orders. Vapi + Deepgram + Exotel telephony, with retries and a HITL fallback when things get weird.</p>
-            <div class="bcard__meta"><span>Vapi</span><span>Deepgram</span><span>Exotel</span><span>HITL</span></div>
+            <p class="bcard__desc">Hindi voice agent that calls cooks daily for inventory + grocery orders. Vapi + Deepgram + Exotel, retries + HITL fallback. Owned the <b>multi-cook routing</b> end-to-end — cook-id plumbed through dispatch + middleware, picker UI, Exotel-cook-incoming matched to caller phone scoped by house, primary-cook resolver across the codebase.</p>
+            <div class="bcard__meta"><span>Vapi</span><span>Deepgram</span><span>Exotel</span><span>Multi-cook</span></div>
             <div class="bcard__big" aria-hidden="true">K</div>
           </article>
 
           <article class="bcard b-4 bcard--accent reveal">
             <div class="bcard__tag"><span class="live-dot"></span>orchestration · langgraph</div>
-            <h3 class="bcard__name">Karma Watcher / <em>Orchestrator</em></h3>
-            <p class="bcard__desc">Milestone orchestrator that tracks customer state and routes <b>20+ production agents</b> on an event-driven LangGraph backbone with cohort routing. Operator workload dropped <b>~70%</b>.</p>
-            <div class="bcard__meta"><span>LangGraph</span><span>Postgres</span><span>Event-driven</span><span>Cohorts</span></div>
+            <h3 class="bcard__name">The <em>Orchestrator</em></h3>
+            <p class="bcard__desc">Milestone-driven router for <b>20+ production agents</b> on an event-driven LangGraph backbone. Tracks customer state across cohorts, fans work out to Rasika (chat), Khushi (calls), Landing Page Agent (onboarding) and back, and survives multi-tenant Postgres schema rollouts. Operator workload dropped <b>~70%</b>.</p>
+            <div class="bcard__meta"><span>LangGraph</span><span>EDA</span><span>Cohorts</span><span>Multi-tenant PG</span></div>
             <div class="bcard__big" aria-hidden="true">↯</div>
           </article>
 
           <article class="bcard b-2 reveal">
-            <div class="bcard__tag"><span class="live-dot"></span>ops · 5 dashboards</div>
-            <h3 class="bcard__name">HITL ops</h3>
-            <p class="bcard__desc">Checkpoint, escalation, dismiss. 5 Next.js + TypeScript dashboards humans actually like using.</p>
+            <div class="bcard__tag"><span class="live-dot"></span>ops · 5+ dashboards</div>
+            <h3 class="bcard__name">HITL ops + <em>Task Dashboard</em></h3>
+            <p class="bcard__desc">Checkpoint, escalation, dismiss. Plus the OB task dashboard for phone + meet bookings, the transcriptions hub (combined audio), and the recharge-visibility cohort tab under Tasks → Admin → Config. Next.js + TS, humans actually like using them.</p>
             <div class="bcard__meta"><span>Next.js</span><span>TS</span><span>Supabase</span></div>
           </article>
 
           <article class="bcard b-3 reveal">
-            <div class="bcard__tag"><span class="live-dot"></span>payments · whatsapp</div>
-            <h3 class="bcard__name">WhatsApp Biz × <em>Razorpay</em></h3>
-            <p class="bcard__desc">FastAPI integration shipping on top of a zero-downtime multi-tenant Postgres migration. Money moves, messages send, nobody pages me at 3 AM.</p>
-            <div class="bcard__meta"><span>FastAPI</span><span>wuzapi</span><span>Razorpay</span><span>Multi-tenant PG</span></div>
+            <div class="bcard__tag"><span class="live-dot"></span>payments · whatsapp · subs</div>
+            <h3 class="bcard__name">WhatsApp Biz × <em>Razorpay</em> subs</h3>
+            <p class="bcard__desc">FastAPI integration on a zero-downtime multi-tenant Postgres migration. Recurring Razorpay subscriptions with admin mark-inactive + pause/inactive confirm flows. WhatsApp v2 group-join sender resolution (LID via SenderAlt), plus a communication logger that synthesises msg_text for outbound media without captions.</p>
+            <div class="bcard__meta"><span>FastAPI</span><span>wuzapi</span><span>Razorpay subs</span><span>Multi-tenant PG</span></div>
+          </article>
+
+          <article class="bcard b-3 reveal">
+            <div class="bcard__tag"><span class="live-dot"></span>observability · scheduling</div>
+            <h3 class="bcard__name">OB Watcher v3 + <em>Rasika v2</em></h3>
+            <p class="bcard__desc">Onboarding watcher v3 — milestone-aware re-runs (12-hr post-C scheduled task, debounce removed, ABC-only after C). Plus Rasika v2: static tools, retired v1 package, and the chat-agent surface that drives WhatsApp + dashboard replies.</p>
+            <div class="bcard__meta"><span>Scheduled tasks</span><span>House logs</span><span>Rasika v2</span></div>
           </article>
 
           <article class="bcard b-3 reveal" style="display:flex; flex-direction:column; justify-content:space-between;">
@@ -346,7 +353,7 @@
           <li class="tline__item reveal">
             <div class="tline__date">Jun 2025 — present · Gurugram</div>
             <div class="tline__title"><em>AI Engineer Intern</em> · Kookar AI</div>
-            <p class="tline__sub">Building Nisha, Khushi, Karma Watcher, the HITL stack, and the WhatsApp + Razorpay layer on a multi-tenant Postgres backbone. The agents are in production, the dashboards are in production, the dropouts are not.</p>
+            <p class="tline__sub">Building Nisha, the Landing Page Agent, Khushi (with multi-cook routing), the orchestrator, OB Watcher v3, Rasika v2, the HITL stack, and the Razorpay subs + WhatsApp v2 layer on a multi-tenant Postgres backbone. Agents in production, dashboards in production, dropouts are not.</p>
           </li>
           <li class="tline__item reveal">
             <div class="tline__date">Dec 2024 — Feb 2025 · remote</div>
