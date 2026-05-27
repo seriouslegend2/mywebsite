@@ -525,6 +525,71 @@ button { font: inherit; cursor: pointer; }
   .b-2, .b-3, .b-4, .b-6 { grid-column: span 2; }
 }
 
+/* ---- Dashboards mega-card: small sub-blocks grid ---- */
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+@media (max-width: 1080px) { .dash-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px)  { .dash-grid { grid-template-columns: 1fr; } }
+
+.dash-mini {
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  padding: 14px 14px 12px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 165px;
+}
+.dash-mini__num {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--tomato);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.dash-mini h4 {
+  font-family: var(--f-display);
+  font-size: clamp(18px, 1.5vw, 22px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+.dash-mini p {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  margin: 0 0 10px;
+  flex: 1;
+}
+.dash-mini__tags {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  color: var(--muted);
+  letter-spacing: 0;
+  border-top: 1px dashed rgba(0,0,0,0.18);
+  padding-top: 8px;
+}
+
+/* ---- Paper thumbnail in research card ---- */
+.paper-card__thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  margin: 14px 0 4px;
+  box-shadow: 4px 4px 0 var(--ink);
+  background: var(--paper);
+}
+
 .bcard--accent {
   background: var(--ink);
   color: var(--paper);
