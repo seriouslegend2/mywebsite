@@ -35,8 +35,49 @@
 html, body { margin: 0; padding: 0; }
 html {
   background: var(--paper);
-  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+
+  /* firefox custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--tomato) var(--paper-2);
+}
+
+/* ---- Lenis smooth-scroll scaffold (1.x) ---- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: clip; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* ---- Custom scrollbar (WebKit) ---- */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper-2);
+  border-left: 1.5px solid var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink);
+  border: 2px solid var(--paper-2);
+  border-radius: 0;
+  background-image: linear-gradient(
+    180deg,
+    var(--ink) 0%,
+    var(--ink) 30%,
+    var(--tomato) 30%,
+    var(--tomato) 35%,
+    var(--ink) 35%,
+    var(--ink) 100%
+  );
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--tomato);
+  background-image: none;
+}
+::-webkit-scrollbar-corner {
+  background: var(--paper-2);
 }
 body {
   background: var(--paper);
