@@ -159,13 +159,6 @@
           </article>
 
           <article class="bcard b-3 reveal">
-            <div class="bcard__tag">domain-model migration</div>
-            <h3 class="bcard__name">Multi-partner <em>routing</em></h3>
-            <p class="bcard__desc">Migrated a system built around a single-partner-per-account assumption to N-partners-per-account. New schema columns, an idempotent backfill, and a canonical resolver consumed across ~10 call sites including LLM tools, edge functions, and operator dashboards. Followed by a documented end-to-end edge-case audit.</p>
-            <div class="bcard__meta"><span>PostgreSQL</span><span>Supabase</span><span>Python</span><span>TypeScript</span></div>
-          </article>
-
-          <article class="bcard b-3 reveal">
             <div class="bcard__tag">5-agent NLP pipeline</div>
             <h3 class="bcard__name">Structured-preference <em>extraction</em></h3>
             <p class="bcard__desc">Five-agent pipeline — detection → filtration → editing → conflict resolution → memory update — that pulls structured preferences out of free-form chat. Conflict router for when two parties disagree, plus an audit-history UI so operators can see why a preference flipped.</p>
@@ -193,40 +186,51 @@
             <div class="bcard__meta"><span>Razorpay</span><span>Express</span><span>React Native</span><span>Python</span></div>
           </article>
 
-          <article class="bcard b-3 reveal">
-            <div class="bcard__tag">whatsapp business · webhooks</div>
-            <h3 class="bcard__name">WhatsApp <em>sender resolution</em></h3>
-            <p class="bcard__desc">When the upstream platform started sending anonymous identifiers for group senders instead of phone numbers, I wrote resolver layers in both Node (inbound router) and Python (Supabase trigger endpoint), consolidated group-join event handling, and added an auto-promote-to-admin flow.</p>
-            <div class="bcard__meta"><span>Node.js</span><span>Python</span><span>WhatsApp</span><span>Webhooks</span></div>
+          <article class="bcard b-6 reveal" style="background: var(--paper-2);">
+            <div class="bcard__tag"><span class="live-dot"></span>frontends · 5 surfaces shipped</div>
+            <h3 class="bcard__name">Every <em>dashboard</em> + the mobile app — I've shipped on it.</h3>
+            <p class="bcard__desc" style="max-width: 82ch;">Operator-facing or customer-facing, web or mobile — there's no UI surface in the company I haven't pushed real code into. Same hands shipping the backend agents also shipped the consoles humans use to supervise them.</p>
+
+            <div class="dash-grid">
+              <div class="dash-mini">
+                <div class="dash-mini__num">01 · mobile</div>
+                <h4>Customer app</h4>
+                <p>OTP login, deep-link onboarding, schedule-a-call calendar, checkout, auto-recharge, accounts, profile. Expo + RN against an Express + TS backend.</p>
+                <div class="dash-mini__tags">Expo · React Native · Tamagui · TanStack</div>
+              </div>
+              <div class="dash-mini">
+                <div class="dash-mini__num">02 · internal</div>
+                <h4>Operator console</h4>
+                <p>The main internal dashboard — checkpoint / escalation / dismiss flows across half a dozen agent types, plus a Ctrl-J command palette for typed manual triggers, re-runs, backfills, milestone toggles.</p>
+                <div class="dash-mini__tags">Next.js 16 · TS · Tailwind · Supabase</div>
+              </div>
+              <div class="dash-mini">
+                <div class="dash-mini__num">03 · escalations</div>
+                <h4>Escalation cockpit</h4>
+                <p>~1.8k-line standalone surface for two-tier escalations — triage queue, evaluator auto-allocation, paginated stuck-task feed.</p>
+                <div class="dash-mini__tags">Next.js · TS · HITL · EDA</div>
+              </div>
+              <div class="dash-mini">
+                <div class="dash-mini__num">04 · calls</div>
+                <h4>Booking + call review</h4>
+                <p>Phone + meeting bookings, audio playback, transcripts, reschedule modals, edit-then-send actions over the call-recording → summary pipeline.</p>
+                <div class="dash-mini__tags">Next.js · TS · Whisper · LLM</div>
+              </div>
+              <div class="dash-mini">
+                <div class="dash-mini__num">05 · analytics</div>
+                <h4>Marketing analytics</h4>
+                <p>Standalone Next.js dashboard with auth + Terraform deploy, ~750 LoC scheduled SQL migrated out of Google Apps Script, plus an LLM analyst agent on top.</p>
+                <div class="dash-mini__tags">Next.js · Postgres · Terraform · Cron-SQL</div>
+              </div>
+            </div>
           </article>
 
-          <article class="bcard b-3 reveal">
-            <div class="bcard__tag">ops · 5+ next.js dashboards</div>
-            <h3 class="bcard__name">HITL dashboards + <em>command palette</em></h3>
-            <p class="bcard__desc">Checkpoint / escalation / dismiss flows, booking consoles with audio playback + transcript + reschedule, and a Ctrl-J command palette that exposes manual trigger actions for every agent in the system — re-runs, backfills, milestone toggles, one-off task creations. Typed action handlers and consistent confirmation flows.</p>
-            <div class="bcard__meta"><span>Next.js 16</span><span>TypeScript</span><span>Tailwind</span><span>Supabase</span></div>
-          </article>
-
-          <article class="bcard b-3 reveal">
-            <div class="bcard__tag">mobile · expo + rn</div>
-            <h3 class="bcard__name">Customer mobile <em>app</em></h3>
-            <p class="bcard__desc">Core mobile screens — OTP login, deep-link onboarding, schedule-a-call calendar, checkout, auto-recharge, accounts, profile — in Expo and React Native against an Express + TypeScript backend.</p>
-            <div class="bcard__meta"><span>Expo</span><span>React Native</span><span>Tamagui</span><span>TanStack Query</span></div>
-          </article>
-
-          <article class="bcard b-3 reveal">
-            <div class="bcard__tag">analytics · cron-sql · iac</div>
-            <h3 class="bcard__name">Marketing-attribution <em>dashboard</em></h3>
-            <p class="bcard__desc">Stood up a standalone Next.js analytics dashboard with auth and Terraform deployment, migrated attribution reports out of Google Apps Script into Postgres cron-SQL, and added an LLM analyst agent backed by ~750 lines of scheduled SQL.</p>
-            <div class="bcard__meta"><span>Next.js</span><span>Postgres</span><span>Terraform</span><span>Cron-SQL</span></div>
-          </article>
-
-          <article class="bcard b-3 reveal" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <article class="bcard b-6 reveal" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="bcard__tag">the bigger picture</div>
-              <h3 class="bcard__name" style="font-size: clamp(20px, 2vw, 26px); line-height: 1.15;">One LangGraph brain, twenty specialised agents, three telephony providers, and exactly zero "please reset the session" tickets.</h3>
+              <h3 class="bcard__name" style="font-size: clamp(22px, 2.6vw, 32px); line-height: 1.1; max-width: 28ch;">One LangGraph brain, twenty specialised agents, three telephony providers, and exactly zero "please reset the session" tickets.</h3>
             </div>
-            <div class="bcard__meta" style="margin-top: 18px;"><span>since Jun 2025</span><span>Gurugram</span><span>~150 PG migrations</span></div>
+            <div class="bcard__meta" style="margin-top: 18px;"><span>since Jun 2025</span><span>Gurugram</span><span>~150 PG migrations</span><span>5 frontends</span></div>
           </article>
         </div>
       </section>
@@ -409,7 +413,7 @@
           <li class="tline__item reveal">
             <div class="tline__date">Jun 2025 — present · Gurugram</div>
             <div class="tline__title"><em>AI Engineer Intern</em> · Kookar AI</div>
-            <p class="tline__sub">Shipping the multi-agent stack — voice (Nisha + Khushi), the milestone orchestrator, a five-agent NLP preference pipeline, the call-recording + transcript flow, the two-tier escalation system, recurring payments + content-gating, WhatsApp sender resolution, multi-partner routing, and the 5+ Next.js operator dashboards on top. Agents in production. Dashboards in production. Dropouts are not.</p>
+            <p class="tline__sub">Shipping the multi-agent stack end-to-end — voice (Nisha + Khushi), the milestone orchestrator, a five-agent NLP preference pipeline, the call-recording + transcript flow, the two-tier escalation system, recurring payments + content-gating, and every operator-facing dashboard plus the mobile app on top. Agents in production. Dashboards in production. Dropouts are not.</p>
           </li>
           <li class="tline__item reveal">
             <div class="tline__date">Dec 2024 — Feb 2025 · remote</div>
