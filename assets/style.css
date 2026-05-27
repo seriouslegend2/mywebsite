@@ -205,7 +205,17 @@ button { font: inherit; cursor: pointer; }
   position: relative;
 }
 .hero__title .row { display: block; }
-.hero__title .italic { font-style: italic; color: var(--tomato); }
+.hero__title .italic { font-style: italic; color: var(--tomato); position: relative; }
+.hero__title .italic::before {
+  content: '✦';
+  position: absolute;
+  top: -0.4em; right: -0.6em;
+  font-size: 0.18em;
+  color: var(--blue);
+  font-style: normal;
+  animation: spin 9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
 .hero__title .underline-svg {
   position: absolute;
   left: -8px;
@@ -214,6 +224,12 @@ button { font: inherit; cursor: pointer; }
   height: auto;
   color: var(--tomato);
   pointer-events: none;
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  animation: draw 1.6s ease-out 0.4s forwards;
+}
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
 }
 
 .hero__subtitle {
