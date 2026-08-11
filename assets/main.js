@@ -68,7 +68,364 @@ const yearEl = document.getElementById('yr');
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
 // =============================================================================
-// 4. VLOG — timeline
+// 4. THE WHEEL — radial jog-navigator
+// A fixed dial in the bottom-right corner. Press it and the six destinations
+// fan out along a quarter-arc; keep the pointer down and sweep, and the item
+// under the pointer's *angle* highlights live; release on one to go there.
+// Pointer Events + setPointerCapture give mouse, touch and pen a single code
+// path, and keep the drag tracking once it leaves the handle. Plain clicks and
+// full keyboard control work for anyone who never discovers the drag.
+// =============================================================================
+
+const WHEEL_ITEMS = [
+  { id: 'about', label: 'About', hash: '#about' },
+  { id: 'work', label: 'Experience', hash: '#work' },
+  { id: 'built', label: 'Projects', hash: '#built' },
+  { id: 'research', label: 'Research', hash: '#research' },
+  { id: 'record', label: 'Education', hash: '#record' },
+  { id: 'vlog', label: 'Vlog', hash: null }, // vlog.html — its own page
+];
+
+// Arc geometry, in degrees on a screen-space circle (y grows downward):
+// 180 is due left of the pivot, 270 is due north. Item 0 sits nearest the
+// thumb and the sweep runs upward.
+const ARC_START = 178;
+const ARC_END = 268;
+
+const DEG = Math.PI / 180;
+
+function buildWheel() {
+  if (document.querySelector('.wheel')) return;
+
+  const onVlog =
+    /vlog\.html$/i.test(location.pathname) || !!document.getElementById('timeline');
+  const count = WHEEL_ITEMS.length;
+  const step = (ARC_END - ARC_START) / (count - 1);
+
+  // -- DOM ---------------------------------------------------------------
+  const wheel = document.createElement('nav');
+  wheel.className = 'wheel';
+  wheel.setAttribute('aria-label', 'Section wheel');
+
+  const arc = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  arc.setAttribute('class', 'wheel__arc');
+  arc.setAttribute('aria-hidden', 'true');
+  const arcPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  arc.appendChild(arcPath);
+
+  const menu = document.createElement('div');
+  menu.className = 'wheel__menu';
+  menu.id = 'wheel-menu';
+  menu.setAttribute('role', 'menu');
+  menu.setAttribute('aria-label', 'Jump to section');
+
+  const handle = document.createElement('button');
+  handle.type = 'button';
+  handle.className = 'wheel__handle';
+  handle.setAttribute('aria-expanded', 'false');
+  handle.setAttribute('aria-haspopup', 'true');
+  handle.setAttribute('aria-controls', 'wheel-menu');
+  handle.setAttribute('aria-label', 'Open the section wheel — press and drag to select');
+  handle.innerHTML =
+    '<svg class="wheel__dial" viewBox="0 0 24 24" aria-hidden="true">' +
+    '<circle cx="12" cy="12" r="8.5"/>' +
+    '<line x1="12" y1="1.5" x2="12" y2="5"/>' +
+    '<line x1="22.5" y1="12" x2="19" y2="12"/>' +
+    '<line x1="12" y1="22.5" x2="12" y2="19"/>' +
+    '<line x1="1.5" y1="12" x2="5" y2="12"/>' +
+    '<circle cx="12" cy="12" r="2.5"/>' +
+    '</svg>';
+
+  const hint = document.createElement('span');
+  hint.className = 'wheel__hint';
+  hint.setAttribute('aria-hidden', 'true');
+  hint.textContent = 'Hold + sweep';
+
+  const live = document.createElement('span');
+  live.className = 'wheel__live';
+  live.setAttribute('aria-live', 'polite');
+
+  const els = WHEEL_ITEMS.map((item, i) => {
+    const a = document.createElement('a');
+    a.className = 'wheel__item';
+    a.id = `wheel-i-${item.id}`;
+    a.setAttribute('role', 'menuitem');
+    a.tabIndex = -1;
+    a.style.setProperty('--i', String(i));
+    a.textContent = item.label;
+    a.href = item.hash
+      ? (onVlog ? `index.html${item.hash}` : item.hash)
+      : (onVlog ? '#main' : 'vlog.html');
+    menu.appendChild(a);
+    return a;
+  });
+
+  wheel.append(arc, menu, handle, hint, live);
+  document.body.appendChild(wheel);
+
+  // -- State -------------------------------------------------------------
+  let open = false;
+  let active = 0;      // index highlighted by pointer / keyboard
+  let current = 0;     // index reflecting the section actually in view
+  let radius = 210;
+  let dragging = false;
+  let moved = false;
+  let openedByThisPress = false;
+
+  const angleOf = (i) => ARC_START + i * step;
+
+  // -- Layout: place every chip's outer edge on its arc point -------------
+  function layout() {
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    radius = Math.max(150, Math.min(215, Math.min(vw * 0.52, vh * 0.34)));
+    wheel.style.setProperty('--wheel-r', `${radius}px`);
+
+    els.forEach((el, i) => {
+      const t = angleOf(i) * DEG;
+      el.style.setProperty('--x', `${(Math.cos(t) * radius).toFixed(2)}px`);
+      el.style.setProperty('--y', `${(Math.sin(t) * radius).toFixed(2)}px`);
+    });
+
+    // arc track, drawn a touch beyond the first and last item
+    const d = 2 * radius;
+    const pt = (deg) => {
+      const t = deg * DEG;
+      return [
+        (radius + Math.cos(t) * radius).toFixed(2),
+        (radius + Math.sin(t) * radius).toFixed(2),
+      ];
+    };
+    const [x1, y1] = pt(ARC_START - 7);
+    const [x2, y2] = pt(ARC_END + 7);
+    arc.setAttribute('viewBox', `0 0 ${d} ${d}`);
+    arcPath.setAttribute('d', `M ${x1} ${y1} A ${radius} ${radius} 0 0 1 ${x2} ${y2}`);
+  }
+
+  // -- Selection ---------------------------------------------------------
+  function setActive(i, announce) {
+    if (i == null) return;
+    const changed = i !== active;
+    active = i;
+    els.forEach((el, n) => {
+      el.classList.toggle('is-active', n === i);
+      el.tabIndex = n === i ? 0 : -1;
+    });
+    menu.setAttribute('aria-activedescendant', els[i].id);
+    // the dial face turns with the selection
+    wheel.style.setProperty('--wheel-rot', `${(i / (count - 1)) * 90 - 45}deg`);
+    if (announce && changed) live.textContent = WHEEL_ITEMS[i].label;
+  }
+
+  function setCurrent(i) {
+    current = i;
+    els.forEach((el, n) => {
+      if (n === i) el.setAttribute('aria-current', 'true');
+      else el.removeAttribute('aria-current');
+    });
+  }
+
+  function openWheel() {
+    if (open) return;
+    open = true;
+    wheel.classList.add('is-open');
+    handle.setAttribute('aria-expanded', 'true');
+    setActive(current, false);
+  }
+
+  function closeWheel(focusHandle) {
+    if (!open) return;
+    open = false;
+    wheel.classList.remove('is-open');
+    handle.setAttribute('aria-expanded', 'false');
+    els.forEach((el) => el.classList.remove('is-active'));
+    live.textContent = '';
+    if (focusHandle) handle.focus({ preventScroll: true });
+  }
+
+  // -- Navigation --------------------------------------------------------
+  function go(i) {
+    const item = WHEEL_ITEMS[i];
+    closeWheel(false);
+
+    // Cross-page destinations just follow the href.
+    if (item.hash && onVlog) {
+      location.href = `index.html${item.hash}`;
+      return;
+    }
+    if (!item.hash && !onVlog) {
+      location.href = 'vlog.html';
+      return;
+    }
+
+    const target = item.hash
+      ? document.querySelector(item.hash)
+      : document.getElementById('main');
+    if (!target) return;
+
+    const navH = document.querySelector('.nav')?.offsetHeight || 54;
+    const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - navH - 10);
+    window.scrollTo({ top, behavior: REDUCED ? 'auto' : 'smooth' });
+    if (item.hash) history.replaceState(null, '', item.hash);
+  }
+
+  // -- Pointer: press, sweep, release -------------------------------------
+  // The angle from the pivot to the pointer picks the item, so the finger
+  // never has to land on a chip — exactly the old jog-wheel behaviour.
+  function pivot() {
+    const r = handle.getBoundingClientRect();
+    return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+  }
+
+  function indexFromPointer(clientX, clientY) {
+    const p = pivot();
+    const vx = clientX - p.x;
+    const vy = clientY - p.y;
+    const dist = Math.hypot(vx, vy);
+    if (dist < radius * 0.3) return null; // inside the dead zone: no selection
+    let deg = (Math.atan2(vy, vx) / DEG + 360) % 360;
+    // keep the sweep on our quadrant even when the pointer wanders past it
+    if (deg < 90) deg += 360;
+    const clamped = Math.min(Math.max(deg, ARC_START), ARC_END);
+    return Math.min(count - 1, Math.max(0, Math.round((clamped - ARC_START) / step)));
+  }
+
+  handle.addEventListener('pointerdown', (e) => {
+    if (e.button != null && e.button !== 0) return;
+    e.preventDefault();
+    dragging = true;
+    moved = false;
+    openedByThisPress = !open;
+    try { handle.setPointerCapture(e.pointerId); } catch (_) { /* older pens */ }
+    openWheel();
+  });
+
+  handle.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const p = pivot();
+    if (Math.hypot(e.clientX - p.x, e.clientY - p.y) > handle.offsetWidth * 0.6) moved = true;
+    const i = indexFromPointer(e.clientX, e.clientY);
+    if (i != null) setActive(i, true);
+  });
+
+  function endDrag(e) {
+    if (!dragging) return;
+    dragging = false;
+    try { handle.releasePointerCapture(e.pointerId); } catch (_) { /* noop */ }
+
+    const i = indexFromPointer(e.clientX, e.clientY);
+    if (moved && i != null) {
+      go(i);                        // released on an item: ship there
+    } else if (!moved && !openedByThisPress) {
+      closeWheel(false);            // tapped an already-open wheel: shut it
+    }
+    // otherwise the wheel simply stays open for a second look or a click
+  }
+
+  handle.addEventListener('pointerup', endDrag);
+  handle.addEventListener('pointercancel', () => { dragging = false; });
+  handle.addEventListener('contextmenu', (e) => { if (dragging) e.preventDefault(); });
+
+  // -- Plain clicks and hovers on the chips themselves ---------------------
+  els.forEach((el, i) => {
+    // Hover follows the pointer — but never steals the selection back from a
+    // keyboard user whose cursor happens to be resting on a chip.
+    el.addEventListener('pointerenter', () => {
+      if (open && !menu.contains(document.activeElement)) setActive(i, false);
+    });
+    el.addEventListener('focus', () => setActive(i, false));
+    el.addEventListener('click', (e) => {
+      // same-page targets are scrolled, not jumped
+      const item = WHEEL_ITEMS[i];
+      if ((item.hash && !onVlog) || (!item.hash && onVlog)) e.preventDefault();
+      go(i);
+    });
+  });
+
+  // -- Keyboard ------------------------------------------------------------
+  handle.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      openWheel();
+      els[active].focus({ preventScroll: true });
+    } else if (e.key === 'Escape') {
+      closeWheel(false);
+    }
+  });
+
+  menu.addEventListener('keydown', (e) => {
+    const move = (delta) => {
+      e.preventDefault();
+      const next = Math.min(count - 1, Math.max(0, active + delta));
+      setActive(next, true);
+      els[next].focus({ preventScroll: true });
+    };
+    switch (e.key) {
+      case 'ArrowUp':
+      case 'ArrowRight': move(1); break;      // up the arc
+      case 'ArrowDown':
+      case 'ArrowLeft': move(-1); break;      // back down it
+      case 'Home': e.preventDefault(); setActive(0, true); els[0].focus({ preventScroll: true }); break;
+      case 'End': e.preventDefault(); setActive(count - 1, true); els[count - 1].focus({ preventScroll: true }); break;
+      case 'Enter':
+      case ' ':
+      case 'Spacebar': e.preventDefault(); go(active); handle.focus({ preventScroll: true }); break;
+      case 'Escape': e.preventDefault(); closeWheel(true); break;
+      case 'Tab': closeWheel(false); break;
+      default: break;
+    }
+  });
+
+  // -- Dismissal -----------------------------------------------------------
+  document.addEventListener('pointerdown', (e) => {
+    if (open && !wheel.contains(e.target)) closeWheel(false);
+  });
+
+  // -- Position indicator: reflect the section actually in view ------------
+  function trackSections() {
+    if (onVlog) { setCurrent(count - 1); setActive(count - 1, false); return; }
+    if (!('IntersectionObserver' in window)) return;
+
+    const map = new Map();
+    WHEEL_ITEMS.forEach((item, i) => {
+      if (!item.hash) return;
+      const el = document.querySelector(item.hash);
+      if (el) map.set(el, i);
+    });
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const i = map.get(entry.target);
+          if (i == null) continue;
+          setCurrent(i);
+          if (!open) setActive(i, false);
+        }
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+    );
+    map.forEach((_i, el) => io.observe(el));
+  }
+
+  // -- Boot ----------------------------------------------------------------
+  layout();
+  setCurrent(0);
+  setActive(0, false);
+  trackSections();
+
+  let resizeTick = false;
+  window.addEventListener('resize', () => {
+    if (resizeTick) return;
+    resizeTick = true;
+    requestAnimationFrame(() => { layout(); resizeTick = false; });
+  });
+}
+
+buildWheel();
+
+// =============================================================================
+// 5. VLOG — timeline
 // Only runs on vlog.html (guarded by the presence of #timeline).
 // =============================================================================
 

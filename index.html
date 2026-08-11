@@ -10,12 +10,12 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Kaushal Edara — AI Engineer" />
-  <meta property="og:description" content="Production multi-agent systems. Eight shipped at Kookar AI. IEEE INDICON 2025 co-author." />
+  <meta property="og:description" content="Production multi-agent systems, platform and infrastructure. Twelve systems shipped at Kookar AI. IEEE INDICON 2025 co-author." />
   <meta property="og:url" content="https://seriouslegend2.github.io/mywebsite/" />
   <meta property="og:image" content="https://seriouslegend2.github.io/mywebsite/assets/images/kaush.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Kaushal Edara — AI Engineer" />
-  <meta name="twitter:description" content="Production multi-agent systems. Eight shipped at Kookar AI. IEEE INDICON 2025 co-author." />
+  <meta name="twitter:description" content="Production multi-agent systems, platform and infrastructure. Twelve systems shipped at Kookar AI. IEEE INDICON 2025 co-author." />
   <meta name="twitter:image" content="https://seriouslegend2.github.io/mywebsite/assets/images/kaush.jpg" />
 
   <link rel="icon" href="assets/images/logo.ico" />
@@ -50,11 +50,11 @@
   <main id="main">
 
     <!-- ================= MASTHEAD ================= -->
-    <header class="masthead">
+    <header class="masthead" id="about">
       <div class="shell">
         <div class="masthead__bar">
-          <span class="label"><span class="dot dot--live" aria-hidden="true"></span>Available Jun 2026</span>
-          <span class="label">IN&nbsp;— Gurugram · Bengaluru / Hyderabad</span>
+          <span class="label"><span class="dot dot--live" aria-hidden="true"></span>Open to roles — Hyderabad · Bengaluru</span>
+          <span class="label">From Jun 2026</span>
         </div>
 
         <div class="tiles">
@@ -63,6 +63,12 @@
             <p class="ident__full">Edara Sri Sai Kaushal</p>
             <h1 class="ident__name">Kaushal<br /><em>Edara</em></h1>
             <p class="ident__role">AI Engineer. I build production multi-agent systems that run unattended.</p>
+
+            <ul class="roles" aria-label="Target roles">
+              <li>AI&nbsp;Engineer</li>
+              <li>Forward&nbsp;Deployed&nbsp;Engineer</li>
+              <li>SDE&nbsp;/ Software&nbsp;Engineer</li>
+            </ul>
           </div>
 
           <!-- portrait: 4 wide, 2 tall -->
@@ -72,7 +78,7 @@
 
           <div class="tile s4" data-reveal style="--i:2">
             <span class="label">Now</span>
-            <p class="tile__name">AI Engineer Intern (PPO)<br />Kookar AI, Gurugram</p>
+            <p class="tile__name">AI Engineer Intern (PPO)<br />Kookar AI</p>
             <p class="mono" style="margin-top:auto">Jun 2025 — Present</p>
           </div>
 
@@ -91,17 +97,6 @@
             </div>
           </div>
         </div>
-
-        <!-- headline numbers -->
-        <div class="metrics" aria-label="Headline results">
-          <div class="metric" data-reveal style="--i:0"><span class="metric__n">20+</span><span class="metric__k">Agents<br />coordinated</span></div>
-          <div class="metric" data-reveal style="--i:1"><span class="metric__n">98%</span><span class="metric__k">Tasks<br />unattended</span></div>
-          <div class="metric" data-reveal style="--i:2"><span class="metric__n">2.3×</span><span class="metric__k">Onboarding<br />conversion</span></div>
-          <div class="metric" data-reveal style="--i:3"><span class="metric__n">2.5×</span><span class="metric__k">RM<br />capacity</span></div>
-          <div class="metric" data-reveal style="--i:4"><span class="metric__n">94%</span><span class="metric__k">Bad outputs<br />caught</span></div>
-          <div class="metric" data-reveal style="--i:5"><span class="metric__n">84%</span><span class="metric__k">Fixes<br />auto-drafted</span></div>
-          <div class="metric" data-reveal style="--i:6"><span class="metric__n">22m→s</span><span class="metric__k">Escalation<br />latency</span></div>
-        </div>
       </div>
     </header>
 
@@ -111,7 +106,16 @@
         <div class="section__head" data-reveal>
           <span class="section__num">01</span>
           <h2 class="section__title" id="work-t">Shipped — Kookar AI</h2>
-          <span class="section__meta">Eight systems · Jun 2025 — Present</span>
+          <span class="section__meta">Twelve systems · Jun 2025 — Present</span>
+        </div>
+
+        <div class="scale section__tiles" data-reveal>
+          <ul class="scale__figs">
+            <li><span class="fig">~20</span><span class="label">production LLM agents</span></li>
+            <li><span class="fig">735k</span><span class="label">lines added</span></li>
+            <li><span class="fig">258k</span><span class="label">lines deleted</span></li>
+          </ul>
+          <p class="scale__note">Kookar runs households end to end with LLM agents — meal planning, grocery ordering, cook coordination and customer communication over WhatsApp.</p>
         </div>
 
         <div class="tiles section__tiles">
@@ -178,200 +182,370 @@
             <p class="tile__body">Per-agent model routing, cohort overrides, HITL review queues, plus growth and funnel analytics dashboards.</p>
             <div class="tile__foot"><span class="label">Routing</span><span class="label">Overrides</span><span class="label">Review queues</span><span class="label">Growth</span><span class="label">Funnel</span></div>
           </article>
+
+          <!-- I — 7 wide, 2 tall: the platform half of the job -->
+          <article class="tile s7 r2 m-full" data-reveal style="--i:8">
+            <span class="tile__idx">09</span>
+            <h3 class="tile__name">Analytics data warehouse</h3>
+            <p class="tile__body">A hand-built Postgres warehouse under the dashboards: a view-migration suite plus cron scheduling covering cohort analysis, phase classification, retention, funnel and growth. On top, a reporting layer that attributes LLM cost per project from LangSmith traces — FinOps, not just charts.</p>
+            <div class="tile__foot"><span class="tile__metric">~60k</span><span class="label">lines · warehouse + reporting</span></div>
+          </article>
+
+          <!-- J — 5 wide -->
+          <article class="tile s5" data-reveal style="--i:9">
+            <span class="tile__idx">10</span>
+            <h3 class="tile__name">Customer mobile app &amp; payments</h3>
+            <p class="tile__body">The end-user surface. Expo / React Native with phone-OTP auth, Razorpay checkout, a transactions view, an auth-sync trigger, and an onboarding + scheduling rewrite on a custom calendar.</p>
+            <div class="tile__foot"><span class="tile__metric">~8k</span><span class="label">lines</span></div>
+          </article>
+
+          <!-- K — 5 wide -->
+          <article class="tile s5" data-reveal style="--i:10">
+            <span class="tile__idx">11</span>
+            <h3 class="tile__name">LLM platform resilience layer</h3>
+            <p class="tile__body">Structured-output repair and recovery policies, a provider-capability model, a fallback stack, a litellm gateway behind service tokens, and model routing lifted out of code into a live agent registry with BYOK presets.</p>
+            <div class="tile__foot"><span class="tile__metric">~4k</span><span class="label">lines</span></div>
+          </article>
+
+          <!-- L — full width -->
+          <article class="tile s12 m-full" data-reveal style="--i:11">
+            <span class="tile__idx">12</span>
+            <h3 class="tile__name">Terraform / EC2 infrastructure</h3>
+            <p class="tile__body">ALB, EC2, IAM, Route53, SSL, secrets and security modules with a bootstrap and deploy script, plus OAuth login wiring. I have also decommissioned a full stack, cross-stack references included — build and teardown.</p>
+            <div class="tile__foot"><span class="tile__metric">~5k</span><span class="label">lines</span><span class="label">Provision</span><span class="label">Deploy</span><span class="label">Decommission</span></div>
+          </article>
+        </div>
+
+        <!-- case study: the one build that was end-to-end solo -->
+        <div class="case" data-reveal>
+          <div class="case__head">
+            <span class="tile__idx">Case</span>
+            <h3 class="case__title">Voice onboarding, <em>solo, four days</em></h3>
+            <p class="case__lede">My first task there: a customer-facing voice product from nothing to a live TLS domain in four days, alone, deployment included.</p>
+          </div>
+
+          <dl class="case__spec">
+            <div class="spec__row">
+              <dt class="label">Transport</dt>
+              <dd>Vapi WebRTC voice sessions in the browser over a Daily.co transport — browser audio, not PSTN telephony.</dd>
+            </div>
+            <div class="spec__row">
+              <dt class="label">Grader</dt>
+              <dd>A 33-question LLM completeness grader at temperature 0, explicitly forbidden from inferring. Fails closed, gates onboarding status at a 95% threshold.</dd>
+            </div>
+            <div class="spec__row">
+              <dt class="label">Archival</dt>
+              <dd>Call recordings merged with ffmpeg and pushed to a transcription service.</dd>
+            </div>
+            <div class="spec__row">
+              <dt class="label">Delivery</dt>
+              <dd>Docker + Caddy for automatic TLS, with a hand-tuned CSP — under a WebRTC transport, a policy one notch too strict yields a call that connects and then stays silent.</dd>
+            </div>
+          </dl>
         </div>
       </div>
     </section>
 
-    <!-- ================= 02 — RESEARCH ================= -->
-    <section class="section" id="research" aria-labelledby="research-t">
+    <!-- ================= 02 — SIGNATURES ================= -->
+    <!-- Distinct treatment: ghost numerals behind stated patterns. No tiles,
+         no rails, no figures — the only section that is purely assertions. -->
+    <section class="section" id="signatures" aria-labelledby="sig-t">
       <div class="shell">
         <div class="section__head" data-reveal>
           <span class="section__num">02</span>
+          <h2 class="section__title" id="sig-t">Engineering signatures</h2>
+          <span class="section__meta">Patterns that repeat</span>
+        </div>
+
+        <ol class="sigs section__tiles">
+          <li class="sig" data-reveal style="--i:0">
+            <span class="sig__n" aria-hidden="true">01</span>
+            <h3 class="sig__t">Hunts silent failures</h3>
+            <p class="sig__b">The bug class I fix most is code that fails without erroring — a swallowed exception, a cached <code class="code">False</code> with no TTL, an undeclared state key, an event dropped for a missing field, RLS on with no policies. Each fix ships instrumentation, so the class is visible the next time.</p>
+          </li>
+
+          <li class="sig" data-reveal style="--i:1">
+            <span class="sig__n" aria-hidden="true">02</span>
+            <h3 class="sig__t">Moves enforcement where it can't be bypassed</h3>
+            <p class="sig__b">When application checks proved leaky, the invariant moved down a layer — a trigger, a <code class="code">CHECK</code> constraint, a partial unique index, a type constraint, or the absence of a tool. Make the bad state unrepresentable.</p>
+          </li>
+
+          <li class="sig" data-reveal style="--i:2">
+            <span class="sig__n" aria-hidden="true">03</span>
+            <h3 class="sig__t">Deletes aggressively, with evidence</h3>
+            <p class="sig__b">~258k lines deleted against ~735k added, always gated on runtime evidence rather than static analysis — including removing a service the day after shipping it, and cutting 22,692 lines on a week of production evidence.</p>
+          </li>
+
+          <li class="sig" data-reveal style="--i:3">
+            <span class="sig__n" aria-hidden="true">04</span>
+            <h3 class="sig__t">Validates against production reality</h3>
+            <p class="sig__b">Fixes anchored to a real broken row and proved inside a transaction I then rolled back — not against synthetic data that agrees with the fix by construction.</p>
+          </li>
+
+          <li class="sig" data-reveal style="--i:4">
+            <span class="sig__n" aria-hidden="true">05</span>
+            <h3 class="sig__t">Writes the deploy order down</h3>
+            <p class="sig__b">Identifies when code and migration must land in a specific order, and flags the windows where database behaviour would outrun the application behaviour actually deployed.</p>
+          </li>
+
+          <li class="sig" data-reveal style="--i:5">
+            <span class="sig__n" aria-hidden="true">06</span>
+            <h3 class="sig__t">Configures through data, not code</h3>
+            <p class="sig__b">Decisions moved out of code and prompts into tables operators edit without a deploy: HITL settings, playbook tables, model routing, cohort bounds behind a kill switch.</p>
+          </li>
+        </ol>
+
+        <div class="sigs__tail" data-reveal>
+          <span class="label">Also in the record</span>
+          <ul class="chips">
+            <li>Postgres triggers as an enforcement boundary</li>
+            <li>RPC state machines with pg_net callbacks</li>
+            <li>pg_cron scheduling</li>
+            <li>Stalled-stage reapers</li>
+            <li>SCD Type 2 versioning</li>
+            <li>Append-only audit tables</li>
+            <li>RLS policies</li>
+            <li>Correlation-ID lifecycles</li>
+            <li>Terminal-event chaining over timers</li>
+            <li>Redis debounce coordination</li>
+            <li>Join barriers</li>
+            <li>Single-flight</li>
+            <li>Per-household locks</li>
+            <li>Circuit breakers</li>
+            <li>Idempotent EventBridge / SQS scheduling</li>
+            <li>Exotel two-leg bridging</li>
+            <li>WhatsApp Business webhooks</li>
+            <li>Slack Events API</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 03 — RESEARCH ================= -->
+    <section class="section" id="research" aria-labelledby="research-t">
+      <div class="shell">
+        <div class="section__head" data-reveal>
+          <span class="section__num">03</span>
           <h2 class="section__title" id="research-t">Research — IIT Patna</h2>
           <span class="section__meta">Dec 2024 — Feb 2025 · Dr. Arijit Roy</span>
         </div>
 
-        <div class="tiles section__tiles">
-          <article class="tile s5" data-reveal style="--i:0">
-            <span class="tile__idx">R1</span>
-            <h3 class="tile__name">DQN-LSTM scheduler for real-time EEG transmission</h3>
-            <p class="tile__body">Fog computing for BCI healthcare. Mean episode latency cut against the plain-DDQN baseline.</p>
-            <div class="tile__foot"><span class="tile__metric">−61%</span><span class="label">latency · Wilcoxon p = 0.001 · n = 10 seeds</span></div>
-          </article>
+        <!-- paper first: the published artefact leads the section -->
+        <div class="paper section__tiles" data-reveal>
+          <div class="paper__frame">
+            <img src="assets/images/indicon-paper.png" alt="First page of the 3D-POS paper published at IEEE INDICON 2025" loading="lazy" />
+          </div>
+          <div class="paper__body">
+            <span class="tile__idx">Publication · IEEE INDICON 2025</span>
+            <h3 class="paper__title">3D-POS: 3D Pareto Optimized Head Selection for Fog-enabled Smart EEG Healthcare IoT</h3>
+            <p class="paper__cite">E.S.S. Kaushal, R.K. Rath, S. S.R., A. Hazra. <span class="paper__cite-em">Proc. IEEE INDICON</span>, 2025.</p>
+            <p><a class="link" href="https://ieeexplore.ieee.org/document/11252295" target="_blank" rel="noopener">IEEE Xplore ↗</a></p>
+          </div>
+        </div>
 
-          <article class="tile s7 m-full" data-reveal style="--i:1">
-            <span class="tile__idx">R2</span>
-            <h3 class="tile__name">3D Pareto-optimised head selection</h3>
-            <p class="tile__body">Head-selection algorithm for fog-enabled EEG healthcare IoT. Balances latency, energy and reliability across the topology.</p>
-            <div class="tile__foot"><span class="label">Latency</span><span class="label">Energy</span><span class="label">Reliability</span></div>
-          </article>
-
-          <article class="tile tile--split s12 m-full" data-reveal style="--i:2">
-            <div class="split">
-              <div class="split__frame">
-                <img src="assets/images/indicon-paper.png" alt="First page of the 3D-POS paper published at IEEE INDICON 2025" loading="lazy" />
-              </div>
-              <div class="split__body">
-                <span class="tile__idx">Publication</span>
-                <h3 class="tile__name">3D-POS: 3D Pareto Optimized Head Selection for Fog-enabled Smart EEG Healthcare IoT</h3>
-                <p class="tile__body">E.S.S. Kaushal, R.K. Rath, S. S.R., A. Hazra. Proc. IEEE INDICON, 2025.</p>
-                <div class="tile__foot">
-                  <a class="link" href="https://ieeexplore.ieee.org/document/11252295" target="_blank" rel="noopener">IEEE Xplore ↗</a>
-                </div>
-              </div>
+        <!-- the two findings, set as margin notes hanging off their labels -->
+        <div class="notes">
+          <div class="note" data-reveal style="--i:0">
+            <span class="note__tag">R1</span>
+            <div class="note__body">
+              <h3 class="note__title">DQN-LSTM scheduler for real-time EEG transmission</h3>
+              <p class="note__lede">Fog computing for BCI healthcare. Mean episode latency cut against the plain-DDQN baseline.</p>
+              <p class="note__foot"><span class="fig">−61%</span><span class="label">latency · Wilcoxon p = 0.001 · n = 10 seeds</span></p>
             </div>
-          </article>
+          </div>
+
+          <div class="note" data-reveal style="--i:1">
+            <span class="note__tag">R2</span>
+            <div class="note__body">
+              <h3 class="note__title">3D Pareto-optimised head selection</h3>
+              <p class="note__lede">Head-selection algorithm for fog-enabled EEG healthcare IoT. Balances latency, energy and reliability across the topology.</p>
+              <p class="note__foot"><span class="label">Latency</span><span class="label">Energy</span><span class="label">Reliability</span></p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= 03 — BUILT ================= -->
+    <!-- ================= 04 — BUILT ================= -->
     <section class="section" id="built" aria-labelledby="built-t">
       <div class="shell">
         <div class="section__head" data-reveal>
-          <span class="section__num">03</span>
+          <span class="section__num">04</span>
           <h2 class="section__title" id="built-t">Built</h2>
           <span class="section__meta">Selected projects · 2024 — 2025</span>
         </div>
 
-        <div class="tiles section__tiles">
-          <article class="tile tile--media s7 m-full" data-reveal style="--i:0">
-            <div class="media">
-              <div class="media__frame">
-                <img src="assets/images/rldrl.png" alt="Morld — molecule generation results visualisation" loading="lazy" />
-              </div>
-              <div class="media__body">
-                <span class="tile__idx">Feb — May 2025</span>
-                <h3 class="tile__name">Morld — de-novo molecule generation</h3>
-                <p class="tile__body">LSTM language model fine-tuned with REINFORCE on 1M+ SMILES.</p>
-                <div class="tile__foot">
-                  <span class="label">96% valid</span><span class="label">100% novel</span><span class="label">100% unique</span><span class="label">0.85 QED</span>
-                </div>
-                <div class="tile__foot" style="padding-top:6px">
-                  <a class="link" href="https://github.com/seriouslegend2/Denovo-Chemical-Molecule-Generation-with-LSTM-RL" target="_blank" rel="noopener">Repository ↗</a>
-                </div>
-              </div>
+        <!-- typographic ledger: numbered entry, prose, spec sheet. No media. -->
+        <ol class="ledger section__tiles">
+          <li class="proj" data-reveal style="--i:0">
+            <div class="proj__rail">
+              <span class="proj__idx">01</span>
+              <span class="proj__when">Feb — May 2025</span>
             </div>
-          </article>
 
-          <article class="tile tile--media s5" data-reveal style="--i:1">
-            <div class="media">
-              <div class="media__frame">
-                <img src="assets/images/firefly-fog.jpg" alt="Fog computing topology simulation for the LSTM-ART scheduler" loading="lazy" />
-              </div>
-              <div class="media__body">
-                <span class="tile__idx">Dec 2024 — Mar 2025</span>
-                <h3 class="tile__name">LSTM-ART DRL fog task scheduler</h3>
-                <p class="tile__body">Per-prototype replay buffers and a discrete-event simulator under Poisson node churn.</p>
-                <div class="tile__foot">
-                  <span class="label">6 baselines · 10-seed paired trials</span>
-                </div>
-                <div class="tile__foot" style="padding-top:6px">
-                  <a class="link" href="https://github.com/seriouslegend2/drllstm-testing1" target="_blank" rel="noopener">Repository ↗</a>
-                </div>
-              </div>
+            <div class="proj__main">
+              <h3 class="proj__title">Morld</h3>
+              <p class="proj__kicker">de-novo molecule generation</p>
+              <p class="proj__lede">Two-stage pipeline. Stage 1 trains an LSTM on 1M+ SMILES for next-token prediction. Stage 2 fine-tunes it with REINFORCE against a custom reward combining validity, novelty, fragment presence and QED. Top-p (nucleus) sampling for generation diversity, plus fragment-based control to steer toward a scaffold. An automated evaluation harness scores validity, novelty, uniqueness, diversity and QED.</p>
             </div>
-          </article>
 
-          <article class="tile tile--split s12 m-full" data-reveal style="--i:2">
-            <div class="split">
-              <div class="split__frame">
-                <img src="assets/images/hungerheart.png" alt="Hunger Hearts food redistribution platform interface" loading="lazy" />
+            <dl class="spec">
+              <div class="spec__row">
+                <dt class="label">Results</dt>
+                <dd>96% chemical validity · 100% novelty · 100% uniqueness · 0.85 QED</dd>
               </div>
-              <div class="split__body">
-                <span class="tile__idx">Nov 2024 — Apr 2025</span>
-                <h3 class="tile__name">Hunger Hearts</h3>
-                <p class="tile__body">Moves surplus food from restaurants and households to families in slums. Matches every donation to the nearest delivery partner with race-safe handoffs.</p>
-                <div class="tile__foot">
-                  <span class="label">78M tonnes wasted / yr</span><span class="label">500,000 child deaths</span><span class="label">194M undernourished</span>
-                </div>
-                <div class="tile__foot" style="padding-top:6px">
-                  <span class="mono">MERN · Next.js · MongoDB</span>
-                  <a class="link" href="https://github.com/seriouslegend2/hungerhearts" target="_blank" rel="noopener">Repository ↗</a>
-                </div>
+              <div class="spec__row">
+                <dt class="label">Stack</dt>
+                <dd>TensorFlow 2.19 · RDKit · Python 3.10 · LSTM · REINFORCE</dd>
               </div>
+              <div class="spec__row">
+                <dt class="label">Source</dt>
+                <dd><a class="link" href="https://github.com/seriouslegend2/Denovo-Chemical-Molecule-Generation-with-LSTM-RL" target="_blank" rel="noopener">Repository ↗</a></dd>
+              </div>
+            </dl>
+          </li>
+
+          <li class="proj" data-reveal style="--i:1">
+            <div class="proj__rail">
+              <span class="proj__idx">02</span>
+              <span class="proj__when">Nov 2024 — Apr 2025</span>
             </div>
-          </article>
-        </div>
+
+            <div class="proj__main">
+              <h3 class="proj__title">Hunger Hearts</h3>
+              <p class="proj__kicker">food redistribution platform</p>
+              <p class="proj__lede">Moves surplus food from restaurants and households to families in slums, matching every donation to the nearest delivery partner with race-safe handoffs. Express + MongoDB behind a Next.js frontend, JWT auth with bcrypt. Redis on Upstash caches the post feed with write-through invalidation on new posts; MongoDB indexes cut query time. Swagger docs for every route at <code class="code">/api-docs</code>, Jest unit tests, a Dockerised backend shipped to Docker Hub and deployed on Render via GitHub Actions, frontend on Vercel.</p>
+            </div>
+
+            <dl class="spec">
+              <div class="spec__row">
+                <dt class="label">Context</dt>
+                <dd>78M tonnes of food wasted a year · malnutrition a factor in 500,000 child deaths · 194M undernourished</dd>
+              </div>
+              <div class="spec__row">
+                <dt class="label">Stack</dt>
+                <dd>Next.js · Express · MongoDB · Redis (Upstash) · Docker · Jest · Swagger · GitHub Actions</dd>
+              </div>
+              <div class="spec__row">
+                <dt class="label">Source</dt>
+                <dd><a class="link" href="https://github.com/seriouslegend2/hungerhearts" target="_blank" rel="noopener">Repository ↗</a></dd>
+              </div>
+            </dl>
+          </li>
+
+          <li class="proj" data-reveal style="--i:2">
+            <div class="proj__rail">
+              <span class="proj__idx">03</span>
+              <span class="proj__when">Dec 2024 — Mar 2025</span>
+            </div>
+
+            <div class="proj__main">
+              <h3 class="proj__title">LSTM-ART DRL fog task scheduler</h3>
+              <p class="proj__kicker">deep reinforcement learning under node churn</p>
+              <p class="proj__lede">LSTM + Fuzzy-ART deep RL scheduler with per-prototype replay buffers, driving a discrete-event simulator under Poisson node churn. Separate fog-head and fog-node models, a baselines suite and a benchmark harness in-repo.</p>
+            </div>
+
+            <dl class="spec">
+              <div class="spec__row">
+                <dt class="label">Evaluation</dt>
+                <dd>Benchmarked against 6 baselines over 10-seed paired trials</dd>
+              </div>
+              <div class="spec__row">
+                <dt class="label">Stack</dt>
+                <dd>Python · Deep RL · LSTM · Fuzzy-ART · discrete-event simulation</dd>
+              </div>
+              <div class="spec__row">
+                <dt class="label">Source</dt>
+                <dd><a class="link" href="https://github.com/seriouslegend2/drllstm-testing1" target="_blank" rel="noopener">Repository ↗</a></dd>
+              </div>
+            </dl>
+          </li>
+        </ol>
       </div>
     </section>
 
-    <!-- ================= 04 — STACK ================= -->
+    <!-- ================= 05 — STACK ================= -->
     <section class="section" id="stack" aria-labelledby="stack-t">
       <div class="shell">
         <div class="section__head" data-reveal>
-          <span class="section__num">04</span>
+          <span class="section__num">05</span>
           <h2 class="section__title" id="stack-t">Stack</h2>
           <span class="section__meta">What I reach for</span>
         </div>
 
-        <div class="tiles section__tiles">
-          <div class="tile s4" data-reveal style="--i:0">
-            <span class="label">Languages</span>
-            <ul class="chips"><li>Python</li><li>JavaScript / TypeScript</li><li>PostgreSQL</li></ul>
+        <!-- dense manifest: one hairline row per category, no boxes -->
+        <dl class="manifest section__tiles">
+          <div class="manifest__row" data-reveal style="--i:0">
+            <dt class="label">Languages</dt>
+            <dd><ul class="chips"><li>Python</li><li>JavaScript / TypeScript</li><li>PostgreSQL</li></ul></dd>
           </div>
 
-          <div class="tile s8 m-full" data-reveal style="--i:1">
-            <span class="label">Frameworks</span>
-            <ul class="chips"><li>FastAPI (async)</li><li>Express.js</li><li>LangGraph</li><li>LangChain</li><li>Next.js</li><li>React</li><li>CSS</li><li>DSPy</li></ul>
+          <div class="manifest__row" data-reveal style="--i:1">
+            <dt class="label">Frameworks</dt>
+            <dd><ul class="chips"><li>FastAPI (async)</li><li>Express.js</li><li>LangGraph</li><li>LangChain</li><li>Next.js</li><li>React</li><li>CSS</li><li>DSPy</li></ul></dd>
           </div>
 
-          <div class="tile s6" data-reveal style="--i:2">
-            <span class="label">Tools</span>
-            <ul class="chips"><li>Git</li><li>GitHub</li><li>Docker</li><li>Kubernetes</li><li>Terraform</li><li>Vapi SDK</li><li>LangSmith</li><li>LiteLLM</li><li>Postman</li><li>CI/CD</li></ul>
+          <div class="manifest__row" data-reveal style="--i:2">
+            <dt class="label">Tools</dt>
+            <dd><ul class="chips"><li>Git</li><li>GitHub</li><li>Docker</li><li>Kubernetes</li><li>Terraform</li><li>Vapi SDK</li><li>LangSmith</li><li>LiteLLM</li><li>Postman</li><li>CI/CD</li></ul></dd>
           </div>
 
-          <div class="tile s6" data-reveal style="--i:3">
-            <span class="label">Platforms</span>
-            <ul class="chips"><li>AWS (ECS, Lambda, SQS, Bedrock)</li><li>Supabase</li><li>Redis</li><li>OpenAI</li><li>Anthropic</li><li>Gemini</li><li>Kimi</li><li>OpenRouter</li><li>ElevenLabs</li><li>Deepgram</li><li>Razorpay</li><li>Exotel</li><li>WhatsApp (wuzapi)</li></ul>
+          <div class="manifest__row" data-reveal style="--i:3">
+            <dt class="label">Platforms</dt>
+            <dd><ul class="chips"><li>AWS (ECS, Lambda, SQS, Bedrock)</li><li>Supabase</li><li>Redis</li><li>OpenAI</li><li>Anthropic</li><li>Gemini</li><li>Kimi</li><li>OpenRouter</li><li>ElevenLabs</li><li>Deepgram</li><li>Razorpay</li><li>Exotel</li><li>WhatsApp (wuzapi)</li></ul></dd>
           </div>
 
-          <div class="tile s7 m-full" data-reveal style="--i:4">
-            <span class="label">Hard skills</span>
-            <ul class="chips"><li>LLM Integration</li><li>RAG</li><li>Vector Databases</li><li>Multi-Agent Orchestration</li><li>Voice AI (STT/TTS)</li><li>Backend Engineering</li><li>Human-in-the-Loop Systems</li><li>Systems Architecture</li><li>Dynamic System Design</li></ul>
+          <div class="manifest__row" data-reveal style="--i:4">
+            <dt class="label">Hard skills</dt>
+            <dd><ul class="chips"><li>LLM Integration</li><li>RAG</li><li>Vector Databases</li><li>Multi-Agent Orchestration</li><li>Voice AI (STT/TTS)</li><li>Backend Engineering</li><li>Human-in-the-Loop Systems</li><li>Systems Architecture</li><li>Dynamic System Design</li></ul></dd>
           </div>
 
-          <div class="tile s5" data-reveal style="--i:5">
-            <span class="label">Soft skills</span>
-            <ul class="chips"><li>Figure-it-out mindset</li><li>Ownership</li><li>On-time delivery</li><li>Fast and accurate execution</li><li>Parallel execution across workstreams</li></ul>
+          <div class="manifest__row" data-reveal style="--i:5">
+            <dt class="label">Soft skills</dt>
+            <dd><ul class="chips"><li>Figure-it-out mindset</li><li>Ownership</li><li>On-time delivery</li><li>Fast and accurate execution</li><li>Parallel execution across workstreams</li></ul></dd>
           </div>
-        </div>
+        </dl>
       </div>
     </section>
 
-    <!-- ================= 05 — RECORD ================= -->
+    <!-- ================= 06 — RECORD ================= -->
     <section class="section" id="record" aria-labelledby="record-t">
       <div class="shell">
         <div class="section__head" data-reveal>
-          <span class="section__num">05</span>
+          <span class="section__num">06</span>
           <h2 class="section__title" id="record-t">Record</h2>
           <span class="section__meta">Education · Responsibility</span>
         </div>
 
-        <div class="tiles section__tiles">
-          <div class="tile s5 r2" data-reveal style="--i:0">
-            <span class="label">Education</span>
-            <h3 class="tile__name">IIIT Sri City, Andhra Pradesh</h3>
-            <p class="tile__body">B.Tech (Hons.) Computer Science · Nov 2022 — Jun 2026</p>
-            <div class="tile__foot"><span class="cgpa">9.2<sub>/ 10 CGPA</sub></span></div>
+        <!-- chronology: dates in the left rail, headline figure right-aligned -->
+        <div class="record section__tiles">
+          <div class="rec" data-reveal style="--i:0">
+            <span class="rec__when">Nov 2022<br />— Jun 2026</span>
+            <div class="rec__main">
+              <h3 class="rec__title">IIIT Sri City, Andhra Pradesh</h3>
+              <p class="rec__body">B.Tech (Hons.) Computer Science.</p>
+            </div>
+            <p class="rec__fig"><span class="fig">9.2<sub>/ 10 CGPA</sub></span></p>
           </div>
 
-          <div class="tile s7 m-full" data-reveal style="--i:1">
-            <span class="label">Aug 2024 — May 2025</span>
-            <h3 class="tile__name">Technical Secretary, IIIT Sri City</h3>
-            <p class="tile__body">Directed 10 technical clubs and ran the central and alumni portals.</p>
-            <div class="tile__foot">
+          <div class="rec" data-reveal style="--i:1">
+            <span class="rec__when">Aug 2024<br />— May 2025</span>
+            <div class="rec__main">
+              <h3 class="rec__title">Technical Secretary, IIIT Sri City</h3>
+              <p class="rec__body">Directed 10 technical clubs and ran the central and alumni portals.</p>
               <span class="facts"><span><b>1,500+</b> students</span><span><b>4,200+</b> alumni</span><span><b>6,500+</b> at Abhisarga fest</span></span>
             </div>
+            <p class="rec__fig"><span class="fig">10<sub>clubs</sub></span></p>
           </div>
 
-          <div class="tile s7 m-full" data-reveal style="--i:2">
-            <span class="label">Jul 2023 — Aug 2024</span>
-            <h3 class="tile__name">Core Member, IOTA Club</h3>
-            <p class="tile__body">Ran workshops, hackathons and contests for the campus developer community.</p>
-            <div class="tile__foot">
-              <span class="facts"><span><b>2+</b> workshops</span><span><b>3</b> hackathons</span><span><b>12</b> coding contests</span><span><b>200+</b> students</span></span>
+          <div class="rec" data-reveal style="--i:2">
+            <span class="rec__when">Jul 2023<br />— Aug 2024</span>
+            <div class="rec__main">
+              <h3 class="rec__title">Core Member, IOTA Club</h3>
+              <p class="rec__body">Ran workshops, hackathons and contests for the campus developer community.</p>
+              <span class="facts"><span><b>2+</b> workshops</span><span><b>3</b> hackathons</span><span><b>12</b> coding contests</span></span>
             </div>
+            <p class="rec__fig"><span class="fig">200+<sub>students</sub></span></p>
           </div>
         </div>
       </div>
@@ -381,19 +555,59 @@
   <!-- ================= FOOTER ================= -->
   <footer class="foot">
     <div class="shell">
-      <div class="foot__cta">
-        <p class="label" style="margin-bottom:20px"><span class="dot dot--live" aria-hidden="true"></span>Open to full-time AI engineering roles from Jun 2026 · Bengaluru / Hyderabad</p>
-        <a class="foot__line" href="mailto:kaushaledaracloudmail@gmail.com">kaushaledaracloudmail@gmail.com</a>
+      <div class="foot__status">
+        <p class="label"><span class="dot dot--live" aria-hidden="true"></span>Open to roles in Hyderabad and Bengaluru, from Jun 2026</p>
+        <span class="label foot__status-k">Contact</span>
       </div>
-    </div>
-    <div class="shell">
+
+      <ul class="roles roles--foot" aria-label="Target roles">
+        <li>AI&nbsp;Engineer</li>
+        <li>Forward&nbsp;Deployed&nbsp;Engineer</li>
+        <li>SDE&nbsp;/ Software&nbsp;Engineer</li>
+      </ul>
+
+      <!-- dispatch: one channel per row, value set large, destination on the right -->
+      <div class="dispatch">
+        <a class="dispatch__row" href="mailto:kaushaledaracloudmail@gmail.com">
+          <span class="label dispatch__k">Email</span>
+          <span class="dispatch__v">kaushaledaracloudmail@gmail.com</span>
+          <span class="dispatch__go" aria-hidden="true">Write ↗</span>
+        </a>
+
+        <a class="dispatch__row" href="tel:+919182843273">
+          <span class="label dispatch__k">Phone</span>
+          <span class="dispatch__v">+91 91828 43273</span>
+          <span class="dispatch__go" aria-hidden="true">Call ↗</span>
+        </a>
+
+        <a class="dispatch__row" href="https://github.com/seriouslegend2" target="_blank" rel="noopener">
+          <span class="label dispatch__k">GitHub</span>
+          <span class="dispatch__v">seriouslegend2</span>
+          <span class="dispatch__go" aria-hidden="true">Code ↗</span>
+        </a>
+
+        <a class="dispatch__row" href="https://www.linkedin.com/in/kaushal-edara/" target="_blank" rel="noopener">
+          <span class="label dispatch__k">LinkedIn</span>
+          <span class="dispatch__v">kaushal-edara</span>
+          <span class="dispatch__go" aria-hidden="true">Profile ↗</span>
+        </a>
+
+        <a class="dispatch__row dispatch__row--strong" href="https://drive.google.com/file/d/1-bNgOOs8T8z4OK9Uw6R5DPFEShfbtHOT/view?usp=drive_link" target="_blank" rel="noopener">
+          <span class="label dispatch__k">Résumé</span>
+          <span class="dispatch__v">One page, current as of 2026</span>
+          <span class="dispatch__go" aria-hidden="true">Download ↗</span>
+        </a>
+      </div>
+
+      <!-- sign-off: the full name, largest thing in the footer -->
+      <div class="signoff">
+        <p class="signoff__name">Edara Sri Sai <em>Kaushal</em></p>
+        <p class="signoff__meta label">AI Engineer · Forward Deployed Engineer · SDE — Hyderabad / Bengaluru from Jun 2026</p>
+      </div>
+
       <div class="foot__bar">
-        <span>+91 91828 43273</span>
-        <a class="link link--mute" href="https://github.com/seriouslegend2" target="_blank" rel="noopener">GitHub</a>
-        <a class="link link--mute" href="https://www.linkedin.com/in/kaushal-edara/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="link link--mute" href="https://drive.google.com/file/d/1-bNgOOs8T8z4OK9Uw6R5DPFEShfbtHOT/view?usp=drive_link" target="_blank" rel="noopener">Resume</a>
-        <a class="link link--mute" href="vlog.html">Vlog</a>
-        <span class="spacer">© <span id="yr">2026</span> Edara Sri Sai Kaushal</span>
+        <span>© <span id="yr">2026</span> Edara Sri Sai Kaushal</span>
+        <a class="link link--mute foot__bar-end" href="vlog.html">Vlog ↗</a>
       </div>
     </div>
   </footer>
