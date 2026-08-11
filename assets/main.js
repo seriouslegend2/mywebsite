@@ -68,7 +68,90 @@ const yearEl = document.getElementById('yr');
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
 // =============================================================================
-// 4. THE WHEEL — radial jog-navigator
+// 4. DISCLOSURE TREES
+// The trees themselves are native <details>/<summary> and need none of this.
+// Two enhancements only: a per-section expand/collapse-all, and opening the
+// ancestors of a deep-linked node so a URL can address something collapsed.
+// =============================================================================
+
+const TREES = document.querySelectorAll('[data-tree]');
+
+function syncTreeCtl(tree) {
+  const all = tree.querySelectorAll('details');
+  if (!all.length) return;
+  let open = 0;
+  all.forEach((d) => { if (d.open) open += 1; });
+  tree.querySelectorAll('[data-tree-act]').forEach((btn) => {
+    const wants = btn.dataset.treeAct === 'open';
+    btn.setAttribute('aria-pressed', String(wants ? open === all.length : open === 0));
+  });
+}
+
+TREES.forEach((tree) => {
+  tree.querySelectorAll('[data-tree-act]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const open = btn.dataset.treeAct === 'open';
+      tree.querySelectorAll('details').forEach((d) => { d.open = open; });
+      syncTreeCtl(tree);
+    });
+  });
+
+  // `toggle` does not bubble, so listen on the way down instead.
+  tree.addEventListener('toggle', () => syncTreeCtl(tree), true);
+  syncTreeCtl(tree);
+});
+
+/** Open every <details> above `el` so it is actually on screen. */
+function openAncestors(el) {
+  let d = el.closest('details');
+  while (d) {
+    d.open = true;
+    const parent = d.parentElement;
+    d = parent ? parent.closest('details') : null;
+  }
+}
+
+/** Resolve a hash, unfold whatever hides it, and scroll it under the nav. */
+function revealHash(hash, smooth) {
+  if (!hash || hash.length < 2) return;
+  let target;
+  try {
+    target = document.querySelector(hash);
+  } catch (_) {
+    return; // not a usable selector
+  }
+  if (!target) return;
+
+  openAncestors(target);
+
+  requestAnimationFrame(() => {
+    const navH = document.querySelector('.nav')?.offsetHeight || 54;
+    const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - navH - 10);
+    window.scrollTo({ top, behavior: REDUCED || !smooth ? 'auto' : 'smooth' });
+  });
+}
+
+if (TREES.length) {
+  if (location.hash) revealHash(location.hash, false);
+  window.addEventListener('hashchange', () => revealHash(location.hash, true));
+
+  // In-page links to a node should unfold it too, not just jump at it.
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest?.('a[href^="#"]');
+    if (!a) return;
+    const hash = a.getAttribute('href');
+    if (!hash || hash.length < 2) return;
+    const target = document.querySelector(hash);
+    if (target && target.closest('details')) {
+      e.preventDefault();
+      revealHash(hash, true);
+      history.replaceState(null, '', hash);
+    }
+  });
+}
+
+// =============================================================================
+// 5. THE WHEEL — radial jog-navigator
 // A fixed dial in the bottom-right corner. Press it and the six destinations
 // fan out along a quarter-arc; keep the pointer down and sweep, and the item
 // under the pointer's *angle* highlights live; release on one to go there.
@@ -425,7 +508,7 @@ function buildWheel() {
 buildWheel();
 
 // =============================================================================
-// 5. VLOG — timeline
+// 6. VLOG — timeline
 // Only runs on vlog.html (guarded by the presence of #timeline).
 // =============================================================================
 

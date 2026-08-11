@@ -44,6 +44,9 @@
   --dur: 520ms;
 
   color-scheme: dark;
+
+  /* lets the disclosure tree animate height to `auto` where supported */
+  interpolate-size: allow-keywords;
 }
 
 /* --------------------------------------------------------------------------
@@ -217,32 +220,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   color: var(--fg);
 }
 
-.tile__body {
-  color: var(--fg-mute);
-  font-size: clamp(13px, 0.86vw, 14.5px);
-  line-height: 1.5;
-  max-width: 62ch;
-}
-
-.tile__foot {
-  margin-top: auto;
-  padding-top: 14px;
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 6px 14px;
-}
-
-.tile__metric {
-  font-family: var(--mono);
-  font-size: clamp(20px, 2vw, 30px);
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  color: var(--fg);
-}
-
-/* scale strip — three figures and one sentence, sitting above the grid */
+/* scale strip — the headline figures and one sentence, above the tree */
 .scale {
   display: grid;
   grid-template-columns: minmax(0, auto) minmax(0, 1fr);
@@ -269,47 +247,6 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   line-height: 1.5;
   max-width: 62ch;
   text-wrap: pretty;
-}
-
-/* case — one build given a dossier: a stated head, then a spec sheet */
-.case {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-  gap: 0 clamp(20px, 3vw, 60px);
-  margin-top: clamp(26px, 3.4vw, 54px);
-  padding-top: clamp(22px, 2.8vw, 40px);
-  border-top: 1px solid var(--line-hi);
-}
-
-.case__head { display: flex; flex-direction: column; gap: 12px; }
-
-.case__title {
-  font-size: clamp(21px, 2.5vw, 40px);
-  font-weight: 300;
-  letter-spacing: -0.038em;
-  line-height: 1.06;
-  max-width: 14ch;
-}
-.case__title em {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 300;
-}
-
-.case__lede {
-  color: var(--fg-mute);
-  font-size: clamp(13px, 0.88vw, 14.5px);
-  line-height: 1.55;
-  max-width: 44ch;
-}
-
-.case__spec { display: flex; flex-direction: column; }
-.case__spec .spec__row { grid-template-columns: clamp(74px, 7vw, 104px) minmax(0, 1fr); }
-.case__spec dd {
-  margin: 0;
-  font-size: clamp(12.5px, 0.85vw, 14px);
-  line-height: 1.55;
-  color: var(--fg-mid);
 }
 
 /* --------------------------------------------------------------------------
@@ -721,59 +658,9 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 
 /* --------------------------------------------------------------------------
    8a. Section 02 — engineering signatures
-   Six stated patterns. A large ghost numeral sits behind each one — the only
-   place on the site where type is used as a background element. No borders
-   around the cells; a single hairline grid does the separating.
+   The six patterns now live in a disclosure tree (§ 8c). What survives here is
+   the tail: the loose index of everything else in the record.
    -------------------------------------------------------------------------- */
-.sigs {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--line-hi);
-}
-
-.sig {
-  position: relative;
-  overflow: hidden;
-  padding: clamp(24px, 2.8vw, 44px) clamp(18px, 2.2vw, 40px) clamp(26px, 3vw, 48px) 0;
-  border-bottom: 1px solid var(--line);
-}
-.sig:not(:nth-child(3n)) { border-right: 1px solid var(--line); }
-.sig:not(:nth-child(3n+1)) { padding-left: clamp(18px, 2.2vw, 40px); }
-
-/* the ghost numeral */
-.sig__n {
-  position: absolute;
-  right: clamp(-6px, -0.4vw, 0px);
-  top: clamp(8px, 1vw, 16px);
-  font-family: var(--mono);
-  font-size: clamp(52px, 6vw, 96px);
-  line-height: 1;
-  letter-spacing: -0.06em;
-  color: var(--line);
-  pointer-events: none;
-  transition: color 300ms var(--ease);
-}
-.sig:hover .sig__n { color: var(--line-hi); }
-
-.sig__t {
-  position: relative;
-  font-size: clamp(16px, 1.45vw, 23px);
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  line-height: 1.14;
-  margin-bottom: 12px;
-  max-width: 18ch;
-}
-
-.sig__b {
-  position: relative;
-  color: var(--fg-mute);
-  font-size: clamp(12.5px, 0.85vw, 14px);
-  line-height: 1.6;
-  max-width: 46ch;
-  text-wrap: pretty;
-}
-
 .sigs__tail {
   display: grid;
   grid-template-columns: clamp(88px, 11vw, 190px) minmax(0, 1fr);
@@ -784,68 +671,10 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 }
 
 /* --------------------------------------------------------------------------
-   8b. Section 03 — the ledger
-   Numbered entries stacked as full-width rules: a date rail, a long
-   typographic column, and a spec sheet of definition rows. Prose-led,
-   deliberately unlike the tiles.
+   8b. Inline code + the spec sheet
+   The spec sheet is the shared detail primitive: label/value definition rows
+   used inside every expanded tree node.
    -------------------------------------------------------------------------- */
-.ledger { border-top: 1px solid var(--line-hi); }
-
-.proj {
-  display: grid;
-  grid-template-columns: clamp(74px, 8vw, 152px) minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: 0 clamp(18px, 2.6vw, 52px);
-  padding: clamp(26px, 3.4vw, 56px) 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.proj__rail {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.proj__idx {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  color: var(--acc);
-  line-height: 1;
-}
-
-.proj__when {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--fg-mute);
-  line-height: 1.5;
-}
-
-.proj__title {
-  font-size: clamp(24px, 3vw, 46px);
-  font-weight: 300;
-  letter-spacing: -0.042em;
-  line-height: 1.02;
-  color: var(--fg);
-}
-
-.proj__kicker {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(14px, 1.2vw, 19px);
-  color: var(--fg-mid);
-  margin: 6px 0 clamp(14px, 1.6vw, 22px);
-}
-
-.proj__lede {
-  color: var(--fg-mute);
-  font-size: clamp(13px, 0.9vw, 15px);
-  line-height: 1.62;
-  max-width: 62ch;
-}
-
 .code {
   font-family: var(--mono);
   font-size: 0.9em;
@@ -857,7 +686,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 
 .spec__row {
   display: grid;
-  grid-template-columns: clamp(58px, 6vw, 92px) minmax(0, 1fr);
+  grid-template-columns: clamp(74px, 7vw, 106px) minmax(0, 1fr);
   gap: 0 clamp(12px, 1.4vw, 22px);
   align-items: baseline;
   padding: 11px 0;
@@ -872,6 +701,250 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   font-size: 11.5px;
   line-height: 1.55;
   color: var(--fg-mid);
+}
+
+/* --------------------------------------------------------------------------
+   8c. The disclosure tree
+   The site's progressive-disclosure primitive, used by sections 01, 02 and 04.
+   Collapsed it is a filesystem listing: one hairline-connected row per node,
+   a mono path on the left and the single fact worth seeing on the right.
+   Expanded it releases the prose and the spec sheet.
+
+   Native <details>/<summary> does the work — it opens, it is focusable, it is
+   announced, and it degrades to plain open sections with scripting off. JS
+   only adds expand-all and deep-linking, both non-essential.
+
+   Connectors are hairlines, not glyphs: the tree branch is drawn with the same
+   1px rule that draws every other structure on this site, so a filesystem
+   listing and a tetromino seam are visibly the same material.
+   -------------------------------------------------------------------------- */
+.tree {
+  --tree-ind: 26px;   /* indent per level */
+  --tree-mid: 22px;   /* where a row's connector meets it — half the 44px row */
+}
+
+/* the header rail: root path, hint, and the expand/collapse pair */
+.tree__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px clamp(14px, 2vw, 28px);
+  flex-wrap: wrap;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line-hi);
+}
+
+.tree__root {
+  font-family: var(--mono);
+  font-size: clamp(13px, 1.05vw, 16px);
+  letter-spacing: 0.02em;
+  color: var(--fg);
+}
+
+.tree__hint { color: var(--fg-mute); }
+
+.tree__ctl {
+  margin-left: auto;
+  display: flex;
+}
+
+/* the control only exists when scripting can honour it */
+html:not(.js) .tree__ctl { display: none; }
+
+.tree__ctl button {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  padding: 0 clamp(10px, 1.2vw, 15px);
+  min-height: 34px;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 180ms var(--ease), border-color 180ms var(--ease);
+}
+.tree__ctl button + button { border-left: 0; }
+.tree__ctl button:hover { color: var(--fg); border-color: var(--line-hi); }
+.tree__ctl button[aria-pressed="true"] { color: var(--acc); }
+
+/* ---- branches ---- */
+.tree__list { list-style: none; margin: 0; padding: 0; }
+
+.tree__item {
+  position: relative;
+  padding-left: var(--tree-ind);
+}
+
+/* │ — the spine, running the full height of the node incl. its open body */
+.tree__item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+}
+/* └ — the last child stops its spine at the elbow */
+.tree__item:last-child::before {
+  bottom: auto;
+  height: var(--tree-mid);
+}
+
+/* ─ — the branch into the row */
+.tree__item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: var(--tree-mid);
+  width: calc(var(--tree-ind) - 9px);
+  height: 1px;
+  background: var(--line);
+  transition: background-color 220ms var(--ease);
+}
+
+/* an open node lights its own branch — the accent, used as state, not colour */
+.tree__item:has(> .node[open])::after { background: var(--acc); }
+
+/* ---- the node ---- */
+.node { position: relative; }
+
+.node__sum {
+  display: flex;
+  align-items: center;
+  gap: 6px clamp(10px, 1.2vw, 18px);
+  min-height: 44px;
+  padding: 8px 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--line);
+  list-style: none;
+  transition: border-color 220ms var(--ease);
+}
+.node__sum::-webkit-details-marker { display: none; }
+.node__sum::marker { content: ""; }
+.node__sum:hover { border-bottom-color: var(--line-hi); }
+.node[open] > .node__sum { border-bottom-color: var(--line-hi); }
+
+/* the ring sits just outside the row, so it never covers the state tick */
+.node__sum:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 2px;
+}
+
+/* state indicator */
+.node__tick {
+  flex: 0 0 11px;
+  width: 11px;
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1;
+  color: var(--fg-mute);
+  transition: transform 240ms var(--ease), color 240ms var(--ease);
+}
+.node__tick::before { content: "\25B8"; }   /* ▸ */
+.node__sum:hover .node__tick { color: var(--fg); }
+.node[open] > .node__sum .node__tick {
+  color: var(--acc);
+  transform: rotate(90deg);
+}
+
+.node__idx {
+  flex: 0 0 auto;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--acc);
+  line-height: 1;
+}
+
+.node__name {
+  font-family: var(--mono);
+  font-size: clamp(12px, 0.95vw, 14px);
+  letter-spacing: 0.01em;
+  color: var(--fg);
+  line-height: 1.35;
+}
+
+/* patterns are sentences, not paths — they get the sans face */
+.node__name--prose {
+  font-family: var(--sans);
+  font-size: clamp(13.5px, 1.08vw, 17px);
+  font-weight: 300;
+  letter-spacing: -0.022em;
+}
+
+/* the ledger's project names keep their typographic weight */
+.node__name--big {
+  font-family: var(--sans);
+  font-size: clamp(17px, 1.7vw, 26px);
+  font-weight: 300;
+  letter-spacing: -0.034em;
+}
+
+.node__fact {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--fg-mute);
+  text-align: right;
+  line-height: 1.4;
+}
+.node__fact b { color: var(--fg); font-weight: 400; }
+
+/* group rows read one step louder than their children */
+.node--group > .node__sum { border-bottom-color: var(--line-hi); }
+.node--group > .node__sum .node__name {
+  font-size: clamp(13px, 1.05vw, 16px);
+  color: var(--fg);
+}
+
+/* ---- the disclosed body ---- */
+.node__in {
+  position: relative;
+  overflow: hidden;                       /* contains the ghost numeral */
+  padding: clamp(14px, 1.6vw, 22px) 0 clamp(18px, 2.2vw, 30px) clamp(12px, 1.4vw, 20px);
+}
+/* a nested list needs no padding of its own — its items carry the indent */
+.node__in > .tree__list { padding-left: 0; }
+.node--group > .node__in { padding-bottom: 0; }
+
+.node__body {
+  color: var(--fg-mute);
+  font-size: clamp(13px, 0.88vw, 15px);
+  line-height: 1.62;
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+
+.node__meta { margin-top: clamp(14px, 1.8vw, 22px); }
+.node__meta.spec { max-width: 76ch; }
+
+/* the ghost numeral survives the restructure — it now sits behind the
+   disclosed argument rather than behind a grid cell */
+.node__ghost {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-family: var(--mono);
+  font-size: clamp(52px, 6vw, 96px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: var(--line);
+  pointer-events: none;
+}
+
+/* height animation, where the browser can interpolate to auto. Purely
+   decorative: without support the node simply snaps open. */
+@supports selector(details::details-content) {
+  .node::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition:
+      block-size 300ms var(--ease),
+      content-visibility 300ms allow-discrete;
+  }
+  .node[open]::details-content { block-size: auto; }
 }
 
 /* --------------------------------------------------------------------------
@@ -1465,15 +1538,6 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 /* --------------------------------------------------------------------------
    14. Responsive
    -------------------------------------------------------------------------- */
-/* the ledger loses its third column before the type gets squeezed */
-@media (max-width: 1180px) {
-  .proj { grid-template-columns: clamp(74px, 8vw, 152px) minmax(0, 1fr); }
-  .spec {
-    grid-column: 2;
-    margin-top: clamp(18px, 2.2vw, 30px);
-  }
-}
-
 @media (max-width: 980px) {
   .tiles { grid-template-columns: repeat(6, 1fr); }
   .tile { grid-column: span 3; grid-row: auto; }
@@ -1486,16 +1550,6 @@ button { font: inherit; color: inherit; background: none; border: 0; }
     border-bottom: 1px solid var(--line);
     aspect-ratio: 16 / 9;
   }
-
-  /* signatures drop to two columns; the seam logic follows */
-  .sigs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .sig:not(:nth-child(3n)) { border-right: 0; }
-  .sig:not(:nth-child(2n)) { border-right: 1px solid var(--line); }
-  .sig:not(:nth-child(3n+1)) { padding-left: 0; }
-  .sig:not(:nth-child(2n+1)) { padding-left: clamp(18px, 2.2vw, 40px); }
-
-  .case { grid-template-columns: 1fr; gap: clamp(20px, 3vw, 34px); }
-  .case__title { max-width: none; }
 
   .notes { grid-template-columns: 1fr; }
   .note + .note {
@@ -1511,22 +1565,24 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   .tile, .tile.m-full { grid-column: span 6; }
   .counter { grid-template-columns: 1fr; }
 
-  /* ledger: rail goes inline above the entry */
-  .proj { grid-template-columns: 1fr; }
-  .proj__rail {
-    flex-direction: row;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-  .proj__when { line-height: 1; }
-  .spec { grid-column: 1; }
-
-  /* signatures stack; the ghost numeral moves out of the text's way */
-  .sigs { grid-template-columns: 1fr; }
-  .sigs .sig { border-right: 0; padding-left: 0; padding-right: clamp(56px, 16vw, 90px); }
-  .sig__n { font-size: 46px; }
   .sigs__tail { grid-template-columns: 1fr; gap: 10px; }
+
+  /* tree: the fact drops under the label rather than fighting it for width,
+     the indent tightens, and the connector follows the first line up */
+  .tree { --tree-ind: 18px; --tree-mid: 21px; }
+  .node__sum { flex-wrap: wrap; padding: 11px 0; }
+  .node__fact {
+    margin-left: 0;
+    flex: 1 0 100%;
+    text-align: left;
+    padding-left: 17px;
+  }
+  .node__ghost { font-size: 46px; opacity: 0.9; }
+  .spec__row { grid-template-columns: 1fr; gap: 6px; }
+
+  /* the controls become thumb-sized alongside the rows */
+  .tree__ctl { margin-left: 0; }
+  .tree__ctl button { min-height: 44px; padding: 0 14px; }
 
   /* scale strip stacks */
   .scale { grid-template-columns: 1fr; align-items: start; }

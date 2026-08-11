@@ -112,136 +112,259 @@
         <div class="scale section__tiles" data-reveal>
           <ul class="scale__figs">
             <li><span class="fig">~20</span><span class="label">production LLM agents</span></li>
-            <li><span class="fig">735k</span><span class="label">lines added</span></li>
-            <li><span class="fig">258k</span><span class="label">lines deleted</span></li>
+            <li><span class="fig">12</span><span class="label">systems shipped</span></li>
           </ul>
           <p class="scale__note">Kookar runs households end to end with LLM agents — meal planning, grocery ordering, cook coordination and customer communication over WhatsApp.</p>
         </div>
 
-        <div class="tiles section__tiles">
-          <!-- A — 7 wide, 2 tall -->
-          <article class="tile s7 r2 m-full" data-reveal style="--i:0">
-            <span class="tile__idx">01</span>
-            <h3 class="tile__name">Grocery-order multi-agent system</h3>
-            <p class="tile__body">Turns meal plans into placed grocery orders. Demand- and expiry-aware stock netting, cross-platform cart allocation, idempotent end to end.</p>
-            <div class="tile__foot"><span class="tile__metric">Plan → cart → order</span></div>
-          </article>
-
-          <!-- B — 5 wide -->
-          <article class="tile s5" data-reveal style="--i:1">
-            <span class="tile__idx">02</span>
-            <h3 class="tile__name">Watcher</h3>
-            <p class="tile__body">Coordination layer making 20+ independently running agents act as one system per household.</p>
-            <div class="tile__foot"><span class="tile__metric">98%</span><span class="label">dispatched unattended</span></div>
-          </article>
-
-          <!-- C — 5 wide -->
-          <article class="tile s5" data-reveal style="--i:2">
-            <span class="tile__idx">03</span>
-            <h3 class="tile__name">Voice onboarding agent</h3>
-            <p class="tile__body">Replaced a 30-minute scheduled operator call. Resumable, stitches multi-session context, auto-triggers downstream setup.</p>
-            <div class="tile__foot"><span class="tile__metric">30 min → 0</span><span class="label">operator time</span></div>
-          </article>
-
-          <!-- D — 4 wide, 2 tall -->
-          <article class="tile s4 r2" data-reveal style="--i:3">
-            <span class="tile__idx">04</span>
-            <h3 class="tile__name">Onboarding pod</h3>
-            <p class="tile__body">Multi-agent across customer and cook sides. Extracts every household detail, takes a lead from first contact to a live kitchen.</p>
-            <div class="tile__foot"><span class="tile__metric">2.3×</span><span class="label">conversion</span></div>
-          </article>
-
-          <!-- E — 8 wide -->
-          <article class="tile s8 m-full" data-reveal style="--i:4">
-            <span class="tile__idx">05</span>
-            <h3 class="tile__name">Human-in-the-loop review layer</h3>
-            <p class="tile__body">Catches agent errors before they reach the customer.</p>
-            <div class="tile__foot"><span class="tile__metric">94%</span><span class="label">of reviewed outputs corrected or blocked</span></div>
-          </article>
-
-          <!-- F — 4 wide -->
-          <article class="tile s4" data-reveal style="--i:5">
-            <span class="tile__idx">06</span>
-            <h3 class="tile__name">Arsenal</h3>
-            <p class="tile__body">Lets RMs manage households from WhatsApp alone, without ever opening a dashboard.</p>
-            <div class="tile__foot"><span class="tile__metric">2.5×</span><span class="label">households per RM</span></div>
-          </article>
-
-          <!-- G — 4 wide -->
-          <article class="tile s4" data-reveal style="--i:6">
-            <span class="tile__idx">07</span>
-            <h3 class="tile__name">Escalation system</h3>
-            <p class="tile__body">Problems reach the right human in seconds instead of 22 minutes; an agent drafts the fix.</p>
-            <div class="tile__foot"><span class="tile__metric">84%</span><span class="label">auto-drafted</span></div>
-          </article>
-
-          <!-- H — full width -->
-          <article class="tile s12 m-full" data-reveal style="--i:7">
-            <span class="tile__idx">08</span>
-            <h3 class="tile__name">AI-first internal console</h3>
-            <p class="tile__body">Per-agent model routing, cohort overrides, HITL review queues, plus growth and funnel analytics dashboards.</p>
-            <div class="tile__foot"><span class="label">Routing</span><span class="label">Overrides</span><span class="label">Review queues</span><span class="label">Growth</span><span class="label">Funnel</span></div>
-          </article>
-
-          <!-- I — 7 wide, 2 tall: the platform half of the job -->
-          <article class="tile s7 r2 m-full" data-reveal style="--i:8">
-            <span class="tile__idx">09</span>
-            <h3 class="tile__name">Analytics data warehouse</h3>
-            <p class="tile__body">A hand-built Postgres warehouse under the dashboards: a view-migration suite plus cron scheduling covering cohort analysis, phase classification, retention, funnel and growth. On top, a reporting layer that attributes LLM cost per project from LangSmith traces — FinOps, not just charts.</p>
-            <div class="tile__foot"><span class="tile__metric">~60k</span><span class="label">lines · warehouse + reporting</span></div>
-          </article>
-
-          <!-- J — 5 wide -->
-          <article class="tile s5" data-reveal style="--i:9">
-            <span class="tile__idx">10</span>
-            <h3 class="tile__name">Customer mobile app &amp; payments</h3>
-            <p class="tile__body">The end-user surface. Expo / React Native with phone-OTP auth, Razorpay checkout, a transactions view, an auth-sync trigger, and an onboarding + scheduling rewrite on a custom calendar.</p>
-            <div class="tile__foot"><span class="tile__metric">~8k</span><span class="label">lines</span></div>
-          </article>
-
-          <!-- K — 5 wide -->
-          <article class="tile s5" data-reveal style="--i:10">
-            <span class="tile__idx">11</span>
-            <h3 class="tile__name">LLM platform resilience layer</h3>
-            <p class="tile__body">Structured-output repair and recovery policies, a provider-capability model, a fallback stack, a litellm gateway behind service tokens, and model routing lifted out of code into a live agent registry with BYOK presets.</p>
-            <div class="tile__foot"><span class="tile__metric">~4k</span><span class="label">lines</span></div>
-          </article>
-
-          <!-- L — full width -->
-          <article class="tile s12 m-full" data-reveal style="--i:11">
-            <span class="tile__idx">12</span>
-            <h3 class="tile__name">Terraform / EC2 infrastructure</h3>
-            <p class="tile__body">ALB, EC2, IAM, Route53, SSL, secrets and security modules with a bootstrap and deploy script, plus OAuth login wiring. I have also decommissioned a full stack, cross-stack references included — build and teardown.</p>
-            <div class="tile__foot"><span class="tile__metric">~5k</span><span class="label">lines</span><span class="label">Provision</span><span class="label">Deploy</span><span class="label">Decommission</span></div>
-          </article>
-        </div>
-
-        <!-- case study: the one build that was end-to-end solo -->
-        <div class="case" data-reveal>
-          <div class="case__head">
-            <span class="tile__idx">Case</span>
-            <h3 class="case__title">Voice onboarding, <em>solo, four days</em></h3>
-            <p class="case__lede">My first task there: a customer-facing voice product from nothing to a live TLS domain in four days, alone, deployment included.</p>
+        <!-- The work as a filesystem tree: twelve systems as one line each,
+             grouped agents/ and platform/. Prose lives behind each disclosure,
+             so the default read is a scan, not a wall. -->
+        <div class="tree section__tiles" data-tree data-reveal>
+          <div class="tree__bar">
+            <span class="tree__root">kookar-ai/</span>
+            <span class="label tree__hint">Twelve systems — open a node for the detail</span>
+            <div class="tree__ctl" role="group" aria-label="Expand or collapse every node in this section">
+              <button type="button" data-tree-act="open">Expand all</button>
+              <button type="button" data-tree-act="close">Collapse all</button>
+            </div>
           </div>
 
-          <dl class="case__spec">
-            <div class="spec__row">
-              <dt class="label">Transport</dt>
-              <dd>Vapi WebRTC voice sessions in the browser over a Daily.co transport — browser audio, not PSTN telephony.</dd>
-            </div>
-            <div class="spec__row">
-              <dt class="label">Grader</dt>
-              <dd>A 33-question LLM completeness grader at temperature 0, explicitly forbidden from inferring. Fails closed, gates onboarding status at a 95% threshold.</dd>
-            </div>
-            <div class="spec__row">
-              <dt class="label">Archival</dt>
-              <dd>Call recordings merged with ffmpeg and pushed to a transcription service.</dd>
-            </div>
-            <div class="spec__row">
-              <dt class="label">Delivery</dt>
-              <dd>Docker + Caddy for automatic TLS, with a hand-tuned CSP — under a WebRTC transport, a policy one notch too strict yields a call that connects and then stays silent.</dd>
-            </div>
-          </dl>
+          <ul class="tree__list">
+            <!-- ---------------- agents/ ---------------- -->
+            <li class="tree__item">
+              <details class="node node--group" id="k-agents" open>
+                <summary class="node__sum">
+                  <span class="node__tick" aria-hidden="true"></span>
+                  <span class="node__name">agents/</span>
+                  <span class="node__fact">Seven customer-facing systems</span>
+                </summary>
+                <div class="node__in">
+                  <ul class="tree__list">
+                    <li class="tree__item">
+                      <details class="node" id="k-grocery">
+                        <summary class="node__sum">
+                          <span class="node__tick" aria-hidden="true"></span>
+                          <span class="node__idx">01</span>
+                          <span class="node__name">grocery-order-multi-agent</span>
+                          <span class="node__fact">plan → cart → <b>placed order</b></span>
+                        </summary>
+                        <div class="node__in">
+                          <p class="node__body">Turns meal plans into placed grocery orders. Demand- and expiry-aware stock netting, cross-platform cart allocation, idempotent end to end.</p>
+                        </div>
+                      </details>
+                    </li>
+
+                    <li class="tree__item">
+                      <details class="node" id="k-watcher">
+                        <summary class="node__sum">
+                          <span class="node__tick" aria-hidden="true"></span>
+                          <span class="node__idx">02</span>
+                          <span class="node__name">watcher</span>
+                          <span class="node__fact">coordination layer · <b>98%</b> unattended</span>
+                        </summary>
+                        <div class="node__in">
+                          <p class="node__body">Coordination layer making 20+ independently running agents act as one system per household.</p>
+                          <p class="node__meta"><span class="label">98% of dispatches run unattended</span></p>
+                        </div>
+                      </details>
+                    </li>
+
+                    <li class="tree__item">
+                      <details class="node" id="k-voice">
+                        <summary class="node__sum">
+                          <span class="node__tick" aria-hidden="true"></span>
+                          <span class="node__idx">03</span>
+                          <span class="node__name">voice-onboarding</span>
+                          <span class="node__fact">operator time <b>30 min → 0</b></span>
+                        </summary>
+                        <div class="node__in">
+                          <p class="node__body">Replaced a 30-minute scheduled operator call. Resumable, stitches multi-session context, auto-triggers downstream setup.</p>
+                          <p class="node__meta"><span class="label">Built solo in four days — see <a class="link" href="#k-case">case/</a></span></p>
+                        </div>
+                      </details>
+                    </li>
+
+                    <li class="tree__item">
+                      <details class="node" id="k-pod">
+                        <summary class="node__sum">
+                          <span class="node__tick" aria-hidden="true"></span>
+                          <span class="node__idx">04</span>
+                          <span class="node__name">onboarding-pod</span>
+                          <span class="node__fact">lead → live kitchen · <b>2.3×</b> conversion</span>
+                        </summary>
+                        <div class="node__in">
+                          <p class="node__body">Multi-agent across customer and cook sides. Extracts every household detail, takes a lead from first contact to a live kitchen.</p>
+                        </div>
+                      </details>
+                    </li>
+
+                    <li class="tree__item">
+                      <details class="node" id="k-hitl">
+                        <summary class="node__sum">
+                          <span class="node__tick" aria-hidden="true"></span>
+                          <span class="node__idx">05</span>
+                          <span class="node__name">hitl-review-layer</span>
+                          <span class="node__fact"><b>94%</b> corrected or blocked</span>
+                        </summary>
+                        <div class="node__in">
+                          <p class="node__body">Catches agent errors before they reach the customer.</p>
+                          <p class="node__meta"><span class="label">94% of reviewed outputs corrected or blocked</span></p>
+                        </div>
+                      </details>
+                    </li>
+
+                    <li class="tree__item">
+                      <details class="node" id="k-arsenal">
+                        <summary class="node__sum">
+                          <span class="node__tick" aria-hidden="true"></span>
+                          <span class="node__idx">06</span>
+                          <span class="node__name">arsenal</span>
+                          <span class="node__fact">WhatsApp-only console · <b>2.5×</b> per RM</span>
+                        </summary>
+                        <div class="node__in">
+                          <p class="node__body">Lets RMs manage households from WhatsApp alone, without ever opening a dashboard.</p>
+                        </div>
+                      </details>
+                    </li>
+
+                    <li class="tree__item">
+                      <details class="node" id="k-escalation">
+                        <summary class="node__sum">
+                          <span class="node__tick" aria-hidden="true"></span>
+                          <span class="node__idx">07</span>
+                          <span class="node__name">escalation</span>
+                          <span class="node__fact">22 min → seconds · <b>84%</b> auto-drafted</span>
+                        </summary>
+                        <div class="node__in">
+                          <p class="node__body">Problems reach the right human in seconds instead of 22 minutes; an agent drafts the fix.</p>
+                        </div>
+                      </details>
+                    </li>
+                  </ul>
+                </div>
+              </details>
+            </li>
+
+            <!-- ---------------- platform/ ---------------- -->
+            <li class="tree__item">
+              <details class="node node--group" id="k-platform" open>
+                <summary class="node__sum">
+                  <span class="node__tick" aria-hidden="true"></span>
+                  <span class="node__name">platform/</span>
+                  <span class="node__fact">Five systems under the agents</span>
+                </summary>
+                <div class="node__in">
+                  <ul class="tree__list">
+                    <li class="tree__item">
+                      <details class="node" id="k-console">
+                        <summary class="node__sum">
+                          <span class="node__tick" aria-hidden="true"></span>
+                          <span class="node__idx">08</span>
+                          <span class="node__name">internal-console</span>
+                          <span class="node__fact">routing · overrides · review queues</span>
+                        </summary>
+                        <div class="node__in">
+                          <p class="node__body">Per-agent model routing, cohort overrides, HITL review queues, plus growth and funnel analytics dashboards.</p>
+                          <ul class="chips node__meta"><li>Routing</li><li>Overrides</li><li>Review queues</li><li>Growth</li><li>Funnel</li></ul>
+                        </div>
+                      </details>
+                    </li>
+
+                    <li class="tree__item">
+                      <details class="node" id="k-warehouse">
+                        <summary class="node__sum">
+                          <span class="node__tick" aria-hidden="true"></span>
+                          <span class="node__idx">09</span>
+                          <span class="node__name">analytics-warehouse</span>
+                          <span class="node__fact">postgres · cohort → funnel · <b>FinOps</b></span>
+                        </summary>
+                        <div class="node__in">
+                          <p class="node__body">A hand-built Postgres warehouse under the dashboards: a view-migration suite plus cron scheduling covering cohort analysis, phase classification, retention, funnel and growth. On top, a reporting layer that attributes LLM cost per project from LangSmith traces — FinOps, not just charts.</p>
+                          <ul class="chips node__meta"><li>View migrations</li><li>pg_cron</li><li>Cohort</li><li>Retention</li><li>LangSmith cost attribution</li></ul>
+                        </div>
+                      </details>
+                    </li>
+
+                    <li class="tree__item">
+                      <details class="node" id="k-mobile">
+                        <summary class="node__sum">
+                          <span class="node__tick" aria-hidden="true"></span>
+                          <span class="node__idx">10</span>
+                          <span class="node__name">mobile-app-payments</span>
+                          <span class="node__fact">expo / react native · razorpay</span>
+                        </summary>
+                        <div class="node__in">
+                          <p class="node__body">The end-user surface. Expo / React Native with phone-OTP auth, Razorpay checkout, a transactions view, an auth-sync trigger, and an onboarding + scheduling rewrite on a custom calendar.</p>
+                        </div>
+                      </details>
+                    </li>
+
+                    <li class="tree__item">
+                      <details class="node" id="k-resilience">
+                        <summary class="node__sum">
+                          <span class="node__tick" aria-hidden="true"></span>
+                          <span class="node__idx">11</span>
+                          <span class="node__name">llm-resilience</span>
+                          <span class="node__fact">repair · fallback stack · live registry</span>
+                        </summary>
+                        <div class="node__in">
+                          <p class="node__body">Structured-output repair and recovery policies, a provider-capability model, a fallback stack, a litellm gateway behind service tokens, and model routing lifted out of code into a live agent registry with BYOK presets.</p>
+                        </div>
+                      </details>
+                    </li>
+
+                    <li class="tree__item">
+                      <details class="node" id="k-infra">
+                        <summary class="node__sum">
+                          <span class="node__tick" aria-hidden="true"></span>
+                          <span class="node__idx">12</span>
+                          <span class="node__name">terraform-ec2</span>
+                          <span class="node__fact">provision → deploy → decommission</span>
+                        </summary>
+                        <div class="node__in">
+                          <p class="node__body">ALB, EC2, IAM, Route53, SSL, secrets and security modules with a bootstrap and deploy script, plus OAuth login wiring. I have also decommissioned a full stack, cross-stack references included — build and teardown.</p>
+                          <ul class="chips node__meta"><li>Provision</li><li>Deploy</li><li>Decommission</li></ul>
+                        </div>
+                      </details>
+                    </li>
+                  </ul>
+                </div>
+              </details>
+            </li>
+
+            <!-- ---------------- case/ — the one end-to-end solo build ------- -->
+            <li class="tree__item">
+              <details class="node node--case" id="k-case">
+                <summary class="node__sum">
+                  <span class="node__tick" aria-hidden="true"></span>
+                  <span class="node__name">case/voice-onboarding-solo-4-days</span>
+                  <span class="node__fact">nothing → live TLS domain · <b>4 days</b></span>
+                </summary>
+                <div class="node__in">
+                  <p class="node__body">My first task there: a customer-facing voice product from nothing to a live TLS domain in four days, alone, deployment included.</p>
+                  <dl class="spec node__meta">
+                    <div class="spec__row">
+                      <dt class="label">Transport</dt>
+                      <dd>Vapi WebRTC voice sessions in the browser over a Daily.co transport — browser audio, not PSTN telephony.</dd>
+                    </div>
+                    <div class="spec__row">
+                      <dt class="label">Grader</dt>
+                      <dd>A 33-question LLM completeness grader at temperature 0, explicitly forbidden from inferring. Fails closed, gates onboarding status at a 95% threshold.</dd>
+                    </div>
+                    <div class="spec__row">
+                      <dt class="label">Archival</dt>
+                      <dd>Call recordings merged with ffmpeg and pushed to a transcription service.</dd>
+                    </div>
+                    <div class="spec__row">
+                      <dt class="label">Delivery</dt>
+                      <dd>Docker + Caddy for automatic TLS, with a hand-tuned CSP — under a WebRTC transport, a policy one notch too strict yields a call that connects and then stays silent.</dd>
+                    </div>
+                  </dl>
+                </div>
+              </details>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
@@ -257,43 +380,103 @@
           <span class="section__meta">Patterns that repeat</span>
         </div>
 
-        <ol class="sigs section__tiles">
-          <li class="sig" data-reveal style="--i:0">
-            <span class="sig__n" aria-hidden="true">01</span>
-            <h3 class="sig__t">Hunts silent failures</h3>
-            <p class="sig__b">The bug class I fix most is code that fails without erroring — a swallowed exception, a cached <code class="code">False</code> with no TTL, an undeclared state key, an event dropped for a missing field, RLS on with no policies. Each fix ships instrumentation, so the class is visible the next time.</p>
-          </li>
+        <div class="tree section__tiles" data-tree data-reveal>
+          <div class="tree__bar">
+            <span class="tree__root">patterns/</span>
+            <span class="label tree__hint">Six that repeat — open one for the argument</span>
+            <div class="tree__ctl" role="group" aria-label="Expand or collapse every pattern">
+              <button type="button" data-tree-act="open">Expand all</button>
+              <button type="button" data-tree-act="close">Collapse all</button>
+            </div>
+          </div>
 
-          <li class="sig" data-reveal style="--i:1">
-            <span class="sig__n" aria-hidden="true">02</span>
-            <h3 class="sig__t">Moves enforcement where it can't be bypassed</h3>
-            <p class="sig__b">When application checks proved leaky, the invariant moved down a layer — a trigger, a <code class="code">CHECK</code> constraint, a partial unique index, a type constraint, or the absence of a tool. Make the bad state unrepresentable.</p>
-          </li>
-
-          <li class="sig" data-reveal style="--i:2">
-            <span class="sig__n" aria-hidden="true">03</span>
-            <h3 class="sig__t">Deletes aggressively, with evidence</h3>
-            <p class="sig__b">~258k lines deleted against ~735k added, always gated on runtime evidence rather than static analysis — including removing a service the day after shipping it, and cutting 22,692 lines on a week of production evidence.</p>
-          </li>
-
-          <li class="sig" data-reveal style="--i:3">
-            <span class="sig__n" aria-hidden="true">04</span>
-            <h3 class="sig__t">Validates against production reality</h3>
-            <p class="sig__b">Fixes anchored to a real broken row and proved inside a transaction I then rolled back — not against synthetic data that agrees with the fix by construction.</p>
-          </li>
-
-          <li class="sig" data-reveal style="--i:4">
-            <span class="sig__n" aria-hidden="true">05</span>
-            <h3 class="sig__t">Writes the deploy order down</h3>
-            <p class="sig__b">Identifies when code and migration must land in a specific order, and flags the windows where database behaviour would outrun the application behaviour actually deployed.</p>
-          </li>
-
-          <li class="sig" data-reveal style="--i:5">
-            <span class="sig__n" aria-hidden="true">06</span>
-            <h3 class="sig__t">Configures through data, not code</h3>
-            <p class="sig__b">Decisions moved out of code and prompts into tables operators edit without a deploy: HITL settings, playbook tables, model routing, cohort bounds behind a kill switch.</p>
-          </li>
-        </ol>
+          <ul class="tree__list">
+            <li class="tree__item">
+              <details class="node node--sig" id="s-silent">
+                <summary class="node__sum">
+                  <span class="node__tick" aria-hidden="true"></span>
+                  <span class="node__idx">01</span>
+                  <span class="node__name node__name--prose">Hunts silent failures</span>
+                  <span class="node__fact">swallowed exceptions · cached <b>False</b> · RLS with no policies</span>
+                </summary>
+                <div class="node__in">
+                  <span class="node__ghost" aria-hidden="true">01</span>
+                  <p class="node__body">The bug class I fix most is code that fails without erroring — a swallowed exception, a cached <code class="code">False</code> with no TTL, an undeclared state key, an event dropped for a missing field, RLS on with no policies. Each fix ships instrumentation, so the class is visible the next time.</p>
+                </div>
+              </details>
+            </li>
+            <li class="tree__item">
+              <details class="node node--sig" id="s-enforce">
+                <summary class="node__sum">
+                  <span class="node__tick" aria-hidden="true"></span>
+                  <span class="node__idx">02</span>
+                  <span class="node__name node__name--prose">Moves enforcement where it can't be bypassed</span>
+                  <span class="node__fact">triggers · <b>CHECK</b> · partial unique indexes</span>
+                </summary>
+                <div class="node__in">
+                  <span class="node__ghost" aria-hidden="true">02</span>
+                  <p class="node__body">When application checks proved leaky, the invariant moved down a layer — a trigger, a <code class="code">CHECK</code> constraint, a partial unique index, a type constraint, or the absence of a tool. Make the bad state unrepresentable.</p>
+                </div>
+              </details>
+            </li>
+            <li class="tree__item">
+              <details class="node node--sig" id="s-delete">
+                <summary class="node__sum">
+                  <span class="node__tick" aria-hidden="true"></span>
+                  <span class="node__idx">03</span>
+                  <span class="node__name node__name--prose">Deletes on runtime evidence</span>
+                  <span class="node__fact">traces decide, not static analysis</span>
+                </summary>
+                <div class="node__in">
+                  <span class="node__ghost" aria-hidden="true">03</span>
+                  <p class="node__body">Deletion is a deliberate practice, not a cleanup afterthought — and it is gated on runtime evidence rather than static analysis. A path comes out only once traces and production telemetry show nothing is reaching it. That has meant tearing out a service the day after shipping it, once the traffic showed it was never on the hot path, and cutting dead agents on a week of production evidence.</p>
+                </div>
+              </details>
+            </li>
+            <li class="tree__item">
+              <details class="node node--sig" id="s-reality">
+                <summary class="node__sum">
+                  <span class="node__tick" aria-hidden="true"></span>
+                  <span class="node__idx">04</span>
+                  <span class="node__name node__name--prose">Validates against production reality</span>
+                  <span class="node__fact">a real broken row, in a rolled-back transaction</span>
+                </summary>
+                <div class="node__in">
+                  <span class="node__ghost" aria-hidden="true">04</span>
+                  <p class="node__body">Fixes anchored to a real broken row and proved inside a transaction I then rolled back — not against synthetic data that agrees with the fix by construction.</p>
+                </div>
+              </details>
+            </li>
+            <li class="tree__item">
+              <details class="node node--sig" id="s-deploy">
+                <summary class="node__sum">
+                  <span class="node__tick" aria-hidden="true"></span>
+                  <span class="node__idx">05</span>
+                  <span class="node__name node__name--prose">Writes the deploy order down</span>
+                  <span class="node__fact">code ↔ migration ordering, stated</span>
+                </summary>
+                <div class="node__in">
+                  <span class="node__ghost" aria-hidden="true">05</span>
+                  <p class="node__body">Identifies when code and migration must land in a specific order, and flags the windows where database behaviour would outrun the application behaviour actually deployed.</p>
+                </div>
+              </details>
+            </li>
+            <li class="tree__item">
+              <details class="node node--sig" id="s-config">
+                <summary class="node__sum">
+                  <span class="node__tick" aria-hidden="true"></span>
+                  <span class="node__idx">06</span>
+                  <span class="node__name node__name--prose">Configures through data, not code</span>
+                  <span class="node__fact">tables operators edit without a deploy</span>
+                </summary>
+                <div class="node__in">
+                  <span class="node__ghost" aria-hidden="true">06</span>
+                  <p class="node__body">Decisions moved out of code and prompts into tables operators edit without a deploy: HITL settings, playbook tables, model routing, cohort bounds behind a kill switch.</p>
+                </div>
+              </details>
+            </li>
+          </ul>
+        </div>
 
         <div class="sigs__tail" data-reveal>
           <span class="label">Also in the record</span>
@@ -376,91 +559,104 @@
         </div>
 
         <!-- typographic ledger: numbered entry, prose, spec sheet. No media. -->
-        <ol class="ledger section__tiles">
-          <li class="proj" data-reveal style="--i:0">
-            <div class="proj__rail">
-              <span class="proj__idx">01</span>
-              <span class="proj__when">Feb — May 2025</span>
+        <!-- typographic ledger, now as a tree: three repos as one line each,
+             the README prose and the spec sheet behind the disclosure. -->
+        <div class="tree section__tiles" data-tree data-reveal>
+          <div class="tree__bar">
+            <span class="tree__root">built/</span>
+            <span class="label tree__hint">Three repositories — open one for the write-up</span>
+            <div class="tree__ctl" role="group" aria-label="Expand or collapse every project">
+              <button type="button" data-tree-act="open">Expand all</button>
+              <button type="button" data-tree-act="close">Collapse all</button>
             </div>
+          </div>
 
-            <div class="proj__main">
-              <h3 class="proj__title">Morld</h3>
-              <p class="proj__kicker">de-novo molecule generation</p>
-              <p class="proj__lede">Two-stage pipeline. Stage 1 trains an LSTM on 1M+ SMILES for next-token prediction. Stage 2 fine-tunes it with REINFORCE against a custom reward combining validity, novelty, fragment presence and QED. Top-p (nucleus) sampling for generation diversity, plus fragment-based control to steer toward a scaffold. An automated evaluation harness scores validity, novelty, uniqueness, diversity and QED.</p>
-            </div>
+          <ul class="tree__list">
+            <li class="tree__item">
+              <details class="node node--proj" id="p-morld">
+                <summary class="node__sum">
+                  <span class="node__tick" aria-hidden="true"></span>
+                  <span class="node__idx">01</span>
+                  <span class="node__name node__name--big">Morld</span>
+                  <span class="node__fact">de-novo molecule generation · <b>Feb — May 2025</b></span>
+                </summary>
+                <div class="node__in">
+                  <p class="node__body">Two-stage pipeline. Stage 1 trains an LSTM on 1M+ SMILES for next-token prediction. Stage 2 fine-tunes it with REINFORCE against a custom reward combining validity, novelty, fragment presence and QED. Top-p (nucleus) sampling for generation diversity, plus fragment-based control to steer toward a scaffold. An automated evaluation harness scores validity, novelty, uniqueness, diversity and QED.</p>
+                  <dl class="spec node__meta">
+                    <div class="spec__row">
+                      <dt class="label">Results</dt>
+                      <dd>96% chemical validity · 100% novelty · 100% uniqueness · 0.85 QED</dd>
+                    </div>
+                    <div class="spec__row">
+                      <dt class="label">Stack</dt>
+                      <dd>TensorFlow 2.19 · RDKit · Python 3.10 · LSTM · REINFORCE</dd>
+                    </div>
+                    <div class="spec__row">
+                      <dt class="label">Source</dt>
+                      <dd><a class="link" href="https://github.com/seriouslegend2/Denovo-Chemical-Molecule-Generation-with-LSTM-RL" target="_blank" rel="noopener">Repository ↗</a></dd>
+                    </div>
+                  </dl>
+                </div>
+              </details>
+            </li>
 
-            <dl class="spec">
-              <div class="spec__row">
-                <dt class="label">Results</dt>
-                <dd>96% chemical validity · 100% novelty · 100% uniqueness · 0.85 QED</dd>
-              </div>
-              <div class="spec__row">
-                <dt class="label">Stack</dt>
-                <dd>TensorFlow 2.19 · RDKit · Python 3.10 · LSTM · REINFORCE</dd>
-              </div>
-              <div class="spec__row">
-                <dt class="label">Source</dt>
-                <dd><a class="link" href="https://github.com/seriouslegend2/Denovo-Chemical-Molecule-Generation-with-LSTM-RL" target="_blank" rel="noopener">Repository ↗</a></dd>
-              </div>
-            </dl>
-          </li>
+            <li class="tree__item">
+              <details class="node node--proj" id="p-hungerhearts">
+                <summary class="node__sum">
+                  <span class="node__tick" aria-hidden="true"></span>
+                  <span class="node__idx">02</span>
+                  <span class="node__name node__name--big">Hunger Hearts</span>
+                  <span class="node__fact">food redistribution platform · <b>Nov 2024 — Apr 2025</b></span>
+                </summary>
+                <div class="node__in">
+                  <p class="node__body">Moves surplus food from restaurants and households to families in slums, matching every donation to the nearest delivery partner with race-safe handoffs. Express + MongoDB behind a Next.js frontend, JWT auth with bcrypt. Redis on Upstash caches the post feed with write-through invalidation on new posts; MongoDB indexes cut query time. Swagger docs for every route at <code class="code">/api-docs</code>, Jest unit tests, a Dockerised backend shipped to Docker Hub and deployed on Render via GitHub Actions, frontend on Vercel.</p>
+                  <dl class="spec node__meta">
+                    <div class="spec__row">
+                      <dt class="label">Context</dt>
+                      <dd>78M tonnes of food wasted a year · malnutrition a factor in 500,000 child deaths · 194M undernourished</dd>
+                    </div>
+                    <div class="spec__row">
+                      <dt class="label">Stack</dt>
+                      <dd>Next.js · Express · MongoDB · Redis (Upstash) · Docker · Jest · Swagger · GitHub Actions</dd>
+                    </div>
+                    <div class="spec__row">
+                      <dt class="label">Source</dt>
+                      <dd><a class="link" href="https://github.com/seriouslegend2/hungerhearts" target="_blank" rel="noopener">Repository ↗</a></dd>
+                    </div>
+                  </dl>
+                </div>
+              </details>
+            </li>
 
-          <li class="proj" data-reveal style="--i:1">
-            <div class="proj__rail">
-              <span class="proj__idx">02</span>
-              <span class="proj__when">Nov 2024 — Apr 2025</span>
-            </div>
-
-            <div class="proj__main">
-              <h3 class="proj__title">Hunger Hearts</h3>
-              <p class="proj__kicker">food redistribution platform</p>
-              <p class="proj__lede">Moves surplus food from restaurants and households to families in slums, matching every donation to the nearest delivery partner with race-safe handoffs. Express + MongoDB behind a Next.js frontend, JWT auth with bcrypt. Redis on Upstash caches the post feed with write-through invalidation on new posts; MongoDB indexes cut query time. Swagger docs for every route at <code class="code">/api-docs</code>, Jest unit tests, a Dockerised backend shipped to Docker Hub and deployed on Render via GitHub Actions, frontend on Vercel.</p>
-            </div>
-
-            <dl class="spec">
-              <div class="spec__row">
-                <dt class="label">Context</dt>
-                <dd>78M tonnes of food wasted a year · malnutrition a factor in 500,000 child deaths · 194M undernourished</dd>
-              </div>
-              <div class="spec__row">
-                <dt class="label">Stack</dt>
-                <dd>Next.js · Express · MongoDB · Redis (Upstash) · Docker · Jest · Swagger · GitHub Actions</dd>
-              </div>
-              <div class="spec__row">
-                <dt class="label">Source</dt>
-                <dd><a class="link" href="https://github.com/seriouslegend2/hungerhearts" target="_blank" rel="noopener">Repository ↗</a></dd>
-              </div>
-            </dl>
-          </li>
-
-          <li class="proj" data-reveal style="--i:2">
-            <div class="proj__rail">
-              <span class="proj__idx">03</span>
-              <span class="proj__when">Dec 2024 — Mar 2025</span>
-            </div>
-
-            <div class="proj__main">
-              <h3 class="proj__title">LSTM-ART DRL fog task scheduler</h3>
-              <p class="proj__kicker">deep reinforcement learning under node churn</p>
-              <p class="proj__lede">LSTM + Fuzzy-ART deep RL scheduler with per-prototype replay buffers, driving a discrete-event simulator under Poisson node churn. Separate fog-head and fog-node models, a baselines suite and a benchmark harness in-repo.</p>
-            </div>
-
-            <dl class="spec">
-              <div class="spec__row">
-                <dt class="label">Evaluation</dt>
-                <dd>Benchmarked against 6 baselines over 10-seed paired trials</dd>
-              </div>
-              <div class="spec__row">
-                <dt class="label">Stack</dt>
-                <dd>Python · Deep RL · LSTM · Fuzzy-ART · discrete-event simulation</dd>
-              </div>
-              <div class="spec__row">
-                <dt class="label">Source</dt>
-                <dd><a class="link" href="https://github.com/seriouslegend2/drllstm-testing1" target="_blank" rel="noopener">Repository ↗</a></dd>
-              </div>
-            </dl>
-          </li>
-        </ol>
+            <li class="tree__item">
+              <details class="node node--proj" id="p-fogsched">
+                <summary class="node__sum">
+                  <span class="node__tick" aria-hidden="true"></span>
+                  <span class="node__idx">03</span>
+                  <span class="node__name node__name--big">LSTM-ART DRL fog task scheduler</span>
+                  <span class="node__fact">deep RL under node churn · <b>Dec 2024 — Mar 2025</b></span>
+                </summary>
+                <div class="node__in">
+                  <p class="node__body">LSTM + Fuzzy-ART deep RL scheduler with per-prototype replay buffers, driving a discrete-event simulator under Poisson node churn. Separate fog-head and fog-node models, a baselines suite and a benchmark harness in-repo.</p>
+                  <dl class="spec node__meta">
+                    <div class="spec__row">
+                      <dt class="label">Evaluation</dt>
+                      <dd>Benchmarked against 6 baselines over 10-seed paired trials</dd>
+                    </div>
+                    <div class="spec__row">
+                      <dt class="label">Stack</dt>
+                      <dd>Python · Deep RL · LSTM · Fuzzy-ART · discrete-event simulation</dd>
+                    </div>
+                    <div class="spec__row">
+                      <dt class="label">Source</dt>
+                      <dd><a class="link" href="https://github.com/seriouslegend2/drllstm-testing1" target="_blank" rel="noopener">Repository ↗</a></dd>
+                    </div>
+                  </dl>
+                </div>
+              </details>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
 
