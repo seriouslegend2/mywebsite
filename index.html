@@ -1,484 +1,416 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="color-scheme" content="light only" />
-    <title>Kaushal Edara — AI engineer shipping production multi-agent systems.</title>
-    <meta name="description" content="Kaushal Edara — AI engineer. Building production multi-agent systems: chat agents, voice agents, observability watchers, scheduled workflows, and the LangGraph orchestration that wires them together. IIIT Sri City, B.Tech CS Hons. IEEE INDICON 2025 co-author." />
-    <meta name="author" content="Edara Sri Sai Kaushal" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <title>Kaushal Edara — AI Engineer</title>
+  <meta name="description" content="Kaushal Edara — AI engineer building production multi-agent systems at Kookar AI. IEEE INDICON 2025 co-author. IIIT Sri City, B.Tech (Hons.) CS." />
+  <meta name="author" content="Edara Sri Sai Kaushal" />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Kaushal Edara — AI engineer who ships multi-agent systems that survive real users." />
-    <meta property="og:description" content="Chat agents, voice agents, observability watchers, scheduled workflows, and the LangGraph orchestration that wires them together. IEEE INDICON 2025 co-author." />
-    <meta property="og:url" content="https://seriouslegend2.github.io/mywebsite/" />
-    <meta property="og:image" content="https://seriouslegend2.github.io/mywebsite/assets/images/kaush.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Kaushal Edara — AI Engineer" />
+  <meta property="og:description" content="Production multi-agent systems. Eight shipped at Kookar AI. IEEE INDICON 2025 co-author." />
+  <meta property="og:url" content="https://seriouslegend2.github.io/mywebsite/" />
+  <meta property="og:image" content="https://seriouslegend2.github.io/mywebsite/assets/images/kaush.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kaushal Edara — AI Engineer" />
+  <meta name="twitter:description" content="Production multi-agent systems. Eight shipped at Kookar AI. IEEE INDICON 2025 co-author." />
+  <meta name="twitter:image" content="https://seriouslegend2.github.io/mywebsite/assets/images/kaush.jpg" />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Kaushal Edara — AI engineer shipping production voice agents." />
-    <meta name="twitter:description" content="Multi-agent systems in production — chat, voice, watchers, schedulers on LangGraph + FastAPI + Postgres. INDICON 2025 co-author. Open to roles in Bengaluru / Hyderabad." />
-    <meta name="twitter:image" content="https://seriouslegend2.github.io/mywebsite/assets/images/kaush.jpg" />
+  <link rel="icon" href="assets/images/logo.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Serif:ital,wght@1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <!-- Enables reveal animations only when scripting is actually available. -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
 
-    <link rel="icon" href="assets/images/logo.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<body>
+  <a class="skip" href="#main">Skip to content</a>
 
-    <link rel="stylesheet" href="assets/style.css" />
-  </head>
-  <body>
-    <!-- top scroll-progress bar (tomato accent + dot head) -->
-    <div class="scroll-progress" aria-hidden="true"></div>
+  <!-- ================= NAV ================= -->
+  <nav class="nav" aria-label="Primary">
+    <div class="nav__inner">
+      <a class="nav__mark" href="index.html">Edara&nbsp;S.&nbsp;S.&nbsp;Kaushal</a>
 
-    <!-- ============================== NAV ============================== -->
-    <nav class="nav" aria-label="primary">
-      <div class="nav__inner">
-        <a href="#top" class="nav__brand">Kaushal Edara</a>
-        <div class="nav__links">
-          <a href="#shipping">shipping</a>
-          <a href="#research">research</a>
-          <a href="#built">built</a>
-          <a href="#stack">stack</a>
-          <a href="#path">path</a>
+      <div class="nav__tabs">
+        <a class="nav__tab" href="index.html" aria-current="page">Index</a>
+        <a class="nav__tab" href="vlog.html">Vlog</a>
+      </div>
+
+      <a class="nav__out" href="https://drive.google.com/file/d/1-bNgOOs8T8z4OK9Uw6R5DPFEShfbtHOT/view?usp=drive_link" target="_blank" rel="noopener" aria-label="Resume (opens in a new tab)">
+        <span class="nav__out-label">Resume</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= MASTHEAD ================= -->
+    <header class="masthead">
+      <div class="shell">
+        <div class="masthead__bar">
+          <span class="label"><span class="dot dot--live" aria-hidden="true"></span>Available Jun 2026</span>
+          <span class="label">IN&nbsp;— Gurugram · Bengaluru / Hyderabad</span>
         </div>
-        <a class="nav__cta" href="mailto:kaushaledaracloudmail@gmail.com">say hi →</a>
-      </div>
-    </nav>
 
-    <!-- ============================== HERO ============================= -->
-    <header class="hero" id="top">
-      <div class="hero__top">
-        <span class="mono">portfolio · v3 · 2026</span>
-        <span class="pill"><span class="dot"></span>open to roles · Bengaluru / Hyderabad · multi-agent / agent infra / voice AI</span>
-      </div>
-
-      <div class="hero__grid">
-        <div style="position: relative;">
-          <h1 class="hero__title">
-            <span class="row">Kaushal</span>
-            <span class="row">
-              <span class="italic">Edara</span><span aria-hidden="true">.</span>
-              <!-- hand-drawn squiggle underline -->
-              <svg class="underline-svg" viewBox="0 0 360 28" fill="none" aria-hidden="true">
-                <path d="M3 18 C 40 6, 80 26, 130 14 S 230 4, 280 18 S 340 8, 357 18" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" fill="none"/>
-              </svg>
-            </span>
-          </h1>
-
-          <!-- doodle arrow pointing at name -->
-          <svg class="doodle doodle--arrow" viewBox="0 0 100 60" fill="none" aria-hidden="true">
-            <path d="M5 50 C 20 30, 50 10, 90 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-            <path d="M82 5 L 92 12 L 84 22" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-
-          <p class="hero__subtitle">
-            <b>AI engineer</b> who ships <span class="hl">multi-agent systems that survive real users</span>. The stuff I love building — chat agents, voice agents, observability watchers, scheduled workflows, and the LangGraph orchestration that wires them all together. Yes, the voice agents actually answer the phone. Yes, the dashboards keep ops humans from losing their minds.
-          </p>
-
-          <div class="hero__ctas">
-            <a class="btn btn--primary" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1-bNgOOs8T8z4OK9Uw6R5DPFEShfbtHOT/view?usp=drive_link">
-              Resume
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <a class="btn btn--ghost" href="mailto:kaushaledaracloudmail@gmail.com">
-              Email
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z M4 6l8 7 8-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <a class="btn btn--ghost" target="_blank" rel="noopener" href="https://github.com/seriouslegend2">
-              GitHub
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>
-            </a>
-            <a class="btn btn--ghost" target="_blank" rel="noopener" href="https://www.linkedin.com/in/kaushal-edara/">
-              LinkedIn
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.1c.5-1 1.9-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21h-4z"/></svg>
-            </a>
+        <div class="tiles">
+          <!-- identity: 8 wide, 2 tall -->
+          <div class="tile s8 r2 m-full tile--static" data-reveal style="--i:0">
+            <p class="ident__full">Edara Sri Sai Kaushal</p>
+            <h1 class="ident__name">Kaushal<br /><em>Edara</em></h1>
+            <p class="ident__role">AI Engineer. I build production multi-agent systems that run unattended.</p>
           </div>
 
-          <div class="hero__meta">
-            <span><b>+91 9182843273</b></span>
-            <span><b>kaushaledaracloudmail@gmail.com</b></span>
-            <span>IIIT Sri City · <b>CGPA 9.16</b></span>
-            <span>B.Tech CS Hons · <b>Jun 2026</b></span>
+          <!-- portrait: 4 wide, 2 tall -->
+          <div class="tile portrait s4 r2 tile--static" data-reveal style="--i:1">
+            <img src="assets/images/kaush.jpg" alt="Portrait of Kaushal Edara" width="800" height="1000" loading="eager" />
+          </div>
+
+          <div class="tile s4" data-reveal style="--i:2">
+            <span class="label">Now</span>
+            <p class="tile__name">AI Engineer Intern (PPO)<br />Kookar AI, Gurugram</p>
+            <p class="mono" style="margin-top:auto">Jun 2025 — Present</p>
+          </div>
+
+          <div class="tile s4" data-reveal style="--i:3">
+            <span class="label">Education</span>
+            <p class="tile__name">IIIT Sri City<br />B.Tech (Hons.) CS</p>
+            <p class="mono" style="margin-top:auto">Nov 2022 — Jun 2026 · CGPA 9.2/10</p>
+          </div>
+
+          <div class="tile s4" data-reveal style="--i:4">
+            <span class="label">Elsewhere</span>
+            <div class="linkstack">
+              <a href="https://github.com/seriouslegend2" target="_blank" rel="noopener"><span>GitHub</span><span aria-hidden="true">↗</span></a>
+              <a href="https://www.linkedin.com/in/kaushal-edara/" target="_blank" rel="noopener"><span>LinkedIn</span><span aria-hidden="true">↗</span></a>
+              <a href="mailto:kaushaledaracloudmail@gmail.com"><span>Email</span><span aria-hidden="true">↗</span></a>
+            </div>
           </div>
         </div>
 
-        <aside class="hero__aside">
-          <div class="hero__avatar">
-            <span class="tape" aria-hidden="true"></span>
-            <img src="assets/images/kaush.jpg" alt="Photo of Kaushal Edara" loading="eager" />
-            <div class="hero__stamp">authentic · human-built</div>
-          </div>
-        </aside>
+        <!-- headline numbers -->
+        <div class="metrics" aria-label="Headline results">
+          <div class="metric" data-reveal style="--i:0"><span class="metric__n">20+</span><span class="metric__k">Agents<br />coordinated</span></div>
+          <div class="metric" data-reveal style="--i:1"><span class="metric__n">98%</span><span class="metric__k">Tasks<br />unattended</span></div>
+          <div class="metric" data-reveal style="--i:2"><span class="metric__n">2.3×</span><span class="metric__k">Onboarding<br />conversion</span></div>
+          <div class="metric" data-reveal style="--i:3"><span class="metric__n">2.5×</span><span class="metric__k">RM<br />capacity</span></div>
+          <div class="metric" data-reveal style="--i:4"><span class="metric__n">94%</span><span class="metric__k">Bad outputs<br />caught</span></div>
+          <div class="metric" data-reveal style="--i:5"><span class="metric__n">84%</span><span class="metric__k">Fixes<br />auto-drafted</span></div>
+          <div class="metric" data-reveal style="--i:6"><span class="metric__n">22m→s</span><span class="metric__k">Escalation<br />latency</span></div>
+        </div>
       </div>
     </header>
-    <main>
-      <!-- ====================== SHIPPING (KOOKAR) ====================== -->
-      <section class="section" id="shipping">
-        <div class="section__head">
-          <div>
-            <div class="section__num">01 / what i'm shipping right now</div>
-            <h2 class="section__title">Multi-agent, multi-tenant, in production, with real money on the line.</h2>
-          </div>
-          <span class="section__kicker">since Jun 2025 · ~70% operator workload drop</span>
+
+    <!-- ================= 01 — WORK ================= -->
+    <section class="section" id="work" aria-labelledby="work-t">
+      <div class="shell">
+        <div class="section__head" data-reveal>
+          <span class="section__num">01</span>
+          <h2 class="section__title" id="work-t">Shipped — Kookar AI</h2>
+          <span class="section__meta">Eight systems · Jun 2025 — Present</span>
         </div>
 
-        <div class="bento-k">
-          <article class="bcard b-6 bcard--accent reveal" style="position: relative;">
-            <div class="bcard__tag"><span class="live-dot"></span>customer onboarding · end-to-end owner</div>
-            <h3 class="bcard__name" style="font-size: clamp(28px, 4.4vw, 48px); line-height: 1.05; max-width: 22ch;">
-              I own the entire <em>customer onboarding lifecycle</em> — from first tap to active customer.
-            </h3>
-            <p class="bcard__desc" style="font-size: 17px; max-width: 82ch;">
-              Voice in and voice out. The chat agent on the messaging side. An observability watcher that catches stuck flows and reruns them on schedule. The operator task dashboard with phone + meeting bookings. Call recording → transcript → LLM summary → review-and-send. A multi-stage scheduled pipeline of role-specialised LLMs (planner / historian / sentinel / executor). The deep-link entry on the mobile side. The structured-preference extractor listening through the whole conversation. Every other card below touches this system somewhere — it's the spine.
-            </p>
-            <div class="bcard__meta"><span>LangGraph</span><span>Vapi</span><span>Deepgram</span><span>Sarvam</span><span>Exotel</span><span>Postgres triggers</span><span>Next.js</span><span>Expo</span></div>
+        <div class="tiles section__tiles">
+          <!-- A — 7 wide, 2 tall -->
+          <article class="tile s7 r2 m-full" data-reveal style="--i:0">
+            <span class="tile__idx">01</span>
+            <h3 class="tile__name">Grocery-order multi-agent system</h3>
+            <p class="tile__body">Turns meal plans into placed grocery orders. Demand- and expiry-aware stock netting, cross-platform cart allocation, idempotent end to end.</p>
+            <div class="tile__foot"><span class="tile__metric">Plan → cart → order</span></div>
           </article>
 
-          <article class="bcard b-3 reveal">
-            <div class="bcard__tag"><span class="live-dot"></span>voice · inbound + outbound</div>
-            <h3 class="bcard__name"><em>Nisha</em></h3>
-            <p class="bcard__desc">Customer-facing voice agent for inbound and outbound onboarding calls. Vapi + Deepgram + ElevenLabs / Sarvam Bulbul v3. Hindi, English, Hinglish — switches mid-sentence and doesn't lose the thread. Tools for booking, rescheduling, cancelling, sharing intro media; calendar + Slack + telephony wired together.</p>
-            <div class="bcard__meta"><span>LangGraph</span><span>Vapi</span><span>Deepgram</span><span>Sarvam</span></div>
-            <div class="bcard__big" aria-hidden="true">N</div>
+          <!-- B — 5 wide -->
+          <article class="tile s5" data-reveal style="--i:1">
+            <span class="tile__idx">02</span>
+            <h3 class="tile__name">Watcher</h3>
+            <p class="tile__body">Coordination layer making 20+ independently running agents act as one system per household.</p>
+            <div class="tile__foot"><span class="tile__metric">98%</span><span class="label">dispatched unattended</span></div>
           </article>
 
-          <article class="bcard b-3 bcard--tomato reveal">
-            <div class="bcard__tag"><span class="live-dot" style="background:#fff;"></span>voice · partner-facing calls</div>
-            <h3 class="bcard__name"><em>Khushi</em></h3>
-            <p class="bcard__desc">Outbound voice agent that places lifecycle-triggered calls in Hindi, with TTS streamed over telephony and call outcomes pushed through a human-in-the-loop edit pass before anything downstream fires. Retry-loop dampening and per-account routing so it picks the right callee from a multi-partner pool.</p>
-            <div class="bcard__meta"><span>LangGraph</span><span>Exotel</span><span>HITL</span><span>Retries</span></div>
-            <div class="bcard__big" aria-hidden="true">K</div>
+          <!-- C — 5 wide -->
+          <article class="tile s5" data-reveal style="--i:2">
+            <span class="tile__idx">03</span>
+            <h3 class="tile__name">Voice onboarding agent</h3>
+            <p class="tile__body">Replaced a 30-minute scheduled operator call. Resumable, stitches multi-session context, auto-triggers downstream setup.</p>
+            <div class="tile__foot"><span class="tile__metric">30 min → 0</span><span class="label">operator time</span></div>
           </article>
 
-          <article class="bcard b-4 bcard--accent reveal">
-            <div class="bcard__tag"><span class="live-dot"></span>orchestration · the brain</div>
-            <h3 class="bcard__name">Milestone-driven <em>Orchestrator</em></h3>
-            <p class="bcard__desc">Watches lifecycle milestones (signup events, completion flags, group joins) and fans work out to <b>20+ production LLM agents</b> on an event-driven LangGraph backbone. Postgres triggers as the event source, debounce + dedup + anti-re-entry guards, and operator-checkpoint gates at every critical decision. Powers a ~70% drop in manual operator workload.</p>
-            <div class="bcard__meta"><span>LangGraph</span><span>Event-driven</span><span>Postgres triggers</span><span>HITL gates</span></div>
-            <div class="bcard__big" aria-hidden="true">↯</div>
+          <!-- D — 4 wide, 2 tall -->
+          <article class="tile s4 r2" data-reveal style="--i:3">
+            <span class="tile__idx">04</span>
+            <h3 class="tile__name">Onboarding pod</h3>
+            <p class="tile__body">Multi-agent across customer and cook sides. Extracts every household detail, takes a lead from first contact to a live kitchen.</p>
+            <div class="tile__foot"><span class="tile__metric">2.3×</span><span class="label">conversion</span></div>
           </article>
 
-          <article class="bcard b-3 reveal">
-            <div class="bcard__tag">5-agent NLP pipeline</div>
-            <h3 class="bcard__name">Structured-preference <em>extraction</em></h3>
-            <p class="bcard__desc">Five-agent pipeline — detection → filtration → editing → conflict resolution → memory update — that pulls structured preferences out of free-form chat. Conflict router for when two parties disagree, plus an audit-history UI so operators can see why a preference flipped.</p>
-            <div class="bcard__meta"><span>LangGraph</span><span>LLM</span><span>EDA</span><span>Python</span></div>
+          <!-- E — 8 wide -->
+          <article class="tile s8 m-full" data-reveal style="--i:4">
+            <span class="tile__idx">05</span>
+            <h3 class="tile__name">Human-in-the-loop review layer</h3>
+            <p class="tile__body">Catches agent errors before they reach the customer.</p>
+            <div class="tile__foot"><span class="tile__metric">94%</span><span class="label">of reviewed outputs corrected or blocked</span></div>
           </article>
 
-          <article class="bcard b-3 reveal">
-            <div class="bcard__tag">audio · transcript · summary</div>
-            <h3 class="bcard__name">Call-recording <em>pipeline</em></h3>
-            <p class="bcard__desc">Stitches multi-leg call recordings, transcribes them, runs an LLM summary agent, and surfaces the result in an operator UI for review-and-send. Hallucination guard with full tracing, plus a ~1.8k-line frontend with playback, transcript view, and edit-then-send actions.</p>
-            <div class="bcard__meta"><span>Python</span><span>Whisper</span><span>LLM</span><span>Next.js</span></div>
+          <!-- F — 4 wide -->
+          <article class="tile s4" data-reveal style="--i:5">
+            <span class="tile__idx">06</span>
+            <h3 class="tile__name">Arsenal</h3>
+            <p class="tile__body">Lets RMs manage households from WhatsApp alone, without ever opening a dashboard.</p>
+            <div class="tile__foot"><span class="tile__metric">2.5×</span><span class="label">households per RM</span></div>
           </article>
 
-          <article class="bcard b-3 reveal">
-            <div class="bcard__tag">escalation · operator cockpit</div>
-            <h3 class="bcard__name">Two-tier <em>escalation</em> pipeline</h3>
-            <p class="bcard__desc">A passive detector that flags low-disruption issues for review, plus a higher-severity tier for stuck retrying tasks. Built the operator cockpit (~1.8k lines), evaluator auto-allocation, and DB-layer pagination for the operator queue.</p>
-            <div class="bcard__meta"><span>Python</span><span>Next.js</span><span>HITL</span><span>EDA</span></div>
+          <!-- G — 4 wide -->
+          <article class="tile s4" data-reveal style="--i:6">
+            <span class="tile__idx">07</span>
+            <h3 class="tile__name">Escalation system</h3>
+            <p class="tile__body">Problems reach the right human in seconds instead of 22 minutes; an agent drafts the fix.</p>
+            <div class="tile__foot"><span class="tile__metric">84%</span><span class="label">auto-drafted</span></div>
           </article>
 
-          <article class="bcard b-3 reveal">
-            <div class="bcard__tag">payments · content-gating</div>
-            <h3 class="bcard__name">Recurring payments <em>end-to-end</em></h3>
-            <p class="bcard__desc">Razorpay integration across an Express backend and a React Native app: pause, cancel, mark-inactive, autopay, pending-transaction visibility. Plus a content-gating utility that hides paid features from LLM tools and the mobile app until billing is in good standing.</p>
-            <div class="bcard__meta"><span>Razorpay</span><span>Express</span><span>React Native</span><span>Python</span></div>
+          <!-- H — full width -->
+          <article class="tile s12 m-full" data-reveal style="--i:7">
+            <span class="tile__idx">08</span>
+            <h3 class="tile__name">AI-first internal console</h3>
+            <p class="tile__body">Per-agent model routing, cohort overrides, HITL review queues, plus growth and funnel analytics dashboards.</p>
+            <div class="tile__foot"><span class="label">Routing</span><span class="label">Overrides</span><span class="label">Review queues</span><span class="label">Growth</span><span class="label">Funnel</span></div>
           </article>
-
-          <article class="bcard b-6 reveal" style="background: var(--paper-2);">
-            <div class="bcard__tag"><span class="live-dot"></span>frontends · 5 surfaces shipped</div>
-            <h3 class="bcard__name">Every <em>dashboard</em> + the mobile app — I've shipped on it.</h3>
-            <p class="bcard__desc" style="max-width: 82ch;">Operator-facing or customer-facing, web or mobile — there's no UI surface in the company I haven't pushed real code into. Same hands shipping the backend agents also shipped the consoles humans use to supervise them.</p>
-
-            <div class="dash-grid">
-              <div class="dash-mini">
-                <div class="dash-mini__num">01 · mobile</div>
-                <h4>Customer app</h4>
-                <p>OTP login, deep-link onboarding, schedule-a-call calendar, checkout, auto-recharge, accounts, profile. Expo + RN against an Express + TS backend.</p>
-                <div class="dash-mini__tags">Expo · React Native · Tamagui · TanStack</div>
-              </div>
-              <div class="dash-mini">
-                <div class="dash-mini__num">02 · internal</div>
-                <h4>Operator console</h4>
-                <p>The main internal dashboard — checkpoint / escalation / dismiss flows across half a dozen agent types, plus a Ctrl-J command palette for typed manual triggers, re-runs, backfills, milestone toggles.</p>
-                <div class="dash-mini__tags">Next.js 16 · TS · Tailwind · Supabase</div>
-              </div>
-              <div class="dash-mini">
-                <div class="dash-mini__num">03 · escalations</div>
-                <h4>Escalation cockpit</h4>
-                <p>~1.8k-line standalone surface for two-tier escalations — triage queue, evaluator auto-allocation, paginated stuck-task feed.</p>
-                <div class="dash-mini__tags">Next.js · TS · HITL · EDA</div>
-              </div>
-              <div class="dash-mini">
-                <div class="dash-mini__num">04 · calls</div>
-                <h4>Booking + call review</h4>
-                <p>Phone + meeting bookings, audio playback, transcripts, reschedule modals, edit-then-send actions over the call-recording → summary pipeline.</p>
-                <div class="dash-mini__tags">Next.js · TS · Whisper · LLM</div>
-              </div>
-              <div class="dash-mini">
-                <div class="dash-mini__num">05 · analytics</div>
-                <h4>Marketing analytics</h4>
-                <p>Standalone Next.js dashboard with auth + Terraform deploy, ~750 LoC scheduled SQL migrated out of Google Apps Script, plus an LLM analyst agent on top.</p>
-                <div class="dash-mini__tags">Next.js · Postgres · Terraform · Cron-SQL</div>
-              </div>
-            </div>
-          </article>
-
-          <article class="bcard b-6 reveal" style="display:flex; flex-direction:column; justify-content:space-between;">
-            <div>
-              <div class="bcard__tag">the bigger picture</div>
-              <h3 class="bcard__name" style="font-size: clamp(22px, 2.6vw, 32px); line-height: 1.1; max-width: 28ch;">One LangGraph brain, twenty specialised agents, three telephony providers, and exactly zero "please reset the session" tickets.</h3>
-            </div>
-            <div class="bcard__meta" style="margin-top: 18px;"><span>since Jun 2025</span><span>Gurugram</span><span>~150 PG migrations</span><span>5 frontends</span></div>
-          </article>
-        </div>
-      </section>
-      <!-- ====================== RESEARCH ============================== -->
-      <section class="section" id="research">
-        <div class="section__head">
-          <div>
-            <div class="section__num">02 / research — receipts, not vibes</div>
-            <h2 class="section__title">A semester at <em>IIT Patna</em> taught me to bring p-values.</h2>
-          </div>
-          <span class="section__kicker">indicon 2025 · fog computing · eeg</span>
-        </div>
-
-        <div class="research">
-          <div>
-            <blockquote class="research__quote reveal">
-              "We took DQN-LSTM into a real-time EEG transmission setting in Fog Computing and got a <span class="hl">61% mean episode latency drop</span> over the DDQN baseline. Wilcoxon p&nbsp;=&nbsp;0.001 across <span class="hl">10 paired seeds</span>. BCI healthcare. Numbers held."
-            </blockquote>
-            <div class="research__stats">
-              <div class="research__stat reveal">
-                <div class="n">61<small style="font-size:22px;">%</small></div>
-                <div class="l">latency drop vs DDQN</div>
-              </div>
-              <div class="research__stat reveal">
-                <div class="n">p=0.001</div>
-                <div class="l">Wilcoxon, n = 10 seeds</div>
-              </div>
-              <div class="research__stat reveal">
-                <div class="n">6</div>
-                <div class="l">baselines beaten</div>
-              </div>
-              <div class="research__stat reveal">
-                <div class="n">3D</div>
-                <div class="l">Pareto-optimised head select</div>
-              </div>
-            </div>
-          </div>
-
-          <article class="paper-card reveal">
-            <span class="paper-card__stamp">peer-reviewed</span>
-            <div>
-              <div class="paper-card__venue">IEEE INDICON · 2025</div>
-              <h3 class="paper-card__title">3D-POS: 3D Pareto Optimised Head Selection for Fog-enabled Smart EEG Healthcare IoT.</h3>
-              <p class="paper-card__authors"><b>E.S.S. Kaushal</b>, R.K. Rath, S. S.R., A. Hazra.</p>
-              <a href="https://ieeexplore.ieee.org/document/11252295" target="_blank" rel="noopener" aria-label="Open INDICON paper PDF">
-                <img class="paper-card__thumb" src="assets/images/indicon-paper.png" alt="First page of the IEEE INDICON 2025 paper 3D-POS by Kaushal et al." loading="lazy" />
-              </a>
-            </div>
-            <a class="paper-card__cta" target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/11252295">
-              Read on IEEE Xplore
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </article>
-        </div>
-      </section>
-      <!-- ====================== PROJECTS ============================== -->
-      <section class="section" id="built">
-        <div class="section__head">
-          <div>
-            <div class="section__num">03 / things i've built lately</div>
-            <h2 class="section__title">Side quests with <em>real benchmarks</em>.</h2>
-          </div>
-          <span class="section__kicker">code · papers · screenshots</span>
-        </div>
-
-        <div class="projects">
-          <article class="pcard pcard--wide reveal" data-tilt>
-            <div class="pcard__media">
-              <span class="pcard__num">01 · drug discovery</span>
-              <img src="assets/images/rldrl.png" alt="Morld — molecule generation visualisation" loading="lazy" />
-            </div>
-            <div class="pcard__body">
-              <h3 class="pcard__title"><em>Morld</em> — de-novo molecules with RL.</h3>
-              <p class="pcard__desc">LSTM language model over <b>1M+ SMILES</b>, then REINFORCE on top to chase QED. Came out at <b>96% chemical validity, 100% novelty, 100% uniqueness, 0.85 QED</b>. Yes I checked the literature, yes those numbers are real.</p>
-              <div class="pcard__tags"><span>PyTorch</span><span>LSTM</span><span>REINFORCE</span><span>RDKit</span><span>SMILES</span></div>
-              <a class="pcard__cta" target="_blank" rel="noopener" href="https://github.com/seriouslegend2/Denovo-Chemical-Molecule-Generation-with-LSTM-RL">
-                github.com/seriouslegend2/Denovo…RL
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="pcard reveal" data-tilt>
-            <div class="pcard__media">
-              <span class="pcard__num">02 · social good</span>
-              <img src="assets/images/hungerheart.png" alt="Hunger Hearts platform UI" loading="lazy" />
-            </div>
-            <div class="pcard__body">
-              <h3 class="pcard__title"><em>Hunger Hearts</em> — food, geo-indexed.</h3>
-              <p class="pcard__desc">MERN + Next.js food-redistribution platform. MongoDB <b>2dsphere</b> geospatial matching, four roles (donor / NGO / delivery / admin), Docker + GH Actions, <b>19 Jest tests</b> including a $inc race-condition test I'm weirdly proud of.</p>
-              <div class="pcard__tags"><span>Next.js</span><span>MongoDB</span><span>2dsphere</span><span>Docker</span><span>Jest</span></div>
-              <a class="pcard__cta" target="_blank" rel="noopener" href="https://github.com/seriouslegend2/hungerhearts">
-                github.com/seriouslegend2/hungerhearts
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="pcard reveal" data-tilt>
-            <div class="pcard__media">
-              <span class="pcard__num">03 · DRL · fog</span>
-              <img src="assets/images/firefly-fog.jpg" alt="Fog computing scheduler simulation" loading="lazy" />
-            </div>
-            <div class="pcard__body">
-              <h3 class="pcard__title">LSTM-ART <em>fog scheduler</em>.</h3>
-              <p class="pcard__desc">LSTM + Fuzzy-ART driving a discrete-event simulator under Poisson node churn. Benchmarked against six baselines — random, round-robin, greedy, genetic, potential-game, plain DDQN — on 10-seed paired trials. Spoiler: it wins.</p>
-              <div class="pcard__tags"><span>DRL</span><span>LSTM</span><span>Fuzzy-ART</span><span>Sim</span><span>Wilcoxon</span></div>
-              <a class="pcard__cta" target="_blank" rel="noopener" href="https://github.com/seriouslegend2/drllstm-testing1">
-                github.com/seriouslegend2/drllstm-testing1
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-            </div>
-          </article>
-        </div>
-      </section>
-      <!-- ====================== STACK ============================== -->
-      <section class="section" id="stack">
-        <div class="section__head">
-          <div>
-            <div class="section__num">04 / the stack i actually use</div>
-            <h2 class="section__title">Not a buzzword list. Things I've <em>shipped to prod</em>.</h2>
-          </div>
-          <span class="section__kicker">tap a chip · it dodges</span>
-        </div>
-
-        <div class="marquee" aria-hidden="true">
-          <div class="marquee__track">
-            <span>LangGraph</span><span>Vapi</span><span>Deepgram</span><span>FastAPI</span><span>Postgres</span><span>Next.js</span><span>Tailwind</span><span>Razorpay</span><span>Supabase</span><span>Terraform</span><span>AWS</span><span>Anthropic</span><span>OpenAI</span><span>Gemini</span><span>Sarvam Bulbul v3</span><span>ElevenLabs</span><span>Exotel</span><span>Redis</span>
-            <span>LangGraph</span><span>Vapi</span><span>Deepgram</span><span>FastAPI</span><span>Postgres</span><span>Next.js</span><span>Tailwind</span><span>Razorpay</span><span>Supabase</span><span>Terraform</span><span>AWS</span><span>Anthropic</span><span>OpenAI</span><span>Gemini</span><span>Sarvam Bulbul v3</span><span>ElevenLabs</span><span>Exotel</span><span>Redis</span>
-          </div>
-        </div>
-
-        <div class="stack">
-          <div class="stack__group reveal">
-            <div class="stack__label">languages</div>
-            <div class="chips"><span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">PostgreSQL</span></div>
-          </div>
-          <div class="stack__group reveal">
-            <div class="stack__label">ai / agents</div>
-            <div class="chips"><span class="chip">LangGraph</span><span class="chip">LangChain</span><span class="chip">DSPy</span><span class="chip">RAG</span><span class="chip">Vector DBs</span><span class="chip">Multi-agent orch.</span><span class="chip">Prompt eng.</span></div>
-          </div>
-          <div class="stack__group reveal">
-            <div class="stack__label">voice</div>
-            <div class="chips"><span class="chip">Vapi</span><span class="chip">Deepgram</span><span class="chip">ElevenLabs</span><span class="chip">Sarvam Bulbul v3</span><span class="chip">Exotel</span></div>
-          </div>
-          <div class="stack__group reveal">
-            <div class="stack__label">backend</div>
-            <div class="chips"><span class="chip">FastAPI (async)</span><span class="chip">Express.js</span><span class="chip">Postgres / Supabase</span><span class="chip">Redis</span><span class="chip">WhatsApp Biz (wuzapi)</span><span class="chip">Razorpay</span></div>
-          </div>
-          <div class="stack__group reveal">
-            <div class="stack__label">frontend</div>
-            <div class="chips"><span class="chip">Next.js</span><span class="chip">React</span><span class="chip">React Native</span><span class="chip">Tailwind</span></div>
-          </div>
-          <div class="stack__group reveal">
-            <div class="stack__label">devops / cloud</div>
-            <div class="chips"><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Terraform</span><span class="chip">AWS ECS</span><span class="chip">Lambda</span><span class="chip">SQS</span><span class="chip">Bedrock</span><span class="chip">GH Actions</span></div>
-          </div>
-          <div class="stack__group reveal">
-            <div class="stack__label">llm providers</div>
-            <div class="chips"><span class="chip">OpenAI</span><span class="chip">Anthropic</span><span class="chip">Gemini</span><span class="chip">GLM</span><span class="chip">Kimi</span></div>
-          </div>
-          <div class="stack__group reveal">
-            <div class="stack__label">how i work</div>
-            <div class="chips"><span class="chip">figure-it-out</span><span class="chip">ownership</span><span class="chip">on-time delivery</span><span class="chip">parallel execution</span><span class="chip">fast + accurate</span></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ====================== PATH / TIMELINE ====================== -->
-      <section class="section" id="path">
-        <div class="section__head">
-          <div>
-            <div class="section__num">05 / where i've been</div>
-            <h2 class="section__title">A short, slightly <em>scribbled</em> timeline.</h2>
-          </div>
-          <span class="section__kicker">2023 → today</span>
-        </div>
-
-        <ol class="timeline" style="list-style: none; padding-left: 28px; margin: 0;">
-          <li class="tline__item reveal">
-            <div class="tline__date">Jun 2025 — present · Gurugram</div>
-            <div class="tline__title"><em>AI Engineer Intern</em> · Kookar AI</div>
-            <p class="tline__sub">Shipping the multi-agent stack end-to-end — voice (Nisha + Khushi), the milestone orchestrator, a five-agent NLP preference pipeline, the call-recording + transcript flow, the two-tier escalation system, recurring payments + content-gating, and every operator-facing dashboard plus the mobile app on top. Agents in production. Dashboards in production. Dropouts are not.</p>
-          </li>
-          <li class="tline__item reveal">
-            <div class="tline__date">Dec 2024 — Feb 2025 · remote</div>
-            <div class="tline__title"><em>Research Intern</em> · IIT Patna (Dr. Arijit Roy)</div>
-            <p class="tline__sub">DQN-LSTM for real-time EEG transmission in Fog Computing. 3D Pareto head-selection. Led to the INDICON 2025 paper above.</p>
-          </li>
-          <li class="tline__item reveal">
-            <div class="tline__date">Aug 2024 — May 2025 · IIIT Sri City</div>
-            <div class="tline__title"><em>Technical Secretary</em></div>
-            <p class="tline__sub">Directed 10 technical clubs. Ran central + alumni portals for 1,500+ students and 4,200+ alumni. Pulled off <b>Abhisarga</b> fest — 6,500+ participants. Learned the difference between "plan" and "ship".</p>
-          </li>
-          <li class="tline__item reveal">
-            <div class="tline__date">Jul 2023 — Aug 2024 · IIIT Sri City</div>
-            <div class="tline__title">Core Member · <em>IOTA Club</em></div>
-            <p class="tline__sub">2+ workshops, 3 hackathons, 12 coding contests, 200+ students through the door. Where I learned to teach and to debug at 1 AM.</p>
-          </li>
-        </ol>
-      </section>
-    </main>
-
-    <!-- ====================== LET'S TALK ====================== -->
-    <section class="cta" id="talk" aria-labelledby="talk-h">
-      <div class="cta__grid">
-        <div>
-          <h2 class="cta__title" id="talk-h">Let's <em>talk.</em></h2>
-          <p class="cta__sub">
-            Looking for full-time AI-engineering roles starting around Jun 2026 — Bengaluru or Hyderabad preferred. If you're building agents, voice, or anything that has to survive contact with real users, I'd like to hear about it.
-          </p>
-        </div>
-        <div class="cta__links">
-          <a class="cta__link" href="mailto:kaushaledaracloudmail@gmail.com">
-            <span class="label">email</span><span>kaushaledaracloudmail@gmail.com</span>
-          </a>
-          <a class="cta__link" href="tel:+919182843273">
-            <span class="label">phone</span><span>+91 9182843273</span>
-          </a>
-          <a class="cta__link" target="_blank" rel="noopener" href="https://www.linkedin.com/in/kaushal-edara/">
-            <span class="label">linkedin</span><span>/in/kaushal-edara</span>
-          </a>
-          <a class="cta__link" target="_blank" rel="noopener" href="https://github.com/seriouslegend2">
-            <span class="label">github</span><span>/seriouslegend2</span>
-          </a>
-          <a class="cta__link" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1-bNgOOs8T8z4OK9Uw6R5DPFEShfbtHOT/view?usp=drive_link">
-            <span class="label">resume</span><span>drive folder ↗</span>
-          </a>
         </div>
       </div>
-
-      <!-- mascot squiggle: a little waving SVG creature -->
-      <svg class="cta__mascot" viewBox="0 0 140 140" fill="none" aria-hidden="true">
-        <circle cx="70" cy="70" r="48" stroke="currentColor" stroke-width="3"/>
-        <circle cx="55" cy="62" r="4" fill="currentColor"/>
-        <circle cx="85" cy="62" r="4" fill="currentColor"/>
-        <path d="M50 88 Q 70 102, 90 88" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
-        <path d="M118 56 Q 130 40, 122 26" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
-        <path d="M22 56 Q 10 40, 18 26" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
-      </svg>
     </section>
 
-    <!-- ====================== FOOTER ====================== -->
-    <footer class="foot">
-      <div>© <span id="yr">2026</span> · Edara Sri Sai Kaushal · hand-coded, no template</div>
-      <div>made in <span style="color: var(--tomato);">paper-cream</span> + ink, with Instrument Serif + Space Grotesk</div>
-      <div><a href="#top">back to top ↑</a></div>
-    </footer>
-    <script type="module" src="assets/main.js"></script>
-  </body>
+    <!-- ================= 02 — RESEARCH ================= -->
+    <section class="section" id="research" aria-labelledby="research-t">
+      <div class="shell">
+        <div class="section__head" data-reveal>
+          <span class="section__num">02</span>
+          <h2 class="section__title" id="research-t">Research — IIT Patna</h2>
+          <span class="section__meta">Dec 2024 — Feb 2025 · Dr. Arijit Roy</span>
+        </div>
+
+        <div class="tiles section__tiles">
+          <article class="tile s5" data-reveal style="--i:0">
+            <span class="tile__idx">R1</span>
+            <h3 class="tile__name">DQN-LSTM scheduler for real-time EEG transmission</h3>
+            <p class="tile__body">Fog computing for BCI healthcare. Mean episode latency cut against the plain-DDQN baseline.</p>
+            <div class="tile__foot"><span class="tile__metric">−61%</span><span class="label">latency · Wilcoxon p = 0.001 · n = 10 seeds</span></div>
+          </article>
+
+          <article class="tile s7 m-full" data-reveal style="--i:1">
+            <span class="tile__idx">R2</span>
+            <h3 class="tile__name">3D Pareto-optimised head selection</h3>
+            <p class="tile__body">Head-selection algorithm for fog-enabled EEG healthcare IoT. Balances latency, energy and reliability across the topology.</p>
+            <div class="tile__foot"><span class="label">Latency</span><span class="label">Energy</span><span class="label">Reliability</span></div>
+          </article>
+
+          <article class="tile tile--split s12 m-full" data-reveal style="--i:2">
+            <div class="split">
+              <div class="split__frame">
+                <img src="assets/images/indicon-paper.png" alt="First page of the 3D-POS paper published at IEEE INDICON 2025" loading="lazy" />
+              </div>
+              <div class="split__body">
+                <span class="tile__idx">Publication</span>
+                <h3 class="tile__name">3D-POS: 3D Pareto Optimized Head Selection for Fog-enabled Smart EEG Healthcare IoT</h3>
+                <p class="tile__body">E.S.S. Kaushal, R.K. Rath, S. S.R., A. Hazra. Proc. IEEE INDICON, 2025.</p>
+                <div class="tile__foot">
+                  <a class="link" href="https://ieeexplore.ieee.org/document/11252295" target="_blank" rel="noopener">IEEE Xplore ↗</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 03 — BUILT ================= -->
+    <section class="section" id="built" aria-labelledby="built-t">
+      <div class="shell">
+        <div class="section__head" data-reveal>
+          <span class="section__num">03</span>
+          <h2 class="section__title" id="built-t">Built</h2>
+          <span class="section__meta">Selected projects · 2024 — 2025</span>
+        </div>
+
+        <div class="tiles section__tiles">
+          <article class="tile tile--media s7 m-full" data-reveal style="--i:0">
+            <div class="media">
+              <div class="media__frame">
+                <img src="assets/images/rldrl.png" alt="Morld — molecule generation results visualisation" loading="lazy" />
+              </div>
+              <div class="media__body">
+                <span class="tile__idx">Feb — May 2025</span>
+                <h3 class="tile__name">Morld — de-novo molecule generation</h3>
+                <p class="tile__body">LSTM language model fine-tuned with REINFORCE on 1M+ SMILES.</p>
+                <div class="tile__foot">
+                  <span class="label">96% valid</span><span class="label">100% novel</span><span class="label">100% unique</span><span class="label">0.85 QED</span>
+                </div>
+                <div class="tile__foot" style="padding-top:6px">
+                  <a class="link" href="https://github.com/seriouslegend2/Denovo-Chemical-Molecule-Generation-with-LSTM-RL" target="_blank" rel="noopener">Repository ↗</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tile tile--media s5" data-reveal style="--i:1">
+            <div class="media">
+              <div class="media__frame">
+                <img src="assets/images/firefly-fog.jpg" alt="Fog computing topology simulation for the LSTM-ART scheduler" loading="lazy" />
+              </div>
+              <div class="media__body">
+                <span class="tile__idx">Dec 2024 — Mar 2025</span>
+                <h3 class="tile__name">LSTM-ART DRL fog task scheduler</h3>
+                <p class="tile__body">Per-prototype replay buffers and a discrete-event simulator under Poisson node churn.</p>
+                <div class="tile__foot">
+                  <span class="label">6 baselines · 10-seed paired trials</span>
+                </div>
+                <div class="tile__foot" style="padding-top:6px">
+                  <a class="link" href="https://github.com/seriouslegend2/drllstm-testing1" target="_blank" rel="noopener">Repository ↗</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tile tile--split s12 m-full" data-reveal style="--i:2">
+            <div class="split">
+              <div class="split__frame">
+                <img src="assets/images/hungerheart.png" alt="Hunger Hearts food redistribution platform interface" loading="lazy" />
+              </div>
+              <div class="split__body">
+                <span class="tile__idx">Nov 2024 — Apr 2025</span>
+                <h3 class="tile__name">Hunger Hearts</h3>
+                <p class="tile__body">Moves surplus food from restaurants and households to families in slums. Matches every donation to the nearest delivery partner with race-safe handoffs.</p>
+                <div class="tile__foot">
+                  <span class="label">78M tonnes wasted / yr</span><span class="label">500,000 child deaths</span><span class="label">194M undernourished</span>
+                </div>
+                <div class="tile__foot" style="padding-top:6px">
+                  <span class="mono">MERN · Next.js · MongoDB</span>
+                  <a class="link" href="https://github.com/seriouslegend2/hungerhearts" target="_blank" rel="noopener">Repository ↗</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 04 — STACK ================= -->
+    <section class="section" id="stack" aria-labelledby="stack-t">
+      <div class="shell">
+        <div class="section__head" data-reveal>
+          <span class="section__num">04</span>
+          <h2 class="section__title" id="stack-t">Stack</h2>
+          <span class="section__meta">What I reach for</span>
+        </div>
+
+        <div class="tiles section__tiles">
+          <div class="tile s4" data-reveal style="--i:0">
+            <span class="label">Languages</span>
+            <ul class="chips"><li>Python</li><li>JavaScript / TypeScript</li><li>PostgreSQL</li></ul>
+          </div>
+
+          <div class="tile s8 m-full" data-reveal style="--i:1">
+            <span class="label">Frameworks</span>
+            <ul class="chips"><li>FastAPI (async)</li><li>Express.js</li><li>LangGraph</li><li>LangChain</li><li>Next.js</li><li>React</li><li>CSS</li><li>DSPy</li></ul>
+          </div>
+
+          <div class="tile s6" data-reveal style="--i:2">
+            <span class="label">Tools</span>
+            <ul class="chips"><li>Git</li><li>GitHub</li><li>Docker</li><li>Kubernetes</li><li>Terraform</li><li>Vapi SDK</li><li>LangSmith</li><li>LiteLLM</li><li>Postman</li><li>CI/CD</li></ul>
+          </div>
+
+          <div class="tile s6" data-reveal style="--i:3">
+            <span class="label">Platforms</span>
+            <ul class="chips"><li>AWS (ECS, Lambda, SQS, Bedrock)</li><li>Supabase</li><li>Redis</li><li>OpenAI</li><li>Anthropic</li><li>Gemini</li><li>Kimi</li><li>OpenRouter</li><li>ElevenLabs</li><li>Deepgram</li><li>Razorpay</li><li>Exotel</li><li>WhatsApp (wuzapi)</li></ul>
+          </div>
+
+          <div class="tile s7 m-full" data-reveal style="--i:4">
+            <span class="label">Hard skills</span>
+            <ul class="chips"><li>LLM Integration</li><li>RAG</li><li>Vector Databases</li><li>Multi-Agent Orchestration</li><li>Voice AI (STT/TTS)</li><li>Backend Engineering</li><li>Human-in-the-Loop Systems</li><li>Systems Architecture</li><li>Dynamic System Design</li></ul>
+          </div>
+
+          <div class="tile s5" data-reveal style="--i:5">
+            <span class="label">Soft skills</span>
+            <ul class="chips"><li>Figure-it-out mindset</li><li>Ownership</li><li>On-time delivery</li><li>Fast and accurate execution</li><li>Parallel execution across workstreams</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 05 — RECORD ================= -->
+    <section class="section" id="record" aria-labelledby="record-t">
+      <div class="shell">
+        <div class="section__head" data-reveal>
+          <span class="section__num">05</span>
+          <h2 class="section__title" id="record-t">Record</h2>
+          <span class="section__meta">Education · Responsibility</span>
+        </div>
+
+        <div class="tiles section__tiles">
+          <div class="tile s5 r2" data-reveal style="--i:0">
+            <span class="label">Education</span>
+            <h3 class="tile__name">IIIT Sri City, Andhra Pradesh</h3>
+            <p class="tile__body">B.Tech (Hons.) Computer Science · Nov 2022 — Jun 2026</p>
+            <div class="tile__foot"><span class="cgpa">9.2<sub>/ 10 CGPA</sub></span></div>
+          </div>
+
+          <div class="tile s7 m-full" data-reveal style="--i:1">
+            <span class="label">Aug 2024 — May 2025</span>
+            <h3 class="tile__name">Technical Secretary, IIIT Sri City</h3>
+            <p class="tile__body">Directed 10 technical clubs and ran the central and alumni portals.</p>
+            <div class="tile__foot">
+              <span class="facts"><span><b>1,500+</b> students</span><span><b>4,200+</b> alumni</span><span><b>6,500+</b> at Abhisarga fest</span></span>
+            </div>
+          </div>
+
+          <div class="tile s7 m-full" data-reveal style="--i:2">
+            <span class="label">Jul 2023 — Aug 2024</span>
+            <h3 class="tile__name">Core Member, IOTA Club</h3>
+            <p class="tile__body">Ran workshops, hackathons and contests for the campus developer community.</p>
+            <div class="tile__foot">
+              <span class="facts"><span><b>2+</b> workshops</span><span><b>3</b> hackathons</span><span><b>12</b> coding contests</span><span><b>200+</b> students</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="foot">
+    <div class="shell">
+      <div class="foot__cta">
+        <p class="label" style="margin-bottom:20px"><span class="dot dot--live" aria-hidden="true"></span>Open to full-time AI engineering roles from Jun 2026 · Bengaluru / Hyderabad</p>
+        <a class="foot__line" href="mailto:kaushaledaracloudmail@gmail.com">kaushaledaracloudmail@gmail.com</a>
+      </div>
+    </div>
+    <div class="shell">
+      <div class="foot__bar">
+        <span>+91 91828 43273</span>
+        <a class="link link--mute" href="https://github.com/seriouslegend2" target="_blank" rel="noopener">GitHub</a>
+        <a class="link link--mute" href="https://www.linkedin.com/in/kaushal-edara/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="link link--mute" href="https://drive.google.com/file/d/1-bNgOOs8T8z4OK9Uw6R5DPFEShfbtHOT/view?usp=drive_link" target="_blank" rel="noopener">Resume</a>
+        <a class="link link--mute" href="vlog.html">Vlog</a>
+        <span class="spacer">© <span id="yr">2026</span> Edara Sri Sai Kaushal</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/main.js"></script>
+  <script>
+    // ES-module fetches are CORS-blocked on file:// (origin "null"), so the
+    // module above silently fails when the page is opened straight from disk.
+    // main.js has no import/export, so re-loading it as a classic script is a
+    // faithful fallback. Deferred modules run before DOMContentLoaded, so on
+    // http(s) the flag is already set and this is a no-op.
+    addEventListener('DOMContentLoaded', function () {
+      if (window.__portfolioBooted) return;
+      var s = document.createElement('script');
+      s.src = 'assets/main.js';
+      document.body.appendChild(s);
+    });
+  </script>
+</body>
 </html>

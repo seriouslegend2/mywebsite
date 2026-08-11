@@ -1,135 +1,228 @@
-// =============================================================
-// Kaushal Edara — portfolio interactions
-// no build step. one file. vanilla JS modules.
-// =============================================================
+// =============================================================================
+// Kaushal Edara — portfolio
+// Vanilla ES module. No build step, no dependencies, no CDN.
+// Shared by index.html and vlog.html; every block no-ops if its hooks are
+// absent from the current page.
+// =============================================================================
 
-// --------- 1. Lenis smooth scroll (loaded from CDN) -----------
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+// Signals a successful boot so the file:// classic-script fallback stays a no-op.
+window.__portfolioBooted = true;
 
-// scroll-progress bar (works with or without Lenis)
-const progressEl = document.querySelector('.scroll-progress')
-const updateProgress = (scrollTop, scrollHeight) => {
-  if (!progressEl) return
-  const max = scrollHeight - window.innerHeight
-  const pct = max > 0 ? Math.min(100, Math.max(0, (scrollTop / max) * 100)) : 0
-  progressEl.style.width = pct + '%'
-}
+const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-if (!prefersReduced) {
-  // Lenis 1.x ESM build from jsDelivr
-  import('https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.mjs')
-    .then(({ default: Lenis }) => {
-      const lenis = new Lenis({
-        duration: 1.1,
-        easing: (t) => 1 - Math.pow(1 - t, 3),
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 1.4,
-      })
+// -----------------------------------------------------------------------------
+// 1. Reveal — staggered block + hairline draw-in
+// -----------------------------------------------------------------------------
+function observeReveals(root = document) {
+  const els = root.querySelectorAll('[data-reveal]:not(.is-in)');
+  if (!els.length) return;
 
-      // hook scroll progress to Lenis ticks
-      lenis.on('scroll', ({ scroll, limit }) => {
-        if (!progressEl) return
-        const pct = limit > 0 ? Math.min(100, Math.max(0, (scroll / limit) * 100)) : 0
-        progressEl.style.width = pct + '%'
-      })
+  // Reduced motion or no IO support: show everything immediately.
+  if (REDUCED || !('IntersectionObserver' in window)) {
+    els.forEach((el) => el.classList.add('is-in'));
+    return;
+  }
 
-      const raf = (time) => {
-        lenis.raf(time)
-        requestAnimationFrame(raf)
-      }
-      requestAnimationFrame(raf)
-
-      // nav anchor links should use lenis scrollTo for snap
-      document.querySelectorAll('a[href^="#"]').forEach((a) => {
-        a.addEventListener('click', (e) => {
-          const href = a.getAttribute('href')
-          if (!href || href === '#') return
-          const target = document.querySelector(href)
-          if (!target) return
-          e.preventDefault()
-          lenis.scrollTo(target, { offset: -20 })
-        })
-      })
-    })
-    .catch(() => {
-      // graceful fallback: native scroll + progress bar
-      window.addEventListener('scroll', () => {
-        updateProgress(window.scrollY, document.documentElement.scrollHeight)
-      }, { passive: true })
-    })
-} else {
-  // reduced-motion: still show progress bar via native scroll
-  window.addEventListener('scroll', () => {
-    updateProgress(window.scrollY, document.documentElement.scrollHeight)
-  }, { passive: true })
-}
-
-// --------- 2. Reveal-on-scroll via IntersectionObserver -------
-const revealEls = document.querySelectorAll('.reveal')
-if (revealEls.length && 'IntersectionObserver' in window) {
   const io = new IntersectionObserver(
     (entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) {
-          e.target.classList.add('in')
-          io.unobserve(e.target)
-        }
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);
       }
     },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-  )
-  revealEls.forEach((el) => io.observe(el))
-} else {
-  revealEls.forEach((el) => el.classList.add('in'))
+    { threshold: 0.08, rootMargin: '0px 0px -8% 0px' }
+  );
+
+  els.forEach((el) => io.observe(el));
 }
 
-// --------- 3. Hover tilt on [data-tilt] cards -----------------
-if (!prefersReduced && window.matchMedia('(pointer: fine)').matches) {
-  const tiltEls = document.querySelectorAll('[data-tilt]')
-  tiltEls.forEach((el) => {
-    el.style.transformStyle = 'preserve-3d'
-    el.style.transition = 'transform 0.2s cubic-bezier(.2,.7,.2,1)'
-    el.addEventListener('mousemove', (e) => {
-      const r = el.getBoundingClientRect()
-      const x = (e.clientX - r.left) / r.width - 0.5
-      const y = (e.clientY - r.top) / r.height - 0.5
-      const rx = (-y * 4).toFixed(2)
-      const ry = (x * 5).toFixed(2)
-      el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`
-    })
-    el.addEventListener('mouseleave', () => {
-      el.style.transform = ''
-    })
-  })
+observeReveals();
+
+// -----------------------------------------------------------------------------
+// 2. Nav — hairline appears once the page has scrolled off the top
+// -----------------------------------------------------------------------------
+const nav = document.querySelector('.nav');
+if (nav) {
+  let ticking = false;
+  const sync = () => {
+    nav.classList.toggle('is-stuck', window.scrollY > 8);
+    ticking = false;
+  };
+  sync();
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(sync);
+    },
+    { passive: true }
+  );
 }
 
-// --------- 4. Magnetic primary CTA buttons --------------------
-if (!prefersReduced && window.matchMedia('(pointer: fine)').matches) {
-  document.querySelectorAll('.btn--primary, .nav__cta').forEach((btn) => {
-    btn.style.transition = 'transform 0.18s cubic-bezier(.2,.7,.2,1)'
-    btn.addEventListener('mousemove', (e) => {
-      const r = btn.getBoundingClientRect()
-      const x = (e.clientX - r.left - r.width / 2) / r.width
-      const y = (e.clientY - r.top - r.height / 2) / r.height
-      btn.style.transform = `translate(${x * 10}px, ${y * 8}px)`
-    })
-    btn.addEventListener('mouseleave', () => {
-      btn.style.transform = ''
-    })
-  })
+// -----------------------------------------------------------------------------
+// 3. Footer year
+// -----------------------------------------------------------------------------
+const yearEl = document.getElementById('yr');
+if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+// =============================================================================
+// 4. VLOG — timeline
+// Only runs on vlog.html (guarded by the presence of #timeline).
+// =============================================================================
+
+// -- Local seed data. Shape is the contract the Phase 2 backend must match. ----
+// { day: number, date: 'YYYY-MM-DD', title: string, body: string, tags: string[] }
+const ENTRIES = [
+  {
+    day: 1,
+    date: '2026-08-10',
+    title: 'Rebuilt the site from scratch',
+    body: 'Threw out the old portfolio. New black grid system, half the words, twice the signal.',
+    tags: ['site', 'design'],
+  },
+  {
+    day: 2,
+    date: '2026-08-11',
+    title: 'Mapped the agent architecture end to end',
+    body: 'Drew every dispatch path in the Watcher on one page. Three redundant hops fell out immediately.',
+    tags: ['agents', 'architecture'],
+  },
+  {
+    day: 3,
+    date: '2026-08-12',
+    title: 'Read the DSPy optimiser internals',
+    body: 'Wanted to know what the compiler actually does to a prompt before trusting it in production.',
+    tags: ['reading', 'dspy'],
+  },
+];
+
+// -----------------------------------------------------------------------------
+// DATA SOURCE — the single seam between the UI and wherever entries live.
+// Phase 1: returns the local array above.
+// Phase 2: swap the body for a Supabase REST call. Nothing else changes, as
+// long as the resolved array keeps the entry shape documented above.
+// -----------------------------------------------------------------------------
+async function loadEntries() {
+  // PHASE 2: replace the return below with the Supabase REST fetch, e.g.
+  //
+  //   const res = await fetch(
+  //     `${SUPABASE_URL}/rest/v1/vlog_entries?select=day,date,title,body,tags&order=day.desc`,
+  //     { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` } }
+  //   );
+  //   if (!res.ok) throw new Error(`Supabase ${res.status}`);
+  //   return await res.json();
+  //
+  // (No URL or key is committed yet — Phase 2 adds them.)
+  return ENTRIES;
 }
 
-// --------- 5. Footer year auto-fill ---------------------------
-const yrEl = document.getElementById('yr')
-if (yrEl) yrEl.textContent = new Date().getFullYear()
+// -- Rendering ----------------------------------------------------------------
+const DATE_FMT = new Intl.DateTimeFormat('en-GB', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+});
 
-// --------- 6. Console easter egg ------------------------------
-console.log(
-  '%c hi 👋 you opened devtools. ',
-  'background:#111;color:#F5EFE4;padding:6px 10px;font-family:JetBrains Mono,monospace;border-radius:4px;'
-)
-console.log(
-  '%c want to talk? kaushaledaracloudmail@gmail.com ',
-  'background:#E54B2B;color:#fff;padding:6px 10px;font-family:JetBrains Mono,monospace;border-radius:4px;'
-)
+function formatDate(iso) {
+  const d = new Date(`${iso}T00:00:00`);
+  return Number.isNaN(d.getTime()) ? iso : DATE_FMT.format(d).toUpperCase();
+}
+
+/**
+ * Build one timeline entry.
+ * @param {{day:number,date:string,title:string,body:string,tags:string[]}} entry
+ * @returns {HTMLElement}
+ */
+function buildEntry(entry, index) {
+  const article = document.createElement('article');
+  article.className = 'entry';
+  article.setAttribute('data-reveal', '');
+  article.style.setProperty('--i', String(index));
+
+  const day = document.createElement('p');
+  day.className = 'entry__day';
+  const dayNum = document.createElement('b');
+  dayNum.textContent = `D${String(entry.day).padStart(2, '0')}`;
+  const dayDate = document.createElement('span');
+  dayDate.textContent = formatDate(entry.date);
+  day.append(dayNum, dayDate);
+
+  const title = document.createElement('h2');
+  title.className = 'entry__title';
+  title.textContent = entry.title;
+
+  const body = document.createElement('p');
+  body.className = 'entry__body';
+  body.textContent = entry.body;
+
+  article.append(day, title, body);
+
+  if (Array.isArray(entry.tags) && entry.tags.length) {
+    const tags = document.createElement('ul');
+    tags.className = 'entry__tags';
+    for (const tag of entry.tags) {
+      const li = document.createElement('li');
+      li.textContent = tag;
+      tags.appendChild(li);
+    }
+    article.appendChild(tags);
+  }
+
+  return article;
+}
+
+/**
+ * Render the whole timeline, newest day first, plus the running counters.
+ * @param {Array} entries
+ */
+function renderEntries(entries) {
+  const timeline = document.getElementById('timeline');
+  if (!timeline) return;
+
+  timeline.textContent = '';
+
+  const list = Array.isArray(entries) ? entries.slice() : [];
+
+  // Empty state.
+  if (!list.length) {
+    const empty = document.createElement('div');
+    empty.className = 'empty';
+    const p = document.createElement('p');
+    p.textContent = 'No entries yet. Day one goes up soon.';
+    empty.appendChild(p);
+    timeline.appendChild(empty);
+    setCounters(0, null, null);
+    return;
+  }
+
+  list.sort((a, b) => b.day - a.day);
+
+  const frag = document.createDocumentFragment();
+  list.forEach((entry, i) => frag.appendChild(buildEntry(entry, i)));
+  timeline.appendChild(frag);
+
+  setCounters(list.length, list[0], list[list.length - 1]);
+  observeReveals(timeline);
+}
+
+function setCounters(count, newest, oldest) {
+  const set = (id, value) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+  };
+  set('c-day', newest ? `D${String(newest.day).padStart(2, '0')}` : '—');
+  set('c-count', count ? String(count).padStart(2, '0') : '00');
+  set('c-since', oldest ? formatDate(oldest.date) : '—');
+}
+
+// -- Boot ---------------------------------------------------------------------
+if (document.getElementById('timeline')) {
+  loadEntries()
+    .then(renderEntries)
+    .catch((err) => {
+      console.error('[vlog] failed to load entries', err);
+      renderEntries([]);
+    });
+}

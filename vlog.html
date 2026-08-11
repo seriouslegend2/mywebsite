@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <title>Vlog — Kaushal Edara</title>
+  <meta name="description" content="A day-by-day log of Kaushal Edara's post-graduation build and job-hunt period." />
+  <meta name="author" content="Edara Sri Sai Kaushal" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Vlog — Kaushal Edara" />
+  <meta property="og:description" content="A day-by-day log of the post-graduation build and job-hunt period." />
+  <meta property="og:url" content="https://seriouslegend2.github.io/mywebsite/vlog.html" />
+  <meta property="og:image" content="https://seriouslegend2.github.io/mywebsite/assets/images/kaush.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="assets/images/logo.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Serif:ital,wght@1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <!-- Enables reveal animations only when scripting is actually available. -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ================= NAV ================= -->
+  <nav class="nav" aria-label="Primary">
+    <div class="nav__inner">
+      <a class="nav__mark" href="index.html">Edara&nbsp;S.&nbsp;S.&nbsp;Kaushal</a>
+
+      <div class="nav__tabs">
+        <a class="nav__tab" href="index.html">Index</a>
+        <a class="nav__tab" href="vlog.html" aria-current="page">Vlog</a>
+      </div>
+
+      <a class="nav__out" href="https://drive.google.com/file/d/1-bNgOOs8T8z4OK9Uw6R5DPFEShfbtHOT/view?usp=drive_link" target="_blank" rel="noopener" aria-label="Resume (opens in a new tab)">
+        <span class="nav__out-label">Resume</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="vlog-head">
+      <div class="shell">
+        <div class="masthead__bar">
+          <span class="label"><span class="dot dot--live" aria-hidden="true"></span>Logging daily</span>
+          <span class="label">Phase 01 · Static</span>
+        </div>
+
+        <h1 class="vlog-head__title">The <em>log</em></h1>
+        <p class="vlog-head__sub">One entry a day through graduation and the job hunt. What got built, what got read, what broke.</p>
+
+        <div class="counter" aria-label="Log summary">
+          <div>
+            <span class="counter__n" id="c-day">—</span>
+            <span class="counter__k">Latest day</span>
+          </div>
+          <div>
+            <span class="counter__n" id="c-count">00</span>
+            <span class="counter__k">Entries logged</span>
+          </div>
+          <div>
+            <span class="counter__n" id="c-since">—</span>
+            <span class="counter__k">Started</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" aria-labelledby="tl-t">
+      <div class="shell">
+        <div class="section__head" data-reveal>
+          <span class="section__num">01</span>
+          <h2 class="section__title" id="tl-t">Timeline</h2>
+          <span class="section__meta">Newest first</span>
+        </div>
+
+        <!-- Rendered by renderEntries() in assets/main.js -->
+        <div class="timeline" id="timeline"></div>
+
+        <noscript>
+          <div class="empty">
+            <p>The log is rendered with JavaScript. Enable it to read the entries.</p>
+          </div>
+        </noscript>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="shell">
+      <div class="foot__cta">
+        <p class="label" style="margin-bottom:20px"><span class="dot dot--live" aria-hidden="true"></span>Open to full-time AI engineering roles from Jun 2026 · Bengaluru / Hyderabad</p>
+        <a class="foot__line" href="mailto:kaushaledaracloudmail@gmail.com">kaushaledaracloudmail@gmail.com</a>
+      </div>
+    </div>
+    <div class="shell">
+      <div class="foot__bar">
+        <span>+91 91828 43273</span>
+        <a class="link link--mute" href="https://github.com/seriouslegend2" target="_blank" rel="noopener">GitHub</a>
+        <a class="link link--mute" href="https://www.linkedin.com/in/kaushal-edara/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="link link--mute" href="https://drive.google.com/file/d/1-bNgOOs8T8z4OK9Uw6R5DPFEShfbtHOT/view?usp=drive_link" target="_blank" rel="noopener">Resume</a>
+        <a class="link link--mute" href="index.html">Index</a>
+        <span class="spacer">© <span id="yr">2026</span> Edara Sri Sai Kaushal</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/main.js"></script>
+  <script>
+    // ES-module fetches are CORS-blocked on file:// (origin "null"), so the
+    // module above silently fails when the page is opened straight from disk.
+    // main.js has no import/export, so re-loading it as a classic script is a
+    // faithful fallback. Deferred modules run before DOMContentLoaded, so on
+    // http(s) the flag is already set and this is a no-op.
+    addEventListener('DOMContentLoaded', function () {
+      if (window.__portfolioBooted) return;
+      var s = document.createElement('script');
+      s.src = 'assets/main.js';
+      document.body.appendChild(s);
+    });
+  </script>
+</body>
+</html>
