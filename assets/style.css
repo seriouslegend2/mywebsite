@@ -1694,6 +1694,26 @@ html:not(.js) .tree__ctl { display: none; }
 }
 .entry__body p + p { margin-top: 0.85em; }
 
+/* The log is written as bullets more often than prose. Marker is a hairline
+   dash rather than a disc, to match the rest of the page. */
+.entry__list { list-style: none; }
+.entry__list li {
+  position: relative;
+  padding-left: 22px;
+}
+.entry__list li + li { margin-top: 0.5em; }
+.entry__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 10px;
+  height: 1px;
+  background: var(--line-hi);
+}
+.entry__body > * + .entry__list,
+.entry__list + * { margin-top: 0.85em; }
+
 .empty {
   padding: clamp(40px, 6vw, 80px) 0;
   border-bottom: 1px solid var(--line);

@@ -589,9 +589,72 @@ function formatDate(iso) {
 }
 
 /**
+ * Turn one entry's plain text into block elements.
+ *
+ * The log is written as bullet lists more often than prose, so a line that
+ * opens with •, -, * or – becomes a list item and consecutive ones group into
+ * a single <ul>. Everything else is a paragraph, and a blank line always
+ * starts a new block. Text goes in via textContent throughout, so a row
+ * written in the database can never inject markup into the page.
+ *
+ * @param {string} text
+ * @returns {DocumentFragment}
+ */
+function renderContent(text) {
+  const frag = document.createDocumentFragment();
+  const lines = String(text).replace(/\r\n?/g, '\n').split('\n');
+
+  let para = [];   // buffered prose lines
+  let list = null; // open <ul>, if any
+
+  const flushPara = () => {
+    if (!para.length) return;
+    const p = document.createElement('p');
+    p.textContent = para.join(' ');
+    frag.appendChild(p);
+    para = [];
+  };
+  const closeList = () => { list = null; };
+
+  for (const raw of lines) {
+    const line = raw.trim();
+
+    if (!line) {          // blank line ends whatever block is open
+      flushPara();
+      closeList();
+      continue;
+    }
+
+    const bullet = line.match(/^[•\-*–]\s+(.*)$/);
+    if (bullet) {
+      flushPara();
+      if (!list) {
+        list = document.createElement('ul');
+        list.className = 'entry__list';
+        frag.appendChild(list);
+      }
+      const li = document.createElement('li');
+      li.textContent = bullet[1].trim();
+      list.appendChild(li);
+      continue;
+    }
+
+    // A plain line while a list is open is a continuation of the last item —
+    // wrapped bullets are common when the text is pasted from a document.
+    if (list && list.lastElementChild) {
+      list.lastElementChild.textContent += ` ${line}`;
+      continue;
+    }
+
+    para.push(line);
+  }
+
+  flushPara();
+  return frag;
+}
+
+/**
  * Build one timeline entry — a date and the text, nothing else.
- * Blank lines in `content` become separate paragraphs. Everything goes in as
- * textContent, so a row written in the database can never inject markup.
  * @param {{day:number,date:string,content:string}} entry
  * @returns {HTMLElement}
  */
@@ -611,15 +674,7 @@ function buildEntry(entry, index) {
 
   const body = document.createElement('div');
   body.className = 'entry__body';
-  entry.content
-    .split(/\n{2,}/)
-    .map((para) => para.trim())
-    .filter(Boolean)
-    .forEach((para) => {
-      const p = document.createElement('p');
-      p.textContent = para;
-      body.appendChild(p);
-    });
+  body.appendChild(renderContent(entry.content));
 
   article.append(day, body);
   return article;
