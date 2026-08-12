@@ -47,9 +47,14 @@
     <!-- ================= MASTHEAD ================= -->
     <header class="masthead" id="about">
       <div class="shell">
+        <!-- The three target roles lead the page — what he wants to be read
+             for, before anything else. -->
         <div class="masthead__bar">
-          <span class="label"><span class="dot dot--live" aria-hidden="true"></span>Open to roles — Hyderabad · Bengaluru</span>
-          <span class="label">From Jun 2026</span>
+          <ul class="roles roles--bar" aria-label="Target roles">
+            <li>AI&nbsp;Engineer</li>
+            <li>Forward&nbsp;Deployed&nbsp;Engineer</li>
+            <li>SDE&nbsp;/ Software&nbsp;Engineer</li>
+          </ul>
         </div>
 
         <div class="tiles">
@@ -58,12 +63,6 @@
             <p class="ident__full">Edara Sri Sai Kaushal</p>
             <h1 class="ident__name">Kaushal<br /><em>Edara</em></h1>
             <p class="ident__role">AI Engineer. I build production multi-agent systems that run unattended.</p>
-
-            <ul class="roles" aria-label="Target roles">
-              <li>AI&nbsp;Engineer</li>
-              <li>Forward&nbsp;Deployed&nbsp;Engineer</li>
-              <li>SDE&nbsp;/ Software&nbsp;Engineer</li>
-            </ul>
           </div>
 
           <!-- portrait: 4 wide, 2 tall -->
@@ -85,10 +84,12 @@
 
           <div class="tile s4" data-reveal style="--i:4">
             <span class="label">Elsewhere</span>
-            <div class="linkstack">
-              <a href="https://github.com/seriouslegend2" target="_blank" rel="noopener"><span>GitHub</span><span aria-hidden="true">↗</span></a>
-              <a href="https://www.linkedin.com/in/kaushal-edara/" target="_blank" rel="noopener"><span>LinkedIn</span><span aria-hidden="true">↗</span></a>
-              <a href="mailto:kaushaledaracloudmail@gmail.com"><span>Email</span><span aria-hidden="true">↗</span></a>
+            <!-- Full addresses, not labels — a reader should be able to copy
+                 any of these off the page without clicking through. -->
+            <div class="linkstack linkstack--full">
+              <a href="mailto:kaushaledaracloudmail@gmail.com"><span>kaushaledaracloudmail@gmail.com</span><span aria-hidden="true">↗</span></a>
+              <a href="https://github.com/seriouslegend2" target="_blank" rel="noopener"><span>github.com/seriouslegend2</span><span aria-hidden="true">↗</span></a>
+              <a href="https://www.linkedin.com/in/kaushal-edara/" target="_blank" rel="noopener"><span>linkedin.com/in/kaushal-edara</span><span aria-hidden="true">↗</span></a>
             </div>
           </div>
         </div>

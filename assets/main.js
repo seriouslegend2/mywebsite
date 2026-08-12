@@ -161,7 +161,8 @@ if (TREES.length) {
 // =============================================================================
 
 // Order mirrors the page: masthead → experience → publication → built →
-// record → signatures, with the vlog last as the one cross-page destination.
+// record → signatures. Section anchors only — the vlog is reached from the
+// button under the sign-off, not from here.
 const WHEEL_ITEMS = [
   { id: 'about', label: 'About', hash: '#about' },
   { id: 'work', label: 'Experience', hash: '#work' },
@@ -169,7 +170,6 @@ const WHEEL_ITEMS = [
   { id: 'built', label: 'Projects', hash: '#built' },
   { id: 'record', label: 'Education', hash: '#record' },
   { id: 'signatures', label: 'Signatures', hash: '#signatures' },
-  { id: 'vlog', label: 'Vlog', hash: null }, // vlog.html — its own page
 ];
 
 // Arc geometry, in degrees on a screen-space circle (y grows downward):
