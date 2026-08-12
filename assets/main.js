@@ -160,11 +160,14 @@ if (TREES.length) {
 // full keyboard control work for anyone who never discovers the drag.
 // =============================================================================
 
+// Order mirrors the page: masthead → signatures → experience → publication →
+// built → record, with the vlog last as the one cross-page destination.
 const WHEEL_ITEMS = [
   { id: 'about', label: 'About', hash: '#about' },
+  { id: 'signatures', label: 'Signatures', hash: '#signatures' },
   { id: 'work', label: 'Experience', hash: '#work' },
+  { id: 'research', label: 'Paper', hash: '#research' },
   { id: 'built', label: 'Projects', hash: '#built' },
-  { id: 'research', label: 'Research', hash: '#research' },
   { id: 'record', label: 'Education', hash: '#record' },
   { id: 'vlog', label: 'Vlog', hash: null }, // vlog.html — its own page
 ];

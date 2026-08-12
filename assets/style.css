@@ -14,6 +14,7 @@
   --bg:        #08090a;   /* near-black, never pure #000 */
   --bg-lift:   #0c0d0f;   /* one step up, for hovered / emphasised cells */
   --bg-sunk:   #0a0b0c;
+  --bg-raise:  #0e0f12;   /* the Experience band — the one raised surface */
 
   /* hairlines */
   --line:      #1a1c1f;
@@ -528,10 +529,11 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .linkstack a:hover span:last-child { color: var(--acc); }
 
 /* --------------------------------------------------------------------------
-   8. Section 02 — research
-   Paper-led: the published artefact is a single wide plate, and the two
-   findings hang off margin labels underneath. No boxes, no seams — the
-   opposite scan pattern to the section-01 mosaic.
+   8. Section 03 — publication, and the research findings
+   Paper-led: the published artefact is a single wide plate of its own. The two
+   findings (.notes) now sit inside the IIT Patna role in section 02, hanging
+   off margin labels. No boxes, no seams — the opposite scan pattern to the
+   signature cards.
    -------------------------------------------------------------------------- */
 
 /* shared large mono figure (research / projects / record) */
@@ -657,9 +659,9 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 }
 
 /* --------------------------------------------------------------------------
-   8a. Section 02 — engineering signatures
-   The six patterns now live in a disclosure tree (§ 8c). What survives here is
-   the tail: the loose index of everything else in the record.
+   8a. Section 01 — signatures tail
+   The six patterns are cards now (§ 8d). What survives here is the tail: the
+   loose index of everything else in the record.
    -------------------------------------------------------------------------- */
 .sigs__tail {
   display: grid;
@@ -705,7 +707,8 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 
 /* --------------------------------------------------------------------------
    8c. The disclosure tree
-   The site's progressive-disclosure primitive, used by sections 01, 02 and 04.
+   The site's progressive-disclosure primitive. Now used by one section only:
+   the Kookar tree of twelve systems inside 02 — Experience.
    Collapsed it is a filesystem listing: one hairline-connected row per node,
    a mono path on the left and the single fact worth seeing on the right.
    Expanded it releases the prose and the spec sheet.
@@ -858,11 +861,15 @@ html:not(.js) .tree__ctl { display: none; }
 }
 
 .node__name {
+  min-width: 0;                 /* the row now lives in a narrower column: let
+                                   the path and the fact shrink and wrap rather
+                                   than push the row past its container */
   font-family: var(--mono);
   font-size: clamp(12px, 0.95vw, 14px);
   letter-spacing: 0.01em;
   color: var(--fg);
   line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 /* patterns are sentences, not paths — they get the sans face */
@@ -883,6 +890,7 @@ html:not(.js) .tree__ctl { display: none; }
 
 .node__fact {
   margin-left: auto;
+  min-width: 0;
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 0.02em;
@@ -948,6 +956,418 @@ html:not(.js) .tree__ctl { display: none; }
 }
 
 /* --------------------------------------------------------------------------
+   8d. Section 01 — engineering signatures, as cards
+   This section now leads the page, so nothing is hidden: six discrete cells on
+   the shared-seam grid, each one an assertion plus the evidence in a line. The
+   ghost numeral moves from behind the disclosed argument to behind the card.
+   -------------------------------------------------------------------------- */
+.sigs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.sig {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.2vw, 16px);
+  min-height: clamp(158px, 15vw, 216px);
+  padding: clamp(18px, 2.1vw, 32px);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  transition: background-color 300ms var(--ease);
+}
+.sig:hover { background: var(--bg-lift); }
+
+/* an accent tick on the top edge that runs out on hover */
+.sig::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 2px;
+  width: 20px;
+  background: var(--acc);
+  opacity: 0.45;
+  transition: width 340ms var(--ease), opacity 340ms var(--ease);
+}
+.sig:hover::before { width: 66px; opacity: 1; }
+
+.sig__idx {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--acc);
+  line-height: 1;
+}
+
+.sig__name {
+  position: relative;
+  font-size: clamp(16.5px, 1.5vw, 24px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.14;
+  max-width: 19ch;
+  text-wrap: balance;
+}
+
+.sig__fact {
+  position: relative;
+  margin-top: auto;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  color: var(--fg-mute);
+  max-width: 33ch;
+}
+.sig__fact b { color: var(--fg); font-weight: 400; }
+
+.sig__ghost {
+  position: absolute;
+  right: -4px;
+  bottom: -22px;
+  font-family: var(--mono);
+  font-size: clamp(58px, 6vw, 104px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: var(--line);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   8e. Section 02 — experience
+   Both employments live in one band, and the band is the only surface on the
+   page raised off the canvas: a step up in near-black, closed top and bottom
+   by a double hairline set in from the edge. No hue, no shadow — just a
+   different surface value, so it reads as a deliberate container.
+   -------------------------------------------------------------------------- */
+.section--xp {
+  position: relative;
+  background: var(--bg-raise);
+  border-top: 1px solid var(--line-hi);
+  border-bottom: 1px solid var(--line-hi);
+  margin-top: clamp(38px, 4.6vw, 84px);
+  padding-top: clamp(44px, 5.4vw, 86px);
+  padding-bottom: clamp(44px, 5.4vw, 86px);
+}
+
+/* the inset rules — the band states its own edges twice */
+.section--xp::before,
+.section--xp::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--line);
+}
+.section--xp::before { top: 5px; }
+.section--xp::after { bottom: 5px; }
+
+.xp { display: flex; flex-direction: column; }
+
+/* two employers, delimited by a rule one step brighter than anything inside */
+.xp__role {
+  display: grid;
+  grid-template-columns: clamp(112px, 12vw, 200px) minmax(0, 1fr);
+  gap: 0 clamp(18px, 2.4vw, 48px);
+  padding: clamp(26px, 3.2vw, 52px) 0;
+  border-top: 1px solid var(--line-hi);
+}
+.xp__role:first-child { border-top: 0; padding-top: clamp(6px, 1vw, 14px); }
+
+.xp__rail {
+  position: sticky;
+  top: 74px;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.xp__when {
+  font-family: var(--mono);
+  font-size: clamp(11px, 0.95vw, 13px);
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: var(--fg-mid);
+}
+
+.xp__title {
+  font-family: var(--mono);
+  font-size: clamp(10.5px, 0.9vw, 12px);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  margin-bottom: 10px;
+}
+
+.xp__org {
+  font-size: clamp(26px, 3.4vw, 58px);
+  font-weight: 300;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.xp__lede {
+  color: var(--fg-mute);
+  font-size: clamp(13px, 0.95vw, 15.5px);
+  line-height: 1.55;
+  max-width: 62ch;
+  margin-top: clamp(12px, 1.4vw, 18px);
+  text-wrap: pretty;
+}
+
+.xp__figs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px clamp(20px, 2.6vw, 46px);
+  margin-top: clamp(16px, 2vw, 26px);
+  padding-bottom: clamp(16px, 2vw, 26px);
+  border-bottom: 1px solid var(--line-hi);
+}
+.xp__figs li { display: flex; flex-direction: column; gap: 7px; }
+
+.xp__tree { margin-top: clamp(20px, 2.4vw, 34px); }
+
+.notes--xp { margin-top: clamp(18px, 2.2vw, 32px); }
+
+.xp__xref { display: block; margin-top: clamp(16px, 2vw, 26px); }
+
+/* --------------------------------------------------------------------------
+   8f. Section 04 — built
+   Three projects, three layouts. A research report, a deployed product and a
+   benchmark sheet are not the same object, so they are not the same template.
+   What holds them together is the family: accent index, mono kind-label, and
+   the identical stack/source footer rule under every one.
+   -------------------------------------------------------------------------- */
+.built {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(38px, 5vw, 84px);
+}
+
+.proj__idx {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--acc);
+  line-height: 1;
+}
+
+.proj__body {
+  color: var(--fg-mute);
+  font-size: clamp(13px, 0.88vw, 15px);
+  line-height: 1.62;
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+
+/* the shared footer — the one row all three share, so they stay one family */
+.proj__foot {
+  display: grid;
+  grid-template-columns: clamp(56px, 6vw, 82px) minmax(0, 1fr) auto;
+  gap: 6px clamp(14px, 1.8vw, 30px);
+  align-items: baseline;
+  margin-top: clamp(16px, 2vw, 28px);
+  padding-top: clamp(11px, 1.3vw, 16px);
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-mid);
+}
+.proj__foot .label { color: var(--fg-mute); }
+
+/* ---- 01 · research: a lab report. Prose left, results table hard right ---- */
+.proj--research {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(180px, 21vw, 300px);
+  gap: 0 clamp(24px, 3.2vw, 64px);
+  border-top: 1px solid var(--line-hi);
+  padding-top: clamp(16px, 1.9vw, 26px);
+}
+
+.proj__head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px clamp(12px, 1.4vw, 20px);
+  margin-bottom: clamp(8px, 1vw, 14px);
+}
+
+.proj__title--research {
+  font-size: clamp(30px, 4.2vw, 68px);
+  font-weight: 300;
+  letter-spacing: -0.05em;
+  line-height: 0.96;
+}
+
+.proj__abstract {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(15px, 1.35vw, 22px);
+  line-height: 1.4;
+  color: var(--fg-mid);
+  max-width: 40ch;
+  margin: clamp(10px, 1.2vw, 16px) 0 clamp(14px, 1.7vw, 24px);
+}
+
+/* the results table — figures stacked, right column, reads as a findings sheet */
+.metrics { border-top: 1px solid var(--line-hi); }
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: clamp(10px, 1.3vw, 17px) 0;
+  border-bottom: 1px solid var(--line);
+}
+.metric dd { margin: 0; }
+
+.proj--research > .proj__foot { grid-column: 1 / -1; }
+
+/* ---- 02 · product: the only boxed entry. Banner, impact cells, pipeline ---- */
+.proj--product { border: 1px solid var(--line); }
+
+.proj__banner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(9px, 1.1vw, 14px);
+  padding: clamp(20px, 2.6vw, 44px);
+  border-bottom: 1px solid var(--line);
+}
+
+.proj__title--product {
+  font-size: clamp(34px, 5.6vw, 96px);
+  font-weight: 300;
+  letter-spacing: -0.052em;
+  line-height: 0.9;
+}
+
+.proj__banner-sub {
+  font-family: var(--mono);
+  font-size: clamp(11px, 0.95vw, 13px);
+  letter-spacing: 0.04em;
+  color: var(--fg-mute);
+}
+
+.impact {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-bottom: 1px solid var(--line);
+}
+.impact li {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(16px, 2vw, 30px);
+  border-right: 1px solid var(--line);
+}
+.impact li:last-child { border-right: 0; }
+
+.proj__prose { padding: clamp(20px, 2.6vw, 44px); }
+.proj__prose .proj__foot { margin-top: clamp(16px, 2vw, 26px); }
+
+/* the deploy path, drawn as a chain rather than listed as a stack */
+.pipe {
+  display: grid;
+  grid-template-columns: clamp(64px, 7vw, 110px) minmax(0, 1fr);
+  gap: 8px clamp(14px, 1.8vw, 28px);
+  align-items: center;
+  padding: clamp(14px, 1.8vw, 26px) clamp(20px, 2.6vw, 44px);
+  border-top: 1px solid var(--line);
+}
+
+.pipe__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px 0;
+}
+.pipe__row li {
+  position: relative;
+  margin-right: 24px;
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--fg-mid);
+  white-space: nowrap;
+  transition: color 200ms var(--ease), border-color 200ms var(--ease);
+}
+.pipe__row li:hover { color: var(--fg); border-color: var(--line-hi); }
+.pipe__row li::after {
+  content: "→";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  text-align: center;
+  color: var(--line-hi);
+}
+.pipe__row li:last-child { margin-right: 0; }
+.pipe__row li:last-child::after { content: none; }
+
+/* ---- 03 · benchmark: a sunk results sheet. Mono-dominant, no large type ---- */
+.proj--bench {
+  background: var(--bg-sunk);
+  border-top: 1px solid var(--line-hi);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(18px, 2.2vw, 34px) clamp(16px, 2vw, 32px);
+}
+
+.proj__title--bench {
+  font-family: var(--mono);
+  font-size: clamp(13.5px, 1.3vw, 20px);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+  color: var(--fg);
+}
+
+.bench {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(18px, 2.2vw, 34px) clamp(24px, 3vw, 58px);
+  align-items: start;
+  margin-top: clamp(14px, 1.7vw, 24px);
+}
+
+.bench__figs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px clamp(20px, 2.6vw, 44px);
+  margin-top: clamp(16px, 2vw, 26px);
+}
+.bench__figs li { display: flex; flex-direction: column; gap: 7px; }
+
+.sheet { border-top: 1px solid var(--line-hi); }
+
+.sheet__row {
+  display: grid;
+  grid-template-columns: clamp(74px, 7.5vw, 112px) minmax(0, 1fr);
+  gap: 0 clamp(12px, 1.4vw, 22px);
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.sheet dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--fg-mid);
+}
+
+/* --------------------------------------------------------------------------
    9. Stack lists
    -------------------------------------------------------------------------- */
 .chips {
@@ -969,7 +1389,7 @@ html:not(.js) .tree__ctl { display: none; }
   padding: 0 9px;
 }
 
-/* section 04 — manifest: tight label/value rows, no large type at all */
+/* section 05 — manifest: tight label/value rows, no large type at all */
 .manifest { border-top: 1px solid var(--line-hi); }
 
 .manifest__row {
@@ -1558,6 +1978,19 @@ html:not(.js) .tree__ctl { display: none; }
     padding-left: 0;
     margin-left: 0;
   }
+
+  /* signature cards: three across becomes two */
+  .sigs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  /* research report and benchmark sheet both stack */
+  .proj--research { grid-template-columns: 1fr; }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 clamp(16px, 2.4vw, 40px);
+    margin-top: clamp(16px, 2vw, 26px);
+  }
+  .bench { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 720px) {
@@ -1566,6 +1999,32 @@ html:not(.js) .tree__ctl { display: none; }
   .counter { grid-template-columns: 1fr; }
 
   .sigs__tail { grid-template-columns: 1fr; gap: 10px; }
+
+  /* signature cards go single-file; the ghost numeral stops crowding the fact */
+  .sigs { grid-template-columns: 1fr; }
+  .sig { min-height: 0; gap: 12px; }
+  .sig__ghost { font-size: 62px; bottom: -14px; }
+
+  /* experience: the date rail moves above the employer instead of beside it */
+  .xp__role { grid-template-columns: 1fr; gap: 14px; }
+  .xp__rail {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px 18px;
+  }
+  .xp__when { line-height: 1.4; }
+  .xp__when br { display: none; }
+
+  /* projects: every layout collapses to one column, identities kept */
+  .metrics { grid-template-columns: 1fr; }
+  .impact { grid-template-columns: 1fr; }
+  .impact li { border-right: 0; border-bottom: 1px solid var(--line); }
+  .impact li:last-child { border-bottom: 0; }
+  .pipe { grid-template-columns: 1fr; }
+  .proj__foot { grid-template-columns: 1fr; gap: 8px; }
+  .sheet__row { grid-template-columns: 1fr; gap: 6px; }
 
   /* tree: the fact drops under the label rather than fighting it for width,
      the indent tightens, and the connector follows the first line up */

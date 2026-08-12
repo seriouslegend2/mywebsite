@@ -100,35 +100,129 @@
       </div>
     </header>
 
-    <!-- ================= 01 — WORK ================= -->
-    <section class="section" id="work" aria-labelledby="work-t">
+    <!-- ================= 01 — SIGNATURES ================= -->
+    <!-- Leads the page, so nothing here is hidden: six cards, stated up front.
+         Assertion, then the evidence in a line. No disclosure, no paragraphs. -->
+    <section class="section" id="signatures" aria-labelledby="sig-t">
       <div class="shell">
         <div class="section__head" data-reveal>
           <span class="section__num">01</span>
-          <h2 class="section__title" id="work-t">Shipped — Kookar AI</h2>
-          <span class="section__meta">Twelve systems · Jun 2025 — Present</span>
+          <h2 class="section__title" id="sig-t">Engineering signatures</h2>
+          <span class="section__meta">Six patterns that repeat</span>
         </div>
 
-        <div class="scale section__tiles" data-reveal>
-          <ul class="scale__figs">
-            <li><span class="fig">~20</span><span class="label">production LLM agents</span></li>
-            <li><span class="fig">12</span><span class="label">systems shipped</span></li>
+        <div class="sigs section__tiles">
+          <article class="sig" id="s-silent" data-reveal style="--i:0">
+            <span class="sig__ghost" aria-hidden="true">01</span>
+            <span class="sig__idx">01</span>
+            <h3 class="sig__name">Hunts silent failures</h3>
+            <p class="sig__fact">Swallowed exceptions · a cached <b>False</b> with no TTL · RLS on with no policies. Every fix ships instrumentation.</p>
+          </article>
+
+          <article class="sig" id="s-enforce" data-reveal style="--i:1">
+            <span class="sig__ghost" aria-hidden="true">02</span>
+            <span class="sig__idx">02</span>
+            <h3 class="sig__name">Moves enforcement where it can't be bypassed</h3>
+            <p class="sig__fact">Triggers · <b>CHECK</b> constraints · partial unique indexes. Make the bad state unrepresentable.</p>
+          </article>
+
+          <article class="sig" id="s-delete" data-reveal style="--i:2">
+            <span class="sig__ghost" aria-hidden="true">03</span>
+            <span class="sig__idx">03</span>
+            <h3 class="sig__name">Deletes on runtime evidence</h3>
+            <p class="sig__fact">Traces decide, not static analysis. A path comes out once production shows <b>nothing reaches it</b>.</p>
+          </article>
+
+          <article class="sig" id="s-reality" data-reveal style="--i:3">
+            <span class="sig__ghost" aria-hidden="true">04</span>
+            <span class="sig__idx">04</span>
+            <h3 class="sig__name">Validates against production reality</h3>
+            <p class="sig__fact">Anchored to <b>a real broken row</b>, proved inside a transaction I then rolled back.</p>
+          </article>
+
+          <article class="sig" id="s-deploy" data-reveal style="--i:4">
+            <span class="sig__ghost" aria-hidden="true">05</span>
+            <span class="sig__idx">05</span>
+            <h3 class="sig__name">Writes the deploy order down</h3>
+            <p class="sig__fact">Code ↔ migration ordering, stated — including the windows where the database would outrun the app.</p>
+          </article>
+
+          <article class="sig" id="s-config" data-reveal style="--i:5">
+            <span class="sig__ghost" aria-hidden="true">06</span>
+            <span class="sig__idx">06</span>
+            <h3 class="sig__name">Configures through data, not code</h3>
+            <p class="sig__fact">HITL settings · playbooks · model routing — <b>tables operators edit</b> without a deploy.</p>
+          </article>
+        </div>
+
+        <div class="sigs__tail" data-reveal>
+          <span class="label">Also in the record</span>
+          <ul class="chips">
+            <li>Postgres triggers as an enforcement boundary</li>
+            <li>RPC state machines with pg_net callbacks</li>
+            <li>pg_cron scheduling</li>
+            <li>Stalled-stage reapers</li>
+            <li>SCD Type 2 versioning</li>
+            <li>Append-only audit tables</li>
+            <li>RLS policies</li>
+            <li>Correlation-ID lifecycles</li>
+            <li>Terminal-event chaining over timers</li>
+            <li>Redis debounce coordination</li>
+            <li>Join barriers</li>
+            <li>Single-flight</li>
+            <li>Per-household locks</li>
+            <li>Circuit breakers</li>
+            <li>Idempotent EventBridge / SQS scheduling</li>
+            <li>Exotel two-leg bridging</li>
+            <li>WhatsApp Business webhooks</li>
+            <li>Slack Events API</li>
           </ul>
-          <p class="scale__note">Kookar runs households end to end with LLM agents — meal planning, grocery ordering, cook coordination and customer communication over WhatsApp.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 02 — EXPERIENCE ================= -->
+    <!-- Both employments, one band. This is the only raised surface on the
+         page: a step up in near-black, closed by a double hairline. -->
+    <section class="section section--xp" id="work" aria-labelledby="work-t">
+      <div class="shell">
+        <div class="section__head" data-reveal>
+          <span class="section__num">02</span>
+          <h2 class="section__title" id="work-t">Experience</h2>
+          <span class="section__meta">Two roles · Dec 2024 — Present</span>
         </div>
 
-        <!-- The work as a filesystem tree: twelve systems as one line each,
-             grouped agents/ and platform/. Prose lives behind each disclosure,
-             so the default read is a scan, not a wall. -->
-        <div class="tree section__tiles" data-tree data-reveal>
-          <div class="tree__bar">
-            <span class="tree__root">kookar-ai/</span>
-            <span class="label tree__hint">Twelve systems — open a node for the detail</span>
-            <div class="tree__ctl" role="group" aria-label="Expand or collapse every node in this section">
-              <button type="button" data-tree-act="open">Expand all</button>
-              <button type="button" data-tree-act="close">Collapse all</button>
+        <ol class="xp section__tiles">
+          <!-- ---------------- role 1 — Kookar AI ---------------- -->
+          <li class="xp__role" id="xp-kookar" data-reveal>
+            <div class="xp__rail">
+              <span class="label"><span class="dot dot--live" aria-hidden="true"></span>Now</span>
+              <span class="xp__when">Jun 2025 <br />— Present</span>
+              <span class="label">Internship · PPO</span>
             </div>
-          </div>
+
+            <div class="xp__main">
+              <p class="xp__title">AI Engineer Intern (PPO)</p>
+              <h3 class="xp__org">Kookar AI</h3>
+              <p class="xp__lede">Kookar runs households end to end with LLM agents — meal planning, grocery ordering, cook coordination and customer communication over WhatsApp.</p>
+
+              <ul class="xp__figs">
+                <li><span class="fig">~20</span><span class="label">production LLM agents</span></li>
+                <li><span class="fig">12</span><span class="label">systems shipped</span></li>
+              </ul>
+
+              <!-- The work as a filesystem tree: twelve systems as one line each,
+                   grouped agents/ and platform/. Prose lives behind each disclosure,
+                   so the default read is a scan, not a wall. -->
+              <div class="tree xp__tree" data-tree>
+                <div class="tree__bar">
+                  <span class="tree__root">kookar-ai/</span>
+                  <span class="label tree__hint">Twelve systems — open a node for the detail</span>
+                  <div class="tree__ctl" role="group" aria-label="Expand or collapse every node in this section">
+                    <button type="button" data-tree-act="open">Expand all</button>
+                    <button type="button" data-tree-act="close">Collapse all</button>
+                  </div>
+                </div>
 
           <ul class="tree__list">
             <!-- ---------------- agents/ ---------------- -->
@@ -364,156 +458,62 @@
                 </div>
               </details>
             </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= 02 — SIGNATURES ================= -->
-    <!-- Distinct treatment: ghost numerals behind stated patterns. No tiles,
-         no rails, no figures — the only section that is purely assertions. -->
-    <section class="section" id="signatures" aria-labelledby="sig-t">
-      <div class="shell">
-        <div class="section__head" data-reveal>
-          <span class="section__num">02</span>
-          <h2 class="section__title" id="sig-t">Engineering signatures</h2>
-          <span class="section__meta">Patterns that repeat</span>
-        </div>
-
-        <div class="tree section__tiles" data-tree data-reveal>
-          <div class="tree__bar">
-            <span class="tree__root">patterns/</span>
-            <span class="label tree__hint">Six that repeat — open one for the argument</span>
-            <div class="tree__ctl" role="group" aria-label="Expand or collapse every pattern">
-              <button type="button" data-tree-act="open">Expand all</button>
-              <button type="button" data-tree-act="close">Collapse all</button>
+                </ul>
+              </div>
             </div>
-          </div>
+          </li>
 
-          <ul class="tree__list">
-            <li class="tree__item">
-              <details class="node node--sig" id="s-silent">
-                <summary class="node__sum">
-                  <span class="node__tick" aria-hidden="true"></span>
-                  <span class="node__idx">01</span>
-                  <span class="node__name node__name--prose">Hunts silent failures</span>
-                  <span class="node__fact">swallowed exceptions · cached <b>False</b> · RLS with no policies</span>
-                </summary>
-                <div class="node__in">
-                  <span class="node__ghost" aria-hidden="true">01</span>
-                  <p class="node__body">The bug class I fix most is code that fails without erroring — a swallowed exception, a cached <code class="code">False</code> with no TTL, an undeclared state key, an event dropped for a missing field, RLS on with no policies. Each fix ships instrumentation, so the class is visible the next time.</p>
-                </div>
-              </details>
-            </li>
-            <li class="tree__item">
-              <details class="node node--sig" id="s-enforce">
-                <summary class="node__sum">
-                  <span class="node__tick" aria-hidden="true"></span>
-                  <span class="node__idx">02</span>
-                  <span class="node__name node__name--prose">Moves enforcement where it can't be bypassed</span>
-                  <span class="node__fact">triggers · <b>CHECK</b> · partial unique indexes</span>
-                </summary>
-                <div class="node__in">
-                  <span class="node__ghost" aria-hidden="true">02</span>
-                  <p class="node__body">When application checks proved leaky, the invariant moved down a layer — a trigger, a <code class="code">CHECK</code> constraint, a partial unique index, a type constraint, or the absence of a tool. Make the bad state unrepresentable.</p>
-                </div>
-              </details>
-            </li>
-            <li class="tree__item">
-              <details class="node node--sig" id="s-delete">
-                <summary class="node__sum">
-                  <span class="node__tick" aria-hidden="true"></span>
-                  <span class="node__idx">03</span>
-                  <span class="node__name node__name--prose">Deletes on runtime evidence</span>
-                  <span class="node__fact">traces decide, not static analysis</span>
-                </summary>
-                <div class="node__in">
-                  <span class="node__ghost" aria-hidden="true">03</span>
-                  <p class="node__body">Deletion is a deliberate practice, not a cleanup afterthought — and it is gated on runtime evidence rather than static analysis. A path comes out only once traces and production telemetry show nothing is reaching it. That has meant tearing out a service the day after shipping it, once the traffic showed it was never on the hot path, and cutting dead agents on a week of production evidence.</p>
-                </div>
-              </details>
-            </li>
-            <li class="tree__item">
-              <details class="node node--sig" id="s-reality">
-                <summary class="node__sum">
-                  <span class="node__tick" aria-hidden="true"></span>
-                  <span class="node__idx">04</span>
-                  <span class="node__name node__name--prose">Validates against production reality</span>
-                  <span class="node__fact">a real broken row, in a rolled-back transaction</span>
-                </summary>
-                <div class="node__in">
-                  <span class="node__ghost" aria-hidden="true">04</span>
-                  <p class="node__body">Fixes anchored to a real broken row and proved inside a transaction I then rolled back — not against synthetic data that agrees with the fix by construction.</p>
-                </div>
-              </details>
-            </li>
-            <li class="tree__item">
-              <details class="node node--sig" id="s-deploy">
-                <summary class="node__sum">
-                  <span class="node__tick" aria-hidden="true"></span>
-                  <span class="node__idx">05</span>
-                  <span class="node__name node__name--prose">Writes the deploy order down</span>
-                  <span class="node__fact">code ↔ migration ordering, stated</span>
-                </summary>
-                <div class="node__in">
-                  <span class="node__ghost" aria-hidden="true">05</span>
-                  <p class="node__body">Identifies when code and migration must land in a specific order, and flags the windows where database behaviour would outrun the application behaviour actually deployed.</p>
-                </div>
-              </details>
-            </li>
-            <li class="tree__item">
-              <details class="node node--sig" id="s-config">
-                <summary class="node__sum">
-                  <span class="node__tick" aria-hidden="true"></span>
-                  <span class="node__idx">06</span>
-                  <span class="node__name node__name--prose">Configures through data, not code</span>
-                  <span class="node__fact">tables operators edit without a deploy</span>
-                </summary>
-                <div class="node__in">
-                  <span class="node__ghost" aria-hidden="true">06</span>
-                  <p class="node__body">Decisions moved out of code and prompts into tables operators edit without a deploy: HITL settings, playbook tables, model routing, cohort bounds behind a kill switch.</p>
-                </div>
-              </details>
-            </li>
-          </ul>
-        </div>
+          <!-- ---------------- role 2 — IIT Patna ---------------- -->
+          <li class="xp__role" id="xp-iitp" data-reveal>
+            <div class="xp__rail">
+              <span class="label">Prior</span>
+              <span class="xp__when">Dec 2024 <br />— Feb 2025</span>
+              <span class="label">Research internship</span>
+            </div>
 
-        <div class="sigs__tail" data-reveal>
-          <span class="label">Also in the record</span>
-          <ul class="chips">
-            <li>Postgres triggers as an enforcement boundary</li>
-            <li>RPC state machines with pg_net callbacks</li>
-            <li>pg_cron scheduling</li>
-            <li>Stalled-stage reapers</li>
-            <li>SCD Type 2 versioning</li>
-            <li>Append-only audit tables</li>
-            <li>RLS policies</li>
-            <li>Correlation-ID lifecycles</li>
-            <li>Terminal-event chaining over timers</li>
-            <li>Redis debounce coordination</li>
-            <li>Join barriers</li>
-            <li>Single-flight</li>
-            <li>Per-household locks</li>
-            <li>Circuit breakers</li>
-            <li>Idempotent EventBridge / SQS scheduling</li>
-            <li>Exotel two-leg bridging</li>
-            <li>WhatsApp Business webhooks</li>
-            <li>Slack Events API</li>
-          </ul>
-        </div>
+            <div class="xp__main">
+              <p class="xp__title">Research Intern</p>
+              <h3 class="xp__org">IIT Patna</h3>
+              <p class="xp__lede">Fog computing for BCI healthcare, mentored by Dr. Arijit Roy. Two results — one of them peer-reviewed and published.</p>
+
+              <!-- the two findings, set as margin notes hanging off their labels -->
+              <div class="notes notes--xp">
+                <div class="note">
+                  <span class="note__tag">R1</span>
+                  <div class="note__body">
+                    <h4 class="note__title">DQN-LSTM scheduler for real-time EEG transmission</h4>
+                    <p class="note__lede">Fog computing for BCI healthcare. Mean episode latency cut against the plain-DDQN baseline.</p>
+                    <p class="note__foot"><span class="fig">−61%</span><span class="label">latency · Wilcoxon p = 0.001 · n = 10 seeds</span></p>
+                  </div>
+                </div>
+
+                <div class="note">
+                  <span class="note__tag">R2</span>
+                  <div class="note__body">
+                    <h4 class="note__title">3D Pareto-optimised head selection</h4>
+                    <p class="note__lede">Head-selection algorithm for fog-enabled EEG healthcare IoT. Balances latency, energy and reliability across the topology.</p>
+                    <p class="note__foot"><span class="label">Latency</span><span class="label">Energy</span><span class="label">Reliability</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <span class="label xp__xref">The paper it produced is in <a class="link" href="#research">03 — Publication</a></span>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
 
-    <!-- ================= 03 — RESEARCH ================= -->
+    <!-- ================= 03 — PUBLICATION ================= -->
+    <!-- A peer-reviewed paper is not a job, so it keeps its own plate. -->
     <section class="section" id="research" aria-labelledby="research-t">
       <div class="shell">
         <div class="section__head" data-reveal>
           <span class="section__num">03</span>
-          <h2 class="section__title" id="research-t">Research — IIT Patna</h2>
-          <span class="section__meta">Dec 2024 — Feb 2025 · Dr. Arijit Roy</span>
+          <h2 class="section__title" id="research-t">Publication</h2>
+          <span class="section__meta">Peer-reviewed · IEEE INDICON 2025</span>
         </div>
 
-        <!-- paper first: the published artefact leads the section -->
         <div class="paper section__tiles" data-reveal>
           <div class="paper__frame">
             <img src="assets/images/indicon-paper.png" alt="First page of the 3D-POS paper published at IEEE INDICON 2025" loading="lazy" />
@@ -522,140 +522,155 @@
             <span class="tile__idx">Publication · IEEE INDICON 2025</span>
             <h3 class="paper__title">3D-POS: 3D Pareto Optimized Head Selection for Fog-enabled Smart EEG Healthcare IoT</h3>
             <p class="paper__cite">E.S.S. Kaushal, R.K. Rath, S. S.R., A. Hazra. <span class="paper__cite-em">Proc. IEEE INDICON</span>, 2025.</p>
-            <p><a class="link" href="https://ieeexplore.ieee.org/document/11252295" target="_blank" rel="noopener">IEEE Xplore ↗</a></p>
-          </div>
-        </div>
-
-        <!-- the two findings, set as margin notes hanging off their labels -->
-        <div class="notes">
-          <div class="note" data-reveal style="--i:0">
-            <span class="note__tag">R1</span>
-            <div class="note__body">
-              <h3 class="note__title">DQN-LSTM scheduler for real-time EEG transmission</h3>
-              <p class="note__lede">Fog computing for BCI healthcare. Mean episode latency cut against the plain-DDQN baseline.</p>
-              <p class="note__foot"><span class="fig">−61%</span><span class="label">latency · Wilcoxon p = 0.001 · n = 10 seeds</span></p>
-            </div>
-          </div>
-
-          <div class="note" data-reveal style="--i:1">
-            <span class="note__tag">R2</span>
-            <div class="note__body">
-              <h3 class="note__title">3D Pareto-optimised head selection</h3>
-              <p class="note__lede">Head-selection algorithm for fog-enabled EEG healthcare IoT. Balances latency, energy and reliability across the topology.</p>
-              <p class="note__foot"><span class="label">Latency</span><span class="label">Energy</span><span class="label">Reliability</span></p>
-            </div>
+            <p><a class="link" href="https://ieeexplore.ieee.org/document/11252295" target="_blank" rel="noopener">IEEE Xplore ↗</a> &nbsp; <span class="label">Written during the <a class="link link--mute" href="#work">IIT Patna internship</a></span></p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ================= 04 — BUILT ================= -->
+    <!-- Three projects, three kinds of work, three layouts. A research report,
+         a deployed product and a benchmark sheet do not get one template.
+         What holds them together: accent index, mono kind-label, and the same
+         stack/source rule closing every entry. -->
     <section class="section" id="built" aria-labelledby="built-t">
       <div class="shell">
         <div class="section__head" data-reveal>
           <span class="section__num">04</span>
           <h2 class="section__title" id="built-t">Built</h2>
-          <span class="section__meta">Selected projects · 2024 — 2025</span>
+          <span class="section__meta">Research · Product · Benchmark</span>
         </div>
 
-        <!-- typographic ledger: numbered entry, prose, spec sheet. No media. -->
-        <!-- typographic ledger, now as a tree: three repos as one line each,
-             the README prose and the spec sheet behind the disclosure. -->
-        <div class="tree section__tiles" data-tree data-reveal>
-          <div class="tree__bar">
-            <span class="tree__root">built/</span>
-            <span class="label tree__hint">Three repositories — open one for the write-up</span>
-            <div class="tree__ctl" role="group" aria-label="Expand or collapse every project">
-              <button type="button" data-tree-act="open">Expand all</button>
-              <button type="button" data-tree-act="close">Collapse all</button>
+        <div class="built section__tiles">
+
+          <!-- ---- 01 · RESEARCH — a lab report: prose left, results hard right ---- -->
+          <article class="proj proj--research" id="p-morld" data-reveal>
+            <div class="proj__lede">
+              <div class="proj__head">
+                <span class="proj__idx">01</span>
+                <span class="label">Deep-learning research</span>
+                <span class="label">Feb — May 2025</span>
+              </div>
+              <h3 class="proj__title proj__title--research">Morld</h3>
+              <p class="proj__abstract">De-novo molecule generation — a generative-chemistry model taught to write valid molecules, then rewarded into writing good ones.</p>
+              <p class="proj__body">Two-stage pipeline. Stage 1 trains an LSTM on 1M+ SMILES for next-token prediction. Stage 2 fine-tunes it with REINFORCE against a custom reward combining validity, novelty, fragment presence and QED. Top-p (nucleus) sampling for generation diversity, plus fragment-based control to steer toward a scaffold. An automated evaluation harness scores validity, novelty, uniqueness, diversity and QED.</p>
             </div>
-          </div>
 
-          <ul class="tree__list">
-            <li class="tree__item">
-              <details class="node node--proj" id="p-morld">
-                <summary class="node__sum">
-                  <span class="node__tick" aria-hidden="true"></span>
-                  <span class="node__idx">01</span>
-                  <span class="node__name node__name--big">Morld</span>
-                  <span class="node__fact">de-novo molecule generation · <b>Feb — May 2025</b></span>
-                </summary>
-                <div class="node__in">
-                  <p class="node__body">Two-stage pipeline. Stage 1 trains an LSTM on 1M+ SMILES for next-token prediction. Stage 2 fine-tunes it with REINFORCE against a custom reward combining validity, novelty, fragment presence and QED. Top-p (nucleus) sampling for generation diversity, plus fragment-based control to steer toward a scaffold. An automated evaluation harness scores validity, novelty, uniqueness, diversity and QED.</p>
-                  <dl class="spec node__meta">
-                    <div class="spec__row">
-                      <dt class="label">Results</dt>
-                      <dd>96% chemical validity · 100% novelty · 100% uniqueness · 0.85 QED</dd>
-                    </div>
-                    <div class="spec__row">
-                      <dt class="label">Stack</dt>
-                      <dd>TensorFlow 2.19 · RDKit · Python 3.10 · LSTM · REINFORCE</dd>
-                    </div>
-                    <div class="spec__row">
-                      <dt class="label">Source</dt>
-                      <dd><a class="link" href="https://github.com/seriouslegend2/Denovo-Chemical-Molecule-Generation-with-LSTM-RL" target="_blank" rel="noopener">Repository ↗</a></dd>
-                    </div>
-                  </dl>
-                </div>
-              </details>
-            </li>
+            <dl class="metrics" aria-label="Evaluation results">
+              <div class="metric">
+                <dd class="fig">96%</dd>
+                <dt class="label">Chemical validity</dt>
+              </div>
+              <div class="metric">
+                <dd class="fig">100%</dd>
+                <dt class="label">Novelty</dt>
+              </div>
+              <div class="metric">
+                <dd class="fig">100%</dd>
+                <dt class="label">Uniqueness</dt>
+              </div>
+              <div class="metric">
+                <dd class="fig">0.85</dd>
+                <dt class="label">QED</dt>
+              </div>
+            </dl>
 
-            <li class="tree__item">
-              <details class="node node--proj" id="p-hungerhearts">
-                <summary class="node__sum">
-                  <span class="node__tick" aria-hidden="true"></span>
-                  <span class="node__idx">02</span>
-                  <span class="node__name node__name--big">Hunger Hearts</span>
-                  <span class="node__fact">food redistribution platform · <b>Nov 2024 — Apr 2025</b></span>
-                </summary>
-                <div class="node__in">
-                  <p class="node__body">Moves surplus food from restaurants and households to families in slums, matching every donation to the nearest delivery partner with race-safe handoffs. Express + MongoDB behind a Next.js frontend, JWT auth with bcrypt. Redis on Upstash caches the post feed with write-through invalidation on new posts; MongoDB indexes cut query time. Swagger docs for every route at <code class="code">/api-docs</code>, Jest unit tests, a Dockerised backend shipped to Docker Hub and deployed on Render via GitHub Actions, frontend on Vercel.</p>
-                  <dl class="spec node__meta">
-                    <div class="spec__row">
-                      <dt class="label">Context</dt>
-                      <dd>78M tonnes of food wasted a year · malnutrition a factor in 500,000 child deaths · 194M undernourished</dd>
-                    </div>
-                    <div class="spec__row">
-                      <dt class="label">Stack</dt>
-                      <dd>Next.js · Express · MongoDB · Redis (Upstash) · Docker · Jest · Swagger · GitHub Actions</dd>
-                    </div>
-                    <div class="spec__row">
-                      <dt class="label">Source</dt>
-                      <dd><a class="link" href="https://github.com/seriouslegend2/hungerhearts" target="_blank" rel="noopener">Repository ↗</a></dd>
-                    </div>
-                  </dl>
-                </div>
-              </details>
-            </li>
+            <p class="proj__foot">
+              <span class="label">Stack</span>
+              <span>TensorFlow 2.19 · RDKit · Python 3.10 · LSTM · REINFORCE</span>
+              <a class="link" href="https://github.com/seriouslegend2/Denovo-Chemical-Molecule-Generation-with-LSTM-RL" target="_blank" rel="noopener">Repository ↗</a>
+            </p>
+          </article>
 
-            <li class="tree__item">
-              <details class="node node--proj" id="p-fogsched">
-                <summary class="node__sum">
-                  <span class="node__tick" aria-hidden="true"></span>
-                  <span class="node__idx">03</span>
-                  <span class="node__name node__name--big">LSTM-ART DRL fog task scheduler</span>
-                  <span class="node__fact">deep RL under node churn · <b>Dec 2024 — Mar 2025</b></span>
-                </summary>
-                <div class="node__in">
-                  <p class="node__body">LSTM + Fuzzy-ART deep RL scheduler with per-prototype replay buffers, driving a discrete-event simulator under Poisson node churn. Separate fog-head and fog-node models, a baselines suite and a benchmark harness in-repo.</p>
-                  <dl class="spec node__meta">
-                    <div class="spec__row">
-                      <dt class="label">Evaluation</dt>
-                      <dd>Benchmarked against 6 baselines over 10-seed paired trials</dd>
-                    </div>
-                    <div class="spec__row">
-                      <dt class="label">Stack</dt>
-                      <dd>Python · Deep RL · LSTM · Fuzzy-ART · discrete-event simulation</dd>
-                    </div>
-                    <div class="spec__row">
-                      <dt class="label">Source</dt>
-                      <dd><a class="link" href="https://github.com/seriouslegend2/drllstm-testing1" target="_blank" rel="noopener">Repository ↗</a></dd>
-                    </div>
-                  </dl>
+          <!-- ---- 02 · PRODUCT — the only boxed entry: banner, impact, pipeline ---- -->
+          <article class="proj proj--product" id="p-hungerhearts" data-reveal>
+            <div class="proj__banner">
+              <div class="proj__head">
+                <span class="proj__idx">02</span>
+                <span class="label">Deployed full-stack product</span>
+                <span class="label">Nov 2024 — Apr 2025</span>
+              </div>
+              <h3 class="proj__title proj__title--product">Hunger Hearts</h3>
+              <p class="proj__banner-sub">Food redistribution platform · live on Render + Vercel</p>
+            </div>
+
+            <ul class="impact" aria-label="Why it exists">
+              <li><span class="fig">78M</span><span class="label">tonnes of food wasted a year</span></li>
+              <li><span class="fig">500,000</span><span class="label">child deaths — malnutrition a factor</span></li>
+              <li><span class="fig">194M</span><span class="label">undernourished</span></li>
+            </ul>
+
+            <div class="proj__prose">
+              <p class="proj__body">Moves surplus food from restaurants and households to families in slums, matching every donation to the nearest delivery partner with race-safe handoffs. Express + MongoDB behind a Next.js frontend, JWT auth with bcrypt. Redis on Upstash caches the post feed with write-through invalidation on new posts; MongoDB indexes cut query time. Swagger docs for every route at <code class="code">/api-docs</code>, Jest unit tests, a Dockerised backend shipped to Docker Hub and deployed on Render via GitHub Actions, frontend on Vercel.</p>
+
+              <p class="proj__foot">
+                <span class="label">Source</span>
+                <span>Race-safe donation handoff · write-through cache invalidation</span>
+                <a class="link" href="https://github.com/seriouslegend2/hungerhearts" target="_blank" rel="noopener">Repository ↗</a>
+              </p>
+            </div>
+
+            <div class="pipe">
+              <span class="label">Pipeline</span>
+              <ol class="pipe__row">
+                <li>Next.js</li>
+                <li>Express</li>
+                <li>MongoDB</li>
+                <li>Redis · Upstash</li>
+                <li>Jest</li>
+                <li>Swagger</li>
+                <li>Docker Hub</li>
+                <li>GitHub Actions</li>
+                <li>Render + Vercel</li>
+              </ol>
+            </div>
+          </article>
+
+          <!-- ---- 03 · BENCHMARK — a sunk results sheet, mono-dominant ---- -->
+          <article class="proj proj--bench" id="p-fogsched" data-reveal>
+            <div class="proj__head">
+              <span class="proj__idx">03</span>
+              <span class="label">Systems benchmark · open source</span>
+              <span class="label">Dec 2024 — Mar 2025</span>
+            </div>
+            <h3 class="proj__title proj__title--bench">lstm-art-drl / fog-task-scheduler</h3>
+
+            <div class="bench">
+              <div>
+                <p class="proj__body">LSTM + Fuzzy-ART deep RL scheduler with per-prototype replay buffers, driving a discrete-event simulator under Poisson node churn. Separate fog-head and fog-node models, a baselines suite and a benchmark harness in-repo.</p>
+                <ul class="bench__figs">
+                  <li><span class="fig">6</span><span class="label">baselines compared</span></li>
+                  <li><span class="fig">10</span><span class="label">seeds · paired trials</span></li>
+                </ul>
+              </div>
+
+              <dl class="sheet">
+                <div class="sheet__row">
+                  <dt class="label">Method</dt>
+                  <dd>LSTM + Fuzzy-ART deep RL · per-prototype replay buffers</dd>
                 </div>
-              </details>
-            </li>
-          </ul>
+                <div class="sheet__row">
+                  <dt class="label">Environment</dt>
+                  <dd>Discrete-event simulator · Poisson node churn</dd>
+                </div>
+                <div class="sheet__row">
+                  <dt class="label">Models</dt>
+                  <dd>Separate fog-head and fog-node policies</dd>
+                </div>
+                <div class="sheet__row">
+                  <dt class="label">Evaluation</dt>
+                  <dd>Benchmarked against 6 baselines over 10-seed paired trials</dd>
+                </div>
+              </dl>
+            </div>
+
+            <p class="proj__foot">
+              <span class="label">Stack</span>
+              <span>Python · Deep RL · LSTM · Fuzzy-ART · discrete-event simulation</span>
+              <a class="link" href="https://github.com/seriouslegend2/drllstm-testing1" target="_blank" rel="noopener">Repository ↗</a>
+            </p>
+          </article>
+
         </div>
       </div>
     </section>
