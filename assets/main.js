@@ -554,9 +554,11 @@ const VLOG_TABLE = 'vlog_entries';
 async function loadEntries() {
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return [];
 
+  // id breaks ties so several points logged on the same date keep the order
+  // they were written in.
   const url =
     `${SUPABASE_URL.replace(/\/+$/, '')}/rest/v1/${VLOG_TABLE}` +
-    `?select=date,content&order=date.asc`;
+    `?select=id,date,content&order=date.asc,id.asc`;
 
   const res = await fetch(url, {
     headers: {
@@ -570,10 +572,24 @@ async function loadEntries() {
   const rows = await res.json();
   if (!Array.isArray(rows)) return [];
 
-  // Oldest row is day 1. Derived here so the table stays two columns.
-  return rows
-    .filter((r) => r && r.date && r.content)
-    .map((r, i) => ({ day: i + 1, date: String(r.date).slice(0, 10), content: String(r.content) }));
+  // One row per point, one entry per DAY. Grouping happens here so the day
+  // number tracks distinct dates — ten points logged on 11 Aug are all D01,
+  // not D01 through D10.
+  const byDate = new Map();
+  for (const r of rows) {
+    if (!r || !r.date || !r.content) continue;
+    const date = String(r.date).slice(0, 10);
+    if (!byDate.has(date)) byDate.set(date, []);
+    byDate.get(date).push(String(r.content));
+  }
+
+  // Map preserves insertion order and the query came back date-ascending,
+  // so the first date seen is day 1.
+  return [...byDate.entries()].map(([date, items], i) => ({
+    day: i + 1,
+    date,
+    items,
+  }));
 }
 
 // -- Rendering ----------------------------------------------------------------
@@ -653,9 +669,48 @@ function renderContent(text) {
   return frag;
 }
 
+/** Normalise one stored point: drop a leading bullet glyph, unwrap linebreaks. */
+function normalisePoint(text) {
+  return String(text)
+    .replace(/\r\n?/g, '\n')
+    .replace(/^\s*[•\-*–]\s+/, '')
+    .split('\n')
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .join(' ');
+}
+
 /**
- * Build one timeline entry — a date and the text, nothing else.
- * @param {{day:number,date:string,content:string}} entry
+ * Render a day's points.
+ *
+ * One row per point is the normal shape, so each row becomes a list item.
+ * A day holding a single row is rendered through renderContent instead, which
+ * keeps working for an entry written as one block of prose or as one row
+ * containing its own bullet list.
+ *
+ * @param {string[]} items
+ * @returns {DocumentFragment}
+ */
+function renderPoints(items) {
+  if (items.length === 1) return renderContent(items[0]);
+
+  const frag = document.createDocumentFragment();
+  const ul = document.createElement('ul');
+  ul.className = 'entry__list';
+  for (const item of items) {
+    const text = normalisePoint(item);
+    if (!text) continue;
+    const li = document.createElement('li');
+    li.textContent = text;
+    ul.appendChild(li);
+  }
+  frag.appendChild(ul);
+  return frag;
+}
+
+/**
+ * Build one timeline entry — a date and that day's points.
+ * @param {{day:number,date:string,items:string[]}} entry
  * @returns {HTMLElement}
  */
 function buildEntry(entry, index) {
@@ -674,7 +729,7 @@ function buildEntry(entry, index) {
 
   const body = document.createElement('div');
   body.className = 'entry__body';
-  body.appendChild(renderContent(entry.content));
+  body.appendChild(renderPoints(entry.items));
 
   article.append(day, body);
   return article;
