@@ -1548,6 +1548,43 @@ html:not(.js) .tree__ctl { display: none; }
 
 .signoff__meta { margin-top: clamp(16px, 2vw, 28px); }
 
+/* The vlog's only entry point — a small hairline button sitting under the
+   name, deliberately quiet so it doesn't compete with the work above it. */
+.signoff__vlog {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: clamp(18px, 2.2vw, 30px);
+  padding: 12px 18px;
+  min-height: 44px;
+  border: 1px solid var(--line-hi);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg);
+  text-decoration: none;
+  transition: border-color 0.22s ease, color 0.22s ease, background-color 0.22s ease;
+}
+.signoff__vlog .dot { align-self: center; }
+.signoff__vlog-sub {
+  color: var(--fg-mute);
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+.signoff__vlog:hover,
+.signoff__vlog:focus-visible {
+  border-color: var(--acc);
+  color: var(--acc);
+  background: rgba(201, 242, 77, 0.05);
+}
+.signoff__vlog:hover .signoff__vlog-sub,
+.signoff__vlog:focus-visible .signoff__vlog-sub { color: var(--fg-mid); }
+
+@media (prefers-reduced-motion: reduce) {
+  .signoff__vlog { transition: none; }
+}
+
 .foot__bar {
   border-top: 1px solid var(--line);
   padding: 16px 0 40px;
