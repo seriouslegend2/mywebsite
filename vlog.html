@@ -76,11 +76,20 @@
         <div class="section__head" data-reveal>
           <span class="section__num">01</span>
           <h2 class="section__title" id="tl-t">Timeline</h2>
-          <span class="section__meta">Newest first</span>
+
+          <!-- Sort control. Rendered in markup rather than by JS so it is
+               present and labelled before the entries arrive. -->
+          <div class="sortby" role="group" aria-label="Sort order">
+            <button type="button" data-sort="newest" aria-pressed="true">Newest</button>
+            <button type="button" data-sort="oldest" aria-pressed="false">Oldest</button>
+          </div>
         </div>
 
         <!-- Rendered by renderEntries() in assets/main.js -->
         <div class="timeline" id="timeline"></div>
+
+        <!-- Pagination; hidden until there is more than one page of days. -->
+        <nav class="pager" id="pager" aria-label="Timeline pages" hidden></nav>
 
         <noscript>
           <div class="empty">

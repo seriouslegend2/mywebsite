@@ -746,6 +746,125 @@ function buildEntry(entry, index) {
   return article;
 }
 
+// -- View state: sort order and page, both mirrored into the URL -------------
+const PER_PAGE = 12; // days per page
+
+const view = {
+  sort: 'newest', // 'newest' | 'oldest'
+  page: 0,        // zero-based
+  all: [],        // every day, oldest-first as loaded
+};
+
+/** Read sort/page out of the query string so a view can be linked and reloaded. */
+function readView() {
+  const q = new URLSearchParams(location.search);
+  if (q.get('sort') === 'oldest') view.sort = 'oldest';
+  const p = parseInt(q.get('page'), 10);
+  if (Number.isFinite(p) && p > 0) view.page = p - 1;
+}
+
+/** Write the current view back to the URL without adding history entries. */
+function writeView() {
+  const q = new URLSearchParams(location.search);
+  if (view.sort === 'oldest') q.set('sort', 'oldest');
+  else q.delete('sort');
+  if (view.page > 0) q.set('page', String(view.page + 1));
+  else q.delete('page');
+  const qs = q.toString();
+  history.replaceState(null, '', `${location.pathname}${qs ? `?${qs}` : ''}${location.hash}`);
+}
+
+/** Apply the current sort and page to the loaded days. */
+function visibleSlice() {
+  const ordered = view.all.slice().sort((a, b) =>
+    view.sort === 'newest' ? b.day - a.day : a.day - b.day
+  );
+  const pages = Math.max(1, Math.ceil(ordered.length / PER_PAGE));
+  if (view.page > pages - 1) view.page = pages - 1; // e.g. a stale ?page= in the URL
+  const start = view.page * PER_PAGE;
+  return { items: ordered.slice(start, start + PER_PAGE), pages };
+}
+
+/**
+ * Draw one day's worth of entries plus the pager. Called on load and on every
+ * sort/page change; the data is never refetched.
+ */
+function paint() {
+  const timeline = document.getElementById('timeline');
+  if (!timeline) return;
+
+  const { items, pages } = visibleSlice();
+
+  timeline.textContent = '';
+  const frag = document.createDocumentFragment();
+  items.forEach((entry, i) => frag.appendChild(buildEntry(entry, i)));
+  timeline.appendChild(frag);
+
+  document.querySelectorAll('[data-sort]').forEach((btn) => {
+    btn.setAttribute('aria-pressed', String(btn.dataset.sort === view.sort));
+  });
+
+  paintPager(pages);
+  writeView();
+  observeReveals(timeline);
+}
+
+/** Prev / numbered pages / next. Hidden entirely at one page. */
+function paintPager(pages) {
+  const pager = document.getElementById('pager');
+  if (!pager) return;
+
+  pager.textContent = '';
+  if (pages <= 1) {
+    pager.hidden = true;
+    return;
+  }
+  pager.hidden = false;
+
+  const go = (n) => () => {
+    view.page = n;
+    paint();
+    document.getElementById('timeline')
+      ?.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
+  };
+
+  const button = (label, target, opts = {}) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = label;
+    if (opts.current) {
+      b.className = 'is-current';
+      b.setAttribute('aria-current', 'page');
+    }
+    if (opts.disabled) b.disabled = true;
+    else b.addEventListener('click', go(target));
+    if (opts.label) b.setAttribute('aria-label', opts.label);
+    return b;
+  };
+
+  pager.appendChild(
+    button('←', view.page - 1, { disabled: view.page === 0, label: 'Previous page' })
+  );
+
+  for (let i = 0; i < pages; i += 1) {
+    pager.appendChild(
+      button(String(i + 1).padStart(2, '0'), i, {
+        current: i === view.page,
+        label: `Page ${i + 1} of ${pages}`,
+      })
+    );
+  }
+
+  pager.appendChild(
+    button('→', view.page + 1, { disabled: view.page === pages - 1, label: 'Next page' })
+  );
+
+  const count = document.createElement('span');
+  count.className = 'pager__count';
+  count.textContent = `${view.all.length} days · ${PER_PAGE} per page`;
+  pager.appendChild(count);
+}
+
 /**
  * Render the whole timeline, newest day first, plus the running counters.
  * @param {Array} entries
@@ -784,18 +903,18 @@ function renderEntries(entries, failure) {
 
     timeline.appendChild(empty);
     setCounters(0, null, null);
+    const pager = document.getElementById('pager');
+    if (pager) pager.hidden = true;
     return;
   }
 
-  // Newest first on screen; day numbers were assigned oldest-first upstream.
-  list.sort((a, b) => b.day - a.day);
+  // Counters describe the WHOLE log, not the page being viewed.
+  const oldestFirst = list.slice().sort((a, b) => a.day - b.day);
+  setCounters(list.length, oldestFirst[oldestFirst.length - 1], oldestFirst[0]);
 
-  const frag = document.createDocumentFragment();
-  list.forEach((entry, i) => frag.appendChild(buildEntry(entry, i)));
-  timeline.appendChild(frag);
-
-  setCounters(list.length, list[0], list[list.length - 1]);
-  observeReveals(timeline);
+  // Hand off to the paged view; sorting and slicing live there.
+  view.all = list;
+  paint();
 }
 
 function setCounters(count, newest, oldest) {
@@ -810,6 +929,21 @@ function setCounters(count, newest, oldest) {
 
 // -- Boot ---------------------------------------------------------------------
 if (document.getElementById('timeline')) {
+  readView();
+
+  // Sorting re-paints from memory — no refetch, and it returns to page one
+  // because page 3 of newest-first is a different stretch of time to page 3
+  // of oldest-first.
+  document.querySelectorAll('[data-sort]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const next = btn.dataset.sort === 'oldest' ? 'oldest' : 'newest';
+      if (next === view.sort) return;
+      view.sort = next;
+      view.page = 0;
+      paint();
+    });
+  });
+
   loadEntries()
     .then(renderEntries)
     .catch((err) => {
