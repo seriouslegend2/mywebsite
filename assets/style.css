@@ -1811,6 +1811,15 @@ html:not(.js) .tree__ctl { display: none; }
   font-size: 12px;
   letter-spacing: 0.02em;
 }
+/* Failure detail — visible, so a broken build says so instead of looking
+   like a log with nothing in it. */
+.empty__detail {
+  margin-top: 10px;
+  font-size: 10.5px;
+  color: var(--fg-mute);
+  opacity: 0.75;
+  max-width: 70ch;
+}
 
 /* --------------------------------------------------------------------------
    12b. The wheel — radial jog-navigator

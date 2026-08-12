@@ -551,8 +551,19 @@ const VLOG_TABLE = 'vlog_entries';
 // Returns [] when unconfigured or unreachable, so the page degrades to its
 // empty state instead of breaking.
 // -----------------------------------------------------------------------------
+/** Thrown when the deploy-time config never landed, so the UI can say so. */
+function ConfigError(message) {
+  const e = new Error(message);
+  e.name = 'ConfigError';
+  return e;
+}
+
 async function loadEntries() {
-  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return [];
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    // Empty config and an empty table used to render identically, which made
+    // a broken deploy look exactly like a log with nothing in it. Say which.
+    throw ConfigError('Supabase config is empty — the deploy-time injection did not run.');
+  }
 
   // id breaks ties so several points logged on the same date keep the order
   // they were written in.
@@ -738,8 +749,9 @@ function buildEntry(entry, index) {
 /**
  * Render the whole timeline, newest day first, plus the running counters.
  * @param {Array} entries
+ * @param {Error} [failure] present when the load failed rather than returned nothing
  */
-function renderEntries(entries) {
+function renderEntries(entries, failure) {
   const timeline = document.getElementById('timeline');
   if (!timeline) return;
 
@@ -747,13 +759,29 @@ function renderEntries(entries) {
 
   const list = Array.isArray(entries) ? entries.slice() : [];
 
-  // Empty state.
+  // Empty state — and, importantly, three DIFFERENT empty states. A failed
+  // load must never be mistaken for a log with nothing in it.
   if (!list.length) {
     const empty = document.createElement('div');
     empty.className = 'empty';
+
     const p = document.createElement('p');
-    p.textContent = 'No entries yet. Day one goes up soon.';
+    if (failure && failure.name === 'ConfigError') {
+      p.textContent = 'The log is not connected to its database on this build.';
+    } else if (failure) {
+      p.textContent = 'Could not reach the log right now. Try again in a moment.';
+    } else {
+      p.textContent = 'No entries yet. Day one goes up soon.';
+    }
     empty.appendChild(p);
+
+    if (failure) {
+      const detail = document.createElement('p');
+      detail.className = 'empty__detail';
+      detail.textContent = failure.message;
+      empty.appendChild(detail);
+    }
+
     timeline.appendChild(empty);
     setCounters(0, null, null);
     return;
@@ -785,7 +813,7 @@ if (document.getElementById('timeline')) {
   loadEntries()
     .then(renderEntries)
     .catch((err) => {
-      console.error('[vlog] failed to load entries', err);
-      renderEntries([]);
+      console.error('[vlog] failed to load entries:', err);
+      renderEntries([], err);
     });
 }

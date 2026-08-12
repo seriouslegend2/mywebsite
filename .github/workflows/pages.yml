@@ -68,6 +68,20 @@ jobs:
           done
           echo "Supabase config injected."
 
+      # Pages serves assets with cache-control: max-age=600, so for ten minutes
+      # after a deploy a browser or CDN node can still hand out the previous
+      # main.js. Stamping the commit SHA onto the asset URLs makes every deploy
+      # a new URL, so a stale script is impossible.
+      - name: Cache-bust asset URLs
+        run: |
+          set -euo pipefail
+          v="${GITHUB_SHA::7}"
+          for page in index.html vlog.html; do
+            sed -i "s|assets/main\.js|assets/main.js?v=${v}|g; s|assets/style\.css|assets/style.css?v=${v}|g" "$page"
+          done
+          echo "Assets stamped with ?v=${v}"
+          grep -o "assets/[a-z]*\.[a-z]*?v=[0-9a-f]*" index.html | sort -u
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
