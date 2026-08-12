@@ -516,29 +516,33 @@ buildWheel();
 // =============================================================================
 
 // -----------------------------------------------------------------------------
-// CONFIG — the only two values to fill in.
+// CONFIG — injected at deploy time, not stored here.
 //
-// The anon key is *designed* to sit in browser code; it is not a secret. What
-// keeps the table safe is Row Level Security: a read-only policy for `anon`
-// and no insert/update/delete policy at all. Never put the service_role key
-// here — that one bypasses RLS entirely.
+// These two lines stay empty in the repository. The Pages workflow substitutes
+// the real values from the repo secrets SUPABASE_URL and SUPABASE_ANON_KEY
+// before it uploads the site, so the key lives in GitHub's secret store and
+// never enters git history.
 //
-// Table shape, deliberately minimal — a date and the text, nothing else:
+// Be clear about what that does and does not buy: this is a static site, so
+// whatever the browser needs to reach Supabase, a visitor can read out of the
+// network tab. The injection keeps the key out of the repo and makes rotation
+// a one-click change — it does not make the key private, and it was never
+// meant to be. The publishable key is a public identifier by design.
 //
-//   create table public.vlog_entries (
-//     id      bigint generated always as identity primary key,
-//     date    date not null,
-//     content text not null
-//   );
-//   alter table public.vlog_entries enable row level security;
-//   create policy "public read" on public.vlog_entries
-//     for select to anon using (true);
+// What actually protects the data is Row Level Security: select granted to
+// anon, and no insert/update/delete policy at all. The service_role key must
+// never appear here or anywhere client-side — it bypasses RLS entirely.
 //
+// Table shape, deliberately minimal — a date and the text, nothing else.
+// See supabase.sql for the script that creates it with the right policy.
 // Day numbers are derived from date order, so there is no day column to keep
 // in sync — add a row and it becomes the next day automatically.
+//
+// Empty values are a supported state: the page falls through to its empty
+// timeline, which is what you get running the site locally.
 // -----------------------------------------------------------------------------
-const SUPABASE_URL = '';       // e.g. 'https://abcdefgh.supabase.co'  (no trailing slash)
-const SUPABASE_ANON_KEY = '';  // the anon / publishable key
+const SUPABASE_URL = '';
+const SUPABASE_ANON_KEY = '';
 
 const VLOG_TABLE = 'vlog_entries';
 

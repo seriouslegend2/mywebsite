@@ -27,6 +27,47 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      # The two Supabase values are kept out of the repository and substituted
+      # into assets/main.js here, just before upload. They still ship inside the
+      # deployed JS — a static site has no server to hide them behind — so this
+      # is about keeping the key out of git history and making rotation a
+      # one-click secret change, not about making it private. What protects the
+      # table is Row Level Security, not the secrecy of the publishable key.
+      - name: Inject Supabase config
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          set -euo pipefail
+          f=assets/main.js
+
+          if [ -z "${SUPABASE_URL}" ] || [ -z "${SUPABASE_ANON_KEY}" ]; then
+            echo "::error::SUPABASE_URL and SUPABASE_ANON_KEY repo secrets must both be set."
+            exit 1
+          fi
+
+          # Fail loudly if the placeholders ever get renamed, rather than
+          # silently deploying a site that cannot reach the database.
+          for name in SUPABASE_URL SUPABASE_ANON_KEY; do
+            if ! grep -q "^const ${name} = '';" "$f"; then
+              echo "::error::${name} placeholder not found in $f"
+              exit 1
+            fi
+          done
+
+          # '|' as the delimiter because the URL contains slashes.
+          sed -i "s|^const SUPABASE_URL = '';|const SUPABASE_URL = '${SUPABASE_URL}';|"                "$f"
+          sed -i "s|^const SUPABASE_ANON_KEY = '';|const SUPABASE_ANON_KEY = '${SUPABASE_ANON_KEY}';|" "$f"
+
+          # Confirm both were replaced, without printing the values.
+          for name in SUPABASE_URL SUPABASE_ANON_KEY; do
+            if grep -q "^const ${name} = '';" "$f"; then
+              echo "::error::${name} substitution failed"
+              exit 1
+            fi
+          done
+          echo "Supabase config injected."
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
