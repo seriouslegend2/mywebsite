@@ -100,86 +100,6 @@
       </div>
     </header>
 
-    <!-- ================= 01 — SIGNATURES ================= -->
-    <!-- Leads the page, so nothing here is hidden: six cards, stated up front.
-         Assertion, then the evidence in a line. No disclosure, no paragraphs. -->
-    <section class="section" id="signatures" aria-labelledby="sig-t">
-      <div class="shell">
-        <div class="section__head" data-reveal>
-          <span class="section__num">01</span>
-          <h2 class="section__title" id="sig-t">Engineering signatures</h2>
-          <span class="section__meta">Six patterns that repeat</span>
-        </div>
-
-        <div class="sigs section__tiles">
-          <article class="sig" id="s-silent" data-reveal style="--i:0">
-            <span class="sig__ghost" aria-hidden="true">01</span>
-            <span class="sig__idx">01</span>
-            <h3 class="sig__name">Hunts silent failures</h3>
-            <p class="sig__fact">Swallowed exceptions · a cached <b>False</b> with no TTL · RLS on with no policies. Every fix ships instrumentation.</p>
-          </article>
-
-          <article class="sig" id="s-enforce" data-reveal style="--i:1">
-            <span class="sig__ghost" aria-hidden="true">02</span>
-            <span class="sig__idx">02</span>
-            <h3 class="sig__name">Moves enforcement where it can't be bypassed</h3>
-            <p class="sig__fact">Triggers · <b>CHECK</b> constraints · partial unique indexes. Make the bad state unrepresentable.</p>
-          </article>
-
-          <article class="sig" id="s-delete" data-reveal style="--i:2">
-            <span class="sig__ghost" aria-hidden="true">03</span>
-            <span class="sig__idx">03</span>
-            <h3 class="sig__name">Deletes on runtime evidence</h3>
-            <p class="sig__fact">Traces decide, not static analysis. A path comes out once production shows <b>nothing reaches it</b>.</p>
-          </article>
-
-          <article class="sig" id="s-reality" data-reveal style="--i:3">
-            <span class="sig__ghost" aria-hidden="true">04</span>
-            <span class="sig__idx">04</span>
-            <h3 class="sig__name">Validates against production reality</h3>
-            <p class="sig__fact">Anchored to <b>a real broken row</b>, proved inside a transaction I then rolled back.</p>
-          </article>
-
-          <article class="sig" id="s-deploy" data-reveal style="--i:4">
-            <span class="sig__ghost" aria-hidden="true">05</span>
-            <span class="sig__idx">05</span>
-            <h3 class="sig__name">Writes the deploy order down</h3>
-            <p class="sig__fact">Code ↔ migration ordering, stated — including the windows where the database would outrun the app.</p>
-          </article>
-
-          <article class="sig" id="s-config" data-reveal style="--i:5">
-            <span class="sig__ghost" aria-hidden="true">06</span>
-            <span class="sig__idx">06</span>
-            <h3 class="sig__name">Configures through data, not code</h3>
-            <p class="sig__fact">HITL settings · playbooks · model routing — <b>tables operators edit</b> without a deploy.</p>
-          </article>
-        </div>
-
-        <div class="sigs__tail" data-reveal>
-          <span class="label">Also in the record</span>
-          <ul class="chips">
-            <li>Postgres triggers as an enforcement boundary</li>
-            <li>RPC state machines with pg_net callbacks</li>
-            <li>pg_cron scheduling</li>
-            <li>Stalled-stage reapers</li>
-            <li>SCD Type 2 versioning</li>
-            <li>Append-only audit tables</li>
-            <li>RLS policies</li>
-            <li>Correlation-ID lifecycles</li>
-            <li>Terminal-event chaining over timers</li>
-            <li>Redis debounce coordination</li>
-            <li>Join barriers</li>
-            <li>Single-flight</li>
-            <li>Per-household locks</li>
-            <li>Circuit breakers</li>
-            <li>Idempotent EventBridge / SQS scheduling</li>
-            <li>Exotel two-leg bridging</li>
-            <li>WhatsApp Business webhooks</li>
-            <li>Slack Events API</li>
-          </ul>
-        </div>
-      </div>
-    </section>
 
     <!-- ================= 02 — EXPERIENCE ================= -->
     <!-- Both employments, one band. This is the only raised surface on the
@@ -187,7 +107,7 @@
     <section class="section section--xp" id="work" aria-labelledby="work-t">
       <div class="shell">
         <div class="section__head" data-reveal>
-          <span class="section__num">02</span>
+          <span class="section__num">01</span>
           <h2 class="section__title" id="work-t">Experience</h2>
           <span class="section__meta">Two roles · Dec 2024 — Present</span>
         </div>
@@ -509,7 +429,7 @@
     <section class="section" id="research" aria-labelledby="research-t">
       <div class="shell">
         <div class="section__head" data-reveal>
-          <span class="section__num">03</span>
+          <span class="section__num">02</span>
           <h2 class="section__title" id="research-t">Publication</h2>
           <span class="section__meta">Peer-reviewed · IEEE INDICON 2025</span>
         </div>
@@ -536,7 +456,7 @@
     <section class="section" id="built" aria-labelledby="built-t">
       <div class="shell">
         <div class="section__head" data-reveal>
-          <span class="section__num">04</span>
+          <span class="section__num">03</span>
           <h2 class="section__title" id="built-t">Built</h2>
           <span class="section__meta">Research · Product · Benchmark</span>
         </div>
@@ -679,7 +599,7 @@
     <section class="section" id="stack" aria-labelledby="stack-t">
       <div class="shell">
         <div class="section__head" data-reveal>
-          <span class="section__num">05</span>
+          <span class="section__num">04</span>
           <h2 class="section__title" id="stack-t">Stack</h2>
           <span class="section__meta">What I reach for</span>
         </div>
@@ -723,7 +643,7 @@
     <section class="section" id="record" aria-labelledby="record-t">
       <div class="shell">
         <div class="section__head" data-reveal>
-          <span class="section__num">06</span>
+          <span class="section__num">05</span>
           <h2 class="section__title" id="record-t">Record</h2>
           <span class="section__meta">Education · Responsibility</span>
         </div>
@@ -758,6 +678,87 @@
             </div>
             <p class="rec__fig"><span class="fig">200+<sub>students</sub></span></p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 06 — SIGNATURES ================= -->
+    <!-- Closes the page. Six cards, stated up front — no disclosure, no
+         paragraphs: assertion, then the evidence in a line. -->
+    <section class="section" id="signatures" aria-labelledby="sig-t">
+      <div class="shell">
+        <div class="section__head" data-reveal>
+          <span class="section__num">06</span>
+          <h2 class="section__title" id="sig-t">Engineering signatures</h2>
+          <span class="section__meta">Six patterns that repeat</span>
+        </div>
+
+        <div class="sigs section__tiles">
+          <article class="sig" id="s-silent" data-reveal style="--i:0">
+            <span class="sig__ghost" aria-hidden="true">01</span>
+            <span class="sig__idx">01</span>
+            <h3 class="sig__name">Hunts silent failures</h3>
+            <p class="sig__fact">Swallowed exceptions · a cached <b>False</b> with no TTL · RLS on with no policies. Every fix ships instrumentation.</p>
+          </article>
+
+          <article class="sig" id="s-enforce" data-reveal style="--i:1">
+            <span class="sig__ghost" aria-hidden="true">02</span>
+            <span class="sig__idx">02</span>
+            <h3 class="sig__name">Moves enforcement where it can't be bypassed</h3>
+            <p class="sig__fact">Triggers · <b>CHECK</b> constraints · partial unique indexes. Make the bad state unrepresentable.</p>
+          </article>
+
+          <article class="sig" id="s-delete" data-reveal style="--i:2">
+            <span class="sig__ghost" aria-hidden="true">03</span>
+            <span class="sig__idx">03</span>
+            <h3 class="sig__name">Deletes on runtime evidence</h3>
+            <p class="sig__fact">Traces decide, not static analysis. A path comes out once production shows <b>nothing reaches it</b>.</p>
+          </article>
+
+          <article class="sig" id="s-reality" data-reveal style="--i:3">
+            <span class="sig__ghost" aria-hidden="true">04</span>
+            <span class="sig__idx">04</span>
+            <h3 class="sig__name">Validates against production reality</h3>
+            <p class="sig__fact">Anchored to <b>a real broken row</b>, proved inside a transaction I then rolled back.</p>
+          </article>
+
+          <article class="sig" id="s-deploy" data-reveal style="--i:4">
+            <span class="sig__ghost" aria-hidden="true">05</span>
+            <span class="sig__idx">05</span>
+            <h3 class="sig__name">Writes the deploy order down</h3>
+            <p class="sig__fact">Code ↔ migration ordering, stated — including the windows where the database would outrun the app.</p>
+          </article>
+
+          <article class="sig" id="s-config" data-reveal style="--i:5">
+            <span class="sig__ghost" aria-hidden="true">06</span>
+            <span class="sig__idx">06</span>
+            <h3 class="sig__name">Configures through data, not code</h3>
+            <p class="sig__fact">HITL settings · playbooks · model routing — <b>tables operators edit</b> without a deploy.</p>
+          </article>
+        </div>
+
+        <div class="sigs__tail" data-reveal>
+          <span class="label">Also in the record</span>
+          <ul class="chips">
+            <li>Postgres triggers as an enforcement boundary</li>
+            <li>RPC state machines with pg_net callbacks</li>
+            <li>pg_cron scheduling</li>
+            <li>Stalled-stage reapers</li>
+            <li>SCD Type 2 versioning</li>
+            <li>Append-only audit tables</li>
+            <li>RLS policies</li>
+            <li>Correlation-ID lifecycles</li>
+            <li>Terminal-event chaining over timers</li>
+            <li>Redis debounce coordination</li>
+            <li>Join barriers</li>
+            <li>Single-flight</li>
+            <li>Per-household locks</li>
+            <li>Circuit breakers</li>
+            <li>Idempotent EventBridge / SQS scheduling</li>
+            <li>Exotel two-leg bridging</li>
+            <li>WhatsApp Business webhooks</li>
+            <li>Slack Events API</li>
+          </ul>
         </div>
       </div>
     </section>

@@ -160,15 +160,15 @@ if (TREES.length) {
 // full keyboard control work for anyone who never discovers the drag.
 // =============================================================================
 
-// Order mirrors the page: masthead → signatures → experience → publication →
-// built → record, with the vlog last as the one cross-page destination.
+// Order mirrors the page: masthead → experience → publication → built →
+// record → signatures, with the vlog last as the one cross-page destination.
 const WHEEL_ITEMS = [
   { id: 'about', label: 'About', hash: '#about' },
-  { id: 'signatures', label: 'Signatures', hash: '#signatures' },
   { id: 'work', label: 'Experience', hash: '#work' },
   { id: 'research', label: 'Paper', hash: '#research' },
   { id: 'built', label: 'Projects', hash: '#built' },
   { id: 'record', label: 'Education', hash: '#record' },
+  { id: 'signatures', label: 'Signatures', hash: '#signatures' },
   { id: 'vlog', label: 'Vlog', hash: null }, // vlog.html — its own page
 ];
 
@@ -515,50 +515,61 @@ buildWheel();
 // Only runs on vlog.html (guarded by the presence of #timeline).
 // =============================================================================
 
-// -- Local seed data. Shape is the contract the Phase 2 backend must match. ----
-// { day: number, date: 'YYYY-MM-DD', title: string, body: string, tags: string[] }
-const ENTRIES = [
-  {
-    day: 1,
-    date: '2026-08-10',
-    title: 'Rebuilt the site from scratch',
-    body: 'Threw out the old portfolio. New black grid system, half the words, twice the signal.',
-    tags: ['site', 'design'],
-  },
-  {
-    day: 2,
-    date: '2026-08-11',
-    title: 'Mapped the agent architecture end to end',
-    body: 'Drew every dispatch path in the Watcher on one page. Three redundant hops fell out immediately.',
-    tags: ['agents', 'architecture'],
-  },
-  {
-    day: 3,
-    date: '2026-08-12',
-    title: 'Read the DSPy optimiser internals',
-    body: 'Wanted to know what the compiler actually does to a prompt before trusting it in production.',
-    tags: ['reading', 'dspy'],
-  },
-];
+// -----------------------------------------------------------------------------
+// CONFIG — the only two values to fill in.
+//
+// The anon key is *designed* to sit in browser code; it is not a secret. What
+// keeps the table safe is Row Level Security: a read-only policy for `anon`
+// and no insert/update/delete policy at all. Never put the service_role key
+// here — that one bypasses RLS entirely.
+//
+// Table shape, deliberately minimal — a date and the text, nothing else:
+//
+//   create table public.vlog_entries (
+//     id      bigint generated always as identity primary key,
+//     date    date not null,
+//     content text not null
+//   );
+//   alter table public.vlog_entries enable row level security;
+//   create policy "public read" on public.vlog_entries
+//     for select to anon using (true);
+//
+// Day numbers are derived from date order, so there is no day column to keep
+// in sync — add a row and it becomes the next day automatically.
+// -----------------------------------------------------------------------------
+const SUPABASE_URL = '';       // e.g. 'https://abcdefgh.supabase.co'  (no trailing slash)
+const SUPABASE_ANON_KEY = '';  // the anon / publishable key
+
+const VLOG_TABLE = 'vlog_entries';
 
 // -----------------------------------------------------------------------------
 // DATA SOURCE — the single seam between the UI and wherever entries live.
-// Phase 1: returns the local array above.
-// Phase 2: swap the body for a Supabase REST call. Nothing else changes, as
-// long as the resolved array keeps the entry shape documented above.
+// Returns [] when unconfigured or unreachable, so the page degrades to its
+// empty state instead of breaking.
 // -----------------------------------------------------------------------------
 async function loadEntries() {
-  // PHASE 2: replace the return below with the Supabase REST fetch, e.g.
-  //
-  //   const res = await fetch(
-  //     `${SUPABASE_URL}/rest/v1/vlog_entries?select=day,date,title,body,tags&order=day.desc`,
-  //     { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` } }
-  //   );
-  //   if (!res.ok) throw new Error(`Supabase ${res.status}`);
-  //   return await res.json();
-  //
-  // (No URL or key is committed yet — Phase 2 adds them.)
-  return ENTRIES;
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return [];
+
+  const url =
+    `${SUPABASE_URL.replace(/\/+$/, '')}/rest/v1/${VLOG_TABLE}` +
+    `?select=date,content&order=date.asc`;
+
+  const res = await fetch(url, {
+    headers: {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+    },
+  });
+
+  if (!res.ok) throw new Error(`Supabase ${res.status} ${res.statusText}`);
+
+  const rows = await res.json();
+  if (!Array.isArray(rows)) return [];
+
+  // Oldest row is day 1. Derived here so the table stays two columns.
+  return rows
+    .filter((r) => r && r.date && r.content)
+    .map((r, i) => ({ day: i + 1, date: String(r.date).slice(0, 10), content: String(r.content) }));
 }
 
 // -- Rendering ----------------------------------------------------------------
@@ -574,8 +585,10 @@ function formatDate(iso) {
 }
 
 /**
- * Build one timeline entry.
- * @param {{day:number,date:string,title:string,body:string,tags:string[]}} entry
+ * Build one timeline entry — a date and the text, nothing else.
+ * Blank lines in `content` become separate paragraphs. Everything goes in as
+ * textContent, so a row written in the database can never inject markup.
+ * @param {{day:number,date:string,content:string}} entry
  * @returns {HTMLElement}
  */
 function buildEntry(entry, index) {
@@ -592,27 +605,19 @@ function buildEntry(entry, index) {
   dayDate.textContent = formatDate(entry.date);
   day.append(dayNum, dayDate);
 
-  const title = document.createElement('h2');
-  title.className = 'entry__title';
-  title.textContent = entry.title;
-
-  const body = document.createElement('p');
+  const body = document.createElement('div');
   body.className = 'entry__body';
-  body.textContent = entry.body;
+  entry.content
+    .split(/\n{2,}/)
+    .map((para) => para.trim())
+    .filter(Boolean)
+    .forEach((para) => {
+      const p = document.createElement('p');
+      p.textContent = para;
+      body.appendChild(p);
+    });
 
-  article.append(day, title, body);
-
-  if (Array.isArray(entry.tags) && entry.tags.length) {
-    const tags = document.createElement('ul');
-    tags.className = 'entry__tags';
-    for (const tag of entry.tags) {
-      const li = document.createElement('li');
-      li.textContent = tag;
-      tags.appendChild(li);
-    }
-    article.appendChild(tags);
-  }
-
+  article.append(day, body);
   return article;
 }
 
@@ -640,6 +645,7 @@ function renderEntries(entries) {
     return;
   }
 
+  // Newest first on screen; day numbers were assigned oldest-first upstream.
   list.sort((a, b) => b.day - a.day);
 
   const frag = document.createDocumentFragment();

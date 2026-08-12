@@ -1683,35 +1683,16 @@ html:not(.js) .tree__ctl { display: none; }
 }
 .entry:hover::before { background: var(--acc); border-color: var(--acc); }
 
-.entry__title {
-  font-size: clamp(17px, 1.7vw, 26px);
-  font-weight: 300;
-  letter-spacing: -0.028em;
-  line-height: 1.2;
-  margin-bottom: 10px;
-}
-
+/* The entry is now a date and its text, so the text carries the entry —
+   set at reading size rather than as a muted caption under a headline. */
 .entry__body {
-  color: var(--fg-mute);
-  font-size: clamp(13px, 0.9vw, 14.5px);
-  max-width: 64ch;
-  margin-bottom: 14px;
+  color: var(--fg-mid);
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.62;
+  letter-spacing: -0.006em;
+  max-width: 68ch;
 }
-
-.entry__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 8px;
-}
-.entry__tags li {
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--fg-mute);
-  border: 1px solid var(--line);
-  padding: 4px 8px;
-}
+.entry__body p + p { margin-top: 0.85em; }
 
 .empty {
   padding: clamp(40px, 6vw, 80px) 0;
