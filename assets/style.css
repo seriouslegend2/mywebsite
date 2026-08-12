@@ -498,6 +498,23 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 }
 .roles--bar li::before { top: 0.62em; width: 4px; height: 4px; }
 
+/* Availability chip — the roles' counterweight on the right of the bar, and
+   the one genuinely highlighted element above the fold. */
+.avail {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 13px;
+  border: 1px solid var(--acc);
+  background: rgba(201, 242, 77, 0.07);
+  color: var(--acc);
+  font-family: var(--mono);
+  font-size: clamp(10.5px, 0.82vw, 12.5px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .roles--foot {
   border-top: 0;
   padding-top: 0;
