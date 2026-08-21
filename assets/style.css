@@ -1190,6 +1190,42 @@ html:not(.js) .tree__ctl { display: none; }
 .xp__xref { display: block; margin-top: clamp(16px, 2vw, 26px); }
 
 /* --------------------------------------------------------------------------
+   8e. Section 00 — building now
+   Two side projects, simple vertical stack. No grid, no tiles — just cards.
+   -------------------------------------------------------------------------- */
+.now {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 56px);
+}
+
+.now .proj {
+  border: 1px solid var(--line);
+  padding: clamp(20px, 2.6vw, 40px);
+  background: var(--bg);
+  transition: background-color 300ms var(--ease), border-color 300ms var(--ease);
+}
+.now .proj:hover {
+  background: var(--bg-lift);
+  border-color: var(--line-hi);
+}
+
+.now .proj__head { margin-bottom: clamp(10px, 1.2vw, 16px); }
+.now .proj__title {
+  font-size: clamp(24px, 3.2vw, 42px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.now .proj__body { margin-top: clamp(10px, 1.2vw, 16px); }
+.now .proj__foot {
+  margin-top: clamp(16px, 2vw, 24px);
+  padding-top: clamp(12px, 1.5vw, 20px);
+  border-top: 1px solid var(--line);
+  justify-content: flex-end;
+}
+
+/* --------------------------------------------------------------------------
    8f. Section 04 — built
    Three projects, three layouts. A research report, a deployed product and a
    benchmark sheet are not the same object, so they are not the same template.
