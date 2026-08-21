@@ -1221,7 +1221,7 @@ html:not(.js) .tree__ctl { display: none; }
 /* the shared footer — the one row all three share, so they stay one family */
 .proj__foot {
   display: grid;
-  grid-template-columns: clamp(56px, 6vw, 82px) minmax(0, 1fr) auto;
+  grid-template-columns: clamp(68px, 6vw, 90px) minmax(0, 1fr) auto;
   gap: 6px clamp(14px, 1.8vw, 30px);
   align-items: baseline;
   margin-top: clamp(16px, 2vw, 28px);
